@@ -11,11 +11,23 @@ public class Shape {
     private Tetrominoes pieceShape;
     private int[][] coords;
     private int[][][] coordsTable;
+    private int[][][] srsKick;
+    private int rotateIndex;    //회전 상태를 저장하는 변수
 
-    // 블럭의 모양을 초기화
+
     public Shape() {
+        srsKick = new int[][][]{    //증가는 right로테이션 감소는 left로테이션, x, y순서임
+                {{0,0}, {-1, 0}, {-1, 1}, {0, -2}, {-1, -2}},   //0>>1
+                {{0,0}, {1, 0}, {1, -1}, {0, 2}, {1, 2}},       //1>>2
+                {{0,0}, {1, 0}, {1, 1}, {0, -2}, {1, -2}},      //2>>3
+                {{0,0}, {-1, 0}, {-1, -1}, {0, 2}, {-1, 2}},    //3>>0
+                {{0,0}, {1, 0}, {1, 1}, {0, -2}, {1, -2}},      //0>>3
+                {{0,0}, {-1, 0}, {-1, -1}, {0, 2}, {-1, 2}},    //3>>2
+                {{0,0}, {-1, 0}, {-1, 1}, {0, -2}, {-1, -2}},   //2>>1
+                {{0,0}, {1, 0}, {1, -1}, {0, 2}, {1, 2}}        //1>>0
+        };
         coords = new int[4][2];
-        coordsTable = new int[][][]{
+        coordsTable = new int[][][]{    // 블럭의 모양을 초기화 x, y 순서임
                 {{0, 0}, {0, 0}, {0, 0}, {0, 0}},
                 {{0, -1}, {0, 0}, {-1, 0}, {-1, 1}},
                 {{0, -1}, {0, 0}, {1, 0}, {1, 1}},
@@ -25,7 +37,7 @@ public class Shape {
                 {{-1, -1}, {0, -1}, {0, 0}, {0, 1}},
                 {{1, -1}, {0, -1}, {0, 0}, {0, 1}}
         };
-        setPieceShape(Tetrominoes.NoShape);
+        setPieceShape(Tetrominoes.NoShape); // 시작블록은 NoShape
     }
 
 
@@ -35,6 +47,11 @@ public class Shape {
         }
         this.pieceShape = pieceShape;
     }
+
+    public int getRotateIndex(){
+        return rotateIndex;
+    }
+
 
     private void setX(int index, int x) {
         coords[index][0] = x;
