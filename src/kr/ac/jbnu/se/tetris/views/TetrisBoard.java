@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.tetris.views;
 
 
 import kr.ac.jbnu.se.tetris.controllers.BoardController;
+import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Shape;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class TetrisBoard extends JPanel implements ActionListener {
     private final int BOARD_WIDTH = 10;
     private final int BOARD_HEIGHT = 22;
     private JLabel statusBar;
+    private KeyInput input;
 
     private BoardController controller;
 
@@ -115,6 +117,29 @@ public class TetrisBoard extends JPanel implements ActionListener {
                 case 'D':
                     controller.oneLineDown();
                     break;
+            }
+            {
+                if(keycode==input.getPause().getKeyCode()){
+                    controller.pause();
+                }
+                if(keycode==input.getMoveLeft().getKeyCode()){
+                    controller.moveLeft();
+                }
+                else if(keycode==input.getMoveRight().getKeyCode()){
+                    controller.moveRight();
+                }
+                else if(keycode==input.getBlockHold().getKeyCode()){
+                    //블록홀드 추가시 추가할것.
+                }
+                else if(keycode==input.getRotateLeft().getKeyCode()){
+                    controller.rotateLeft();
+                }
+                else if(keycode==input.getRotateRight().getKeyCode()){
+                    controller.rotateRight();
+                }
+
+
+
             }
 
         }
