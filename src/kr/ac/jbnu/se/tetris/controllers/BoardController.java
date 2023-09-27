@@ -97,6 +97,14 @@ public class BoardController {
             pieceDropped();
     }
 
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public int getCurrentY(){
+        return currentY;
+    }
+
     //보드 클리어
     private void clearBoard()
     {
@@ -164,7 +172,7 @@ public class BoardController {
     }
 
     //블록을 움직이는 시도를 하는 메서드
-    private boolean tryMove(Shape newPiece, int newX, int newY)
+    public boolean tryMove(Shape newPiece, int newX, int newY)
     {
         for (int i = 0; i < 4; ++i) {
             int x = newX + newPiece.x(i);
@@ -236,28 +244,13 @@ public class BoardController {
     public void moveRight() {
         tryMove(currentPiece, currentX + 1, currentY);
     }
-    public void rotateLeft() {
-        boolean isMoved;
-        for (int i = 0; i < 4; i++) {
-            int moveX = Shape.srsKick[currentPiece.getRotateIndex() + 4][i][0];
-            int moveY = Shape.srsKick[currentPiece.getRotateIndex() + 4][i][1];
-            isMoved = tryMove(currentPiece.rotateLeft(), currentX + moveX, currentY + moveY);
-            if (isMoved) {
-                currentPiece.minusRotateIndex();
-                break;
-            }
-        }
+
+    public void rotateLeft(){
+        BrickRotator.rotateLeft(this, currentPiece);
     }
-    public void rotateRight() {
-        boolean isMoved;
-        for (int i = 0; i < 5; i++) {
-            int moveX = Shape.srsKick[currentPiece.getRotateIndex()][i][0];
-            int moveY = Shape.srsKick[currentPiece.getRotateIndex()][i][1];
-            isMoved = tryMove(currentPiece.rotateLeft(), currentX + moveX, currentY + moveY);
-            if (isMoved) {
-                currentPiece.plusRotateIndex();
-                break;
-            }
-        }
+
+    public void rotateRight(){
+        BrickRotator.rotateRight(this, currentPiece);
     }
+
 }
