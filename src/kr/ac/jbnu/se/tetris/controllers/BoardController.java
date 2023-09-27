@@ -237,9 +237,27 @@ public class BoardController {
         tryMove(currentPiece, currentX + 1, currentY);
     }
     public void rotateLeft() {
-        tryMove(currentPiece.rotateLeft(), currentX, currentY);
+        boolean isMoved;
+        for (int i = 0; i < 4; i++) {
+            int moveX = Shape.srsKick[currentPiece.getRotateIndex() + 4][i][0];
+            int moveY = Shape.srsKick[currentPiece.getRotateIndex() + 4][i][1];
+            isMoved = tryMove(currentPiece.rotateLeft(), currentX + moveX, currentY + moveY);
+            if (isMoved) {
+                currentPiece.minusRotateIndex();
+                break;
+            }
+        }
     }
     public void rotateRight() {
-        tryMove(currentPiece.rotateRight(), currentX, currentY);
+        boolean isMoved;
+        for (int i = 0; i < 5; i++) {
+            int moveX = Shape.srsKick[currentPiece.getRotateIndex()][i][0];
+            int moveY = Shape.srsKick[currentPiece.getRotateIndex()][i][1];
+            isMoved = tryMove(currentPiece.rotateLeft(), currentX + moveX, currentY + moveY);
+            if (isMoved) {
+                currentPiece.plusRotateIndex();
+                break;
+            }
+        }
     }
 }
