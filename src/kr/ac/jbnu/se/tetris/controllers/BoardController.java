@@ -97,6 +97,14 @@ public class BoardController {
             pieceDropped();
     }
 
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public int getCurrentY(){
+        return currentY;
+    }
+
     //보드 클리어
     private void clearBoard()
     {
@@ -164,7 +172,7 @@ public class BoardController {
     }
 
     //블록을 움직이는 시도를 하는 메서드
-    private boolean tryMove(Shape newPiece, int newX, int newY)
+    public boolean tryMove(Shape newPiece, int newX, int newY)
     {
         for (int i = 0; i < 4; ++i) {
             int x = newX + newPiece.x(i);
@@ -230,16 +238,24 @@ public class BoardController {
         }
     }
 
+    //블록을 왼쪽으로 1칸 움직이는 메서드
     public void moveLeft() {
         tryMove(currentPiece, currentX - 1, currentY);
     }
+
+    //블록을 오른쪽으로 1칸 움직이는 메서드
     public void moveRight() {
         tryMove(currentPiece, currentX + 1, currentY);
     }
-    public void rotateLeft() {
-        tryMove(currentPiece.rotateLeft(), currentX, currentY);
+
+    //SRS를 적용한 블록 왼쪽 회전 메서드
+    public void rotateLeft(){
+        BrickRotator.rotateLeft(this, currentPiece);
     }
-    public void rotateRight() {
-        tryMove(currentPiece.rotateRight(), currentX, currentY);
+
+    //SRS를 적용한 블록 오른쪽 회전 메서드
+    public void rotateRight(){
+        BrickRotator.rotateRight(this, currentPiece);
     }
+
 }
