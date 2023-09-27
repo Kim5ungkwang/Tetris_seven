@@ -238,17 +238,22 @@ public class BoardController {
         }
     }
 
+    //블록을 왼쪽으로 1칸 움직이는 메서드
     public void moveLeft() {
         tryMove(currentPiece, currentX - 1, currentY);
     }
+
+    //블록을 오른쪽으로 1칸 움직이는 메서드
     public void moveRight() {
         tryMove(currentPiece, currentX + 1, currentY);
     }
 
+    //SRS를 적용한 블록 왼쪽 회전 메서드
     public void rotateLeft(){
         BrickRotator.rotateLeft(this, currentPiece);
     }
 
+    //SRS를 적용한 블록 오른쪽 회전 메서드
     public void rotateRight(){
         BrickRotator.rotateRight(this, currentPiece);
     }
