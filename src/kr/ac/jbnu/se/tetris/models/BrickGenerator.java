@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class BrickGenerator {
     private Shape.Tetrominoes[] BrickQueue = new Shape.Tetrominoes[7];  //블록 배열
     private boolean[] visitedTetrominoes = new boolean[8];  //테트로미노가 등장했는지 확인하는 변수
-    private int BrickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
+    private int brickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
     private int seed;   //배열을 만들때 사용되는 시드 값 (네트웍으로 받음)
 
     /**
@@ -19,7 +19,7 @@ public class BrickGenerator {
      */
     public BrickGenerator(){
         Arrays.fill(visitedTetrominoes, false);
-        BrickQueueIndex = 0;
+        brickQueueIndex = 0;
     }
 
     /**
@@ -28,7 +28,7 @@ public class BrickGenerator {
     public void initializeBrickGenerator(){
         Arrays.fill(visitedTetrominoes, false);
         this.seed = 1;  //네트웍에서 받아와야할 부분
-        BrickQueueIndex = 0;
+        brickQueueIndex = 0;
         makeNewBrickArray(this.seed);
     }
 
@@ -36,14 +36,14 @@ public class BrickGenerator {
      *seed값을 메개변수로 새로운 블록 배열을 만드는 메서드이다
      */
     private void makeNewBrickArray(int seed){
-        if(BrickQueueIndex == Shape.TETROMINOES_SIZE) return;
+        if(brickQueueIndex == Shape.TETROMINOES_SIZE) return;
 
         int currentIndex = (seed % Shape.TETROMINOES_SIZE) + 1;  //+1은 NoShape이 나오는 것을 방지
         if(isVisitedTetrominoes(currentIndex)){
             makeNewBrickArray(currentIndex);   //메서드 내부에서 currentIndex를 1증가하기 때문에 방문하지 않은 테트로미노를 찾을 수 있다.
         }
         else {
-            this.BrickQueue[BrickQueueIndex++] = Shape.Tetrominoes.values()[currentIndex];
+            this.BrickQueue[brickQueueIndex++] = Shape.Tetrominoes.values()[currentIndex];
             visitedTetrominoes[currentIndex] = true;
             makeNewBrickArray(currentIndex + this.seed);    //재귀
         }
