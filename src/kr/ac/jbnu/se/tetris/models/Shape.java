@@ -1,8 +1,7 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import java.util.Random;
-
 public class Shape {
+    static final public int TETROMINOES_SIZE = 7;
     public enum Tetrominoes {
         NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
         LShape, MirroredLShape
@@ -14,6 +13,7 @@ public class Shape {
     static public int[][][] srsKick;
     static public int[][][] IShapeSrsKik;
     private int rotateIndex;    //회전 상태를 저장하는 변수
+    BrickQueueManager brickQueueManager;
 
 
     public Shape() {
@@ -51,6 +51,7 @@ public class Shape {
         };
         setPieceShape(Tetrominoes.NoShape); // 시작블록은 NoShape
         rotateIndex = 0;    //처음 생성된 블록은 회전 인덱스가 0으로 시작한다 오른쪽으로 회전할때마다 +1 왼쪽으로 회전할때마다 -1
+        brickQueueManager = new BrickQueueManager();
     }
 
     //회전 인덱스를 1증가하는 메서드
@@ -102,13 +103,12 @@ public class Shape {
         return pieceShape;
     }
 
-    //랜덤으로 블록을 생성하는 메서드 (수정필요)
-    public void setRandomShape() {
-        Random r = new Random();
-        int x = Math.abs(r.nextInt()) % 7 + 1;
-        Tetrominoes[] values = Tetrominoes.values();
-        setPieceShape(values[x]);
+    //랜덤으로 블럭모양을 지정하는 메서드
+    public void setRandomShape(){
+        setPieceShape(brickQueueManager.getNewShape());
     }
+
+
 
     //1x1블록들 중 가장 작은 x값을 구하는 메서드
     public int minX() {
