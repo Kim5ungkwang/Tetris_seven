@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.logging.Logger;
 
 
@@ -25,11 +23,10 @@ public class TetrisBoard extends JPanel implements ActionListener {
 
     private BoardController controller;
 
-    TetrisBoard(TetrisFrame parent,KeyInput input) {
+    TetrisBoard(PlayerPage parent, KeyInput input) {
         setFocusable(true);
         controller = new BoardController(BOARD_WIDTH, BOARD_HEIGHT, this);
         statusBar = parent.getStatusBar();
-
         addKeyListener(AdapterController.adapterController);
         AdapterController.adapterController.addList(new KeyInputController(input,controller));
     }

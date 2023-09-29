@@ -1,6 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import java.awt.*;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ public class AdapterController extends KeyAdapter {
     ArrayList<KeyInputController> memberList= new ArrayList<>();
 
     private AdapterController(){
+        logger.info("adaptController start");
     }
     @Override
     public void keyPressed(KeyEvent e){
@@ -22,7 +23,7 @@ public class AdapterController extends KeyAdapter {
         logger.info("pressed : "+in);
 
         for(int i=0;i<memberList.size();i++){
-            memberList.get(i).action(in );
+            memberList.get(i).action(in);
         }
     }
     public void addList(KeyInputController controller){

@@ -2,16 +2,21 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
+import java.util.logging.Logger;
+
 public class KeyInputController {
+    Logger logger= Logger.getLogger(KeyInputController.class.getName());
     private final KeyInput input;
     private final BoardController controller;
 
     public KeyInputController(KeyInput input,BoardController controller) {
+        logger.info("keyInputController start");
         this.input = input;
         this.controller=controller;
     }
 
     public void action(int keycode){
+        logger.info("input : "+keycode);
         if (controller.isPaused())
             return;
         {
