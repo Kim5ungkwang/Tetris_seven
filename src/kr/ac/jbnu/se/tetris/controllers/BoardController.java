@@ -2,12 +2,17 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 
 import kr.ac.jbnu.se.tetris.BrickRotator;
+import kr.ac.jbnu.se.tetris.models.BrickGenerator;
+import kr.ac.jbnu.se.tetris.models.BrickQueueManager;
 import kr.ac.jbnu.se.tetris.models.Shape;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * 보드에 들어간 블럭을 관리하는 컨트롤러 클래스
+ *
+ */
 public class BoardController {
     private TetrisBoard tetrisBoard;
     private int boardWidth;
@@ -23,13 +28,20 @@ public class BoardController {
     private Timer timer;
 
     private Shape currentPiece;
+    private BrickQueueManager brickQueueManager;
     private Shape.Tetrominoes[] board;
+
+    /**
+     * 보드너비와 보드높이 뷰 클래스인 테트리스 보드를 매개변수로 받는다.
+     *
+     */
 
     public BoardController(int boardWidth, int boardHeight, TetrisBoard tetrisBoard) {
         //객체 초기화
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.tetrisBoard = tetrisBoard;
+        this.brickQueueManager = new BrickQueueManager();
         currentPiece = new Shape();
         //타이머
         timer = new Timer(400, tetrisBoard);
@@ -115,6 +127,10 @@ public class BoardController {
         return currentY;
     }
 
+    public Shape getCurrentPiece(){
+        return  currentPiece;
+    }
+
     //보드 클리어
     private void clearBoard()
     {
@@ -171,7 +187,7 @@ public class BoardController {
     //새로운 블록을 가져오는 메서드
     private void newPiece()
     {
-        currentPiece.setRandomShape();
+        currentPiece.setPieceShape(brickQueueManager.getNewShape());
         currentX = boardWidth / 2 + 1;
         currentY = boardHeight - 1 + currentPiece.minY();
 
