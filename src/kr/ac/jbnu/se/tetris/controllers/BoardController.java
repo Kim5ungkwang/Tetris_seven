@@ -30,6 +30,7 @@ public class BoardController {
     private Shape currentPiece;
     private BrickQueueManager brickQueueManager;
     private Shape.Tetrominoes[] board;
+    private GhostPiece ghostPiece;
 
     /**
      * 보드너비와 보드높이 뷰 클래스인 테트리스 보드를 매개변수로 받는다.
@@ -42,6 +43,7 @@ public class BoardController {
         this.boardHeight = boardHeight;
         this.tetrisBoard = tetrisBoard;
         this.brickQueueManager = new BrickQueueManager();
+        this.ghostPiece = new GhostPiece(this);
         currentPiece = new Shape();
         //타이머
         timer = new Timer(400, tetrisBoard);
@@ -52,7 +54,6 @@ public class BoardController {
         clearBoard();
     }
 
-
     public void gameAction() {
         if (isFallingFinished) {
             isFallingFinished = false;
@@ -62,16 +63,8 @@ public class BoardController {
         }
     }
 
-    public boolean isStarted() {
-        return isStarted;
-    }
-
     public boolean isPaused() {
         return isPaused;
-    }
-
-    public boolean isCurrentPieceNoShaped() {
-        return currentPiece.getPieceShape() == Shape.Tetrominoes.NoShape;
     }
 
     //게임 시작
@@ -83,7 +76,6 @@ public class BoardController {
         clearBoard();
         newPiece();
         timer.start();
-
     }
 
     //게임 일시정지
@@ -149,11 +141,10 @@ public class BoardController {
                 break;
             --newY;
         }
-        //pieceDropped();
     }
 
     //보드 위치에 무슨 블록이 들어있는지 확인하는 메서드
-    private Shape.Tetrominoes shapeAt(int x, int y) {
+    public Shape.Tetrominoes shapeAt(int x, int y) {
         return board[(y * boardWidth) + x];
     }
 
@@ -169,17 +160,22 @@ public class BoardController {
                 Shape.Tetrominoes shape = shapeAt(j, boardHeight - i - 1);
                 if (shape != Shape.Tetrominoes.NoShape)
                     tetrisBoard.drawSquare(g, j * squareWidth,
-                            boardTop + i * squareHeight, shape);
+                            boardTop + i * squareHeight, shape, false);
             }
         }
 
         if (currentPiece.getPieceShape() != Shape.Tetrominoes.NoShape) {
             for (int i = 0; i < 4; ++i) {
+                int ghostY =  ghostPiece.getCurrentGhostPieceY()- ghostPiece.getCurrentGhostPiece().y(i);
                 int x = currentX + currentPiece.x(i);
                 int y = currentY - currentPiece.y(i);
                 tetrisBoard.drawSquare(g, x * squareWidth,
+                        boardTop + (boardHeight - ghostY - 1) * squareHeight,
+                        currentPiece.getPieceShape(), true);
+
+                tetrisBoard.drawSquare(g, x * squareWidth,
                         boardTop + (boardHeight - y - 1) * squareHeight,
-                        currentPiece.getPieceShape());
+                        currentPiece.getPieceShape(), false);
             }
         }
     }
@@ -210,15 +206,15 @@ public class BoardController {
             if (shapeAt(x, y) != Shape.Tetrominoes.NoShape)
                 return false;
         }
-
         currentPiece = newPiece;
         currentX = newX;
         currentY = newY;
+        ghostPiece.updateGhostPiece();
         tetrisBoard.repaint();
         return true;
     }
 
-    //하드 드롭
+    //피스 고정
     private void pieceDropped()
     {
         for (int i = 0; i < 4; ++i) {
