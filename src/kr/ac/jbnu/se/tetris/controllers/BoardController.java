@@ -8,12 +8,12 @@ import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class BoardController {
     private TetrisBoard tetrisBoard;
     private int boardWidth;
     private int boardHeight;
     private boolean isFallingFinished = false;
+    private boolean infinity;   //인피니티 여부 체크
     private boolean isStarted = false;
     private boolean isPaused = false;
 
@@ -37,11 +37,10 @@ public class BoardController {
         //보드를 크기 지정
         board = new Shape.Tetrominoes[boardWidth * boardHeight];
 
-        //보드 클리어
         clearBoard();
     }
 
-    //
+
     public void gameAction() {
         if (isFallingFinished) {
             isFallingFinished = false;
@@ -91,11 +90,21 @@ public class BoardController {
         tetrisBoard.repaint();
     }
 
-    //블록이 한 칸씩 떨어짐
+    /**
+     *블록이 한칸 씩 떨어지는 메서드
+     *인피니트 구현
+     */
     public void oneLineDown()
     {
-        if (!tryMove(currentPiece, currentX, currentY - 1))
+        if(infinity && !tryMove(currentPiece, currentX, currentY - 1)) {
             pieceDropped();
+        }
+        else if (!tryMove(currentPiece, currentX, currentY - 1)) {
+            infinity = true;
+            return;
+        }
+
+        infinity = false;
     }
 
     public int getCurrentX() {
@@ -113,16 +122,18 @@ public class BoardController {
             board[i] = Shape.Tetrominoes.NoShape;
     }
 
-    //소프트 드롭
+    //하드 드롭
     public void dropDown()
     {
+        if(infinity)
+            return;
         int newY = currentY;
         while (newY > 0) {
             if (!tryMove(currentPiece, currentX, newY - 1))
                 break;
             --newY;
         }
-        pieceDropped();
+        //pieceDropped();
     }
 
     //보드 위치에 무슨 블록이 들어있는지 확인하는 메서드
