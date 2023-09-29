@@ -1,6 +1,9 @@
 package kr.ac.jbnu.se.tetris.views;
+import kr.ac.jbnu.se.tetris.models.KeyInput;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 public class TetrisFrame extends JFrame {
@@ -9,7 +12,9 @@ public class TetrisFrame extends JFrame {
 
     public TetrisFrame() {
         statusBar = new JLabel(" 0");
-        board = new TetrisBoard(this);
+        KeyInput p1Key = new KeyInput('w','s','d','a',(char)(KeyEvent.VK_SPACE),'p','h');
+
+        board = new TetrisBoard(this,p1Key);
     }
 
     public void init() {

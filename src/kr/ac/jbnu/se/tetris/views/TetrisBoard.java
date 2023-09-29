@@ -1,7 +1,10 @@
 package kr.ac.jbnu.se.tetris.views;
 
 
+import kr.ac.jbnu.se.tetris.controllers.AdapterController;
 import kr.ac.jbnu.se.tetris.controllers.BoardController;
+import kr.ac.jbnu.se.tetris.controllers.KeyInputController;
+import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Shape;
 
 import javax.swing.*;
@@ -10,21 +13,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
 
 public class TetrisBoard extends JPanel implements ActionListener {
+    Logger logger=Logger.getLogger(TetrisBoard.class.getName());
+
     private final int BOARD_WIDTH = 10;
     private final int BOARD_HEIGHT = 22;
     private JLabel statusBar;
 
     private BoardController controller;
 
-
-    TetrisBoard(TetrisFrame parent) {
+    TetrisBoard(TetrisFrame parent,KeyInput input) {
         setFocusable(true);
         controller = new BoardController(BOARD_WIDTH, BOARD_HEIGHT, this);
         statusBar = parent.getStatusBar();
-        addKeyListener(new TAdapter());
+
+        addKeyListener(AdapterController.adapterController);
+        AdapterController.adapterController.addList(new KeyInputController(input,controller));
     }
 
     void start() {
@@ -72,51 +79,20 @@ public class TetrisBoard extends JPanel implements ActionListener {
                 x + squareWidth() - 1, y + 1);
     }
 
+    public int toLower(int x){
+        if(x>64){
+            char cx=(char)x;
+            cx=Character.toLowerCase(cx);
+            x=cx;
+        }
+
+        return x;
+    }
+
     public void setStatusText(String text) {
         statusBar.setText(text);
     }
 
-    private class TAdapter extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
 
-            if (!controller.isStarted() || controller.isCurrentPieceNoShaped()) {
-                return;
-            }
 
-            int keycode = e.getKeyCode();
-
-            if (keycode == 'p' || keycode == 'P') {
-                controller.pause();
-                return;
-            }
-
-            if (controller.isPaused())
-                return;
-
-            switch (keycode) {
-                case KeyEvent.VK_LEFT:
-                    controller.moveLeft();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    controller.moveRight();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    controller.rotateRight();
-                    break;
-                case KeyEvent.VK_UP:
-                    controller.rotateLeft();
-                    break;
-                case KeyEvent.VK_SPACE:
-                    controller.dropDown();
-                    break;
-                case 'd':
-                    controller.oneLineDown();
-                    break;
-                case 'D':
-                    controller.oneLineDown();
-                    break;
-            }
-
-        }
-    }
 }
