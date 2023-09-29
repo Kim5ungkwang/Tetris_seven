@@ -135,6 +135,7 @@ public class Shape {
 
         Shape result = new Shape();
         result.pieceShape = pieceShape;
+        result.rotateIndex = rotateIndex;
 
         for (int i = 0; i < 4; ++i) {
             result.setX(i, y(i));
@@ -150,6 +151,7 @@ public class Shape {
 
         Shape result = new Shape();
         result.pieceShape = pieceShape;
+        result.rotateIndex = rotateIndex;
 
         for (int i = 0; i < 4; ++i) {
             result.setX(i, -y(i));
