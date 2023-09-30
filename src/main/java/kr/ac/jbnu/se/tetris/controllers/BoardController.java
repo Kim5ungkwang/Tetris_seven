@@ -116,7 +116,7 @@ public class BoardController{
                 ++numFullLines;
                 for (int k = i; k < BoardModel.getBoardHeight() - 1; ++k) {
                     for (int j = 0; j < BoardModel.getBoardWidth(); ++j)
-                        boardModel.setboard((k * tetrisBoard.getWidth()) + j,shapeAt(j, k + 1));
+                        boardModel.setboard((k * BoardModel.getBoardWidth()) + j, shapeAt(j, k + 1));
                 }
             }
         }
@@ -136,6 +136,7 @@ public class BoardController{
             int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
             boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape()) ;
         }
+
         removeFullLines();
 
         if(!pieceController.getIsFallingFinished())
