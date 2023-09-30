@@ -1,8 +1,13 @@
 package kr.ac.jbnu.se.tetris.models;
 
+import kr.ac.jbnu.se.tetris.views.TetrisBoard;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.logging.Logger;
 
+@Getter
+@Setter
 //키 입력 세팅 자체를 클래스로 만들고, 이걸 TetrisBoard클래스에 넣는 방향으로 구상변경
 public class KeyInput {
     Logger logger= Logger.getLogger(KeyInput.class.getName());
@@ -16,10 +21,8 @@ public class KeyInput {
     private int pause;
     private int blockHold;
 
-
     public KeyInput() {
     }
-
     public KeyInput(int rotateRight, int rotateLeft, int moveRight, int moveLeft,
                     int dropDown, int pause, int blockHold) {
         this.rotateRight = rotateRight;
@@ -33,59 +36,4 @@ public class KeyInput {
         logger.info("rotate"+rotateLeft+rotateRight+dropDown);
     }
 
-    public int getRotateRight() {
-        return rotateRight;
-    }
-
-    public void setRotateRight(char rotateRight) {
-        this.rotateRight = rotateRight;
-    }
-
-    public int getRotateLeft() {
-        return rotateLeft;
-    }
-
-    public void setRotateLeft(char rotateLeft) {
-        this.rotateLeft = rotateLeft;
-    }
-
-    public int getMoveRight() {
-        return moveRight;
-    }
-
-    public void setMoveRight(char moveRight) {
-        this.moveRight = moveRight;
-    }
-
-    public int getMoveLeft() {
-        return moveLeft;
-    }
-
-    public void setMoveLeft(char moveLeft) {
-        this.moveLeft = moveLeft;
-    }
-
-    public int getDropDown() {
-        return dropDown;
-    }
-
-    public void setDropDown(char dropDown) {
-        this.dropDown = dropDown;
-    }
-
-    public int getPause() {
-        return pause;
-    }
-
-    public void setPause(char pause) {
-        this.pause = pause;
-    }
-
-    public int getBlockHold() {
-        return blockHold;
-    }
-
-    public void setBlockHold(char blockHold) {
-        this.blockHold = blockHold;
-    }
-}
+   }

@@ -4,6 +4,7 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 
 import java.util.Arrays;
 
+
 /**
  *다음에 등장할 블록을 생성하는 클래스이다
  * 블록 생성의 규칙은 Tetromino의 모양들이 전부 나오는 때를 한 사이클로
