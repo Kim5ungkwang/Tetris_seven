@@ -85,6 +85,7 @@ public class Page extends JFrame {
                 String myId = id.getText();
                 String myPwd = new String(pwd.getPassword());
                 httpService.memberJoin(myId,myPwd);
+                httpService.roomList();
 
                 JOptionPane.showMessageDialog
                         (null, "아이디 : "+myId+", 비밀번호 : "+myPwd);

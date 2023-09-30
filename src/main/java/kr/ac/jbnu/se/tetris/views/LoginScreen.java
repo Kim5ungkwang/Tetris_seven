@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+// 더미 페이지. 불필요함.
 public class LoginScreen extends JFrame {
 
     public LoginScreen() {
