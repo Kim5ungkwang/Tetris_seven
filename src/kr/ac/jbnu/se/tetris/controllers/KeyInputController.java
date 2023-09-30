@@ -8,11 +8,13 @@ public class KeyInputController {
     Logger logger= Logger.getLogger(KeyInputController.class.getName());
     private final KeyInput input;
     private final BoardController controller;
+    private final PieceController pieceController;
 
-    public KeyInputController(KeyInput input,BoardController controller) {
+    public KeyInputController(KeyInput input, BoardController controller) {
         logger.info("keyInputController start");
         this.input = input;
         this.controller=controller;
+        this.pieceController = controller.getPieceController();
     }
 
     public void action(int keycode){
@@ -24,22 +26,22 @@ public class KeyInputController {
                 controller.pause();
             }
             if(keycode==input.getMoveLeft()){
-                controller.moveLeft();
+                pieceController.moveLeft();
             }
             else if(keycode==input.getMoveRight()){
-                controller.moveRight();
+                pieceController.moveRight();
             }
             else if(keycode==input.getBlockHold()){
                 //블록홀드 추가시 추가할것.
             }
             else if(keycode==input.getRotateLeft()){
-                controller.rotateLeft();
+                pieceController.rotateLeft();
             }
             else if(keycode==input.getRotateRight()){
-                controller.rotateRight();
+                pieceController.rotateRight();
             }
             else if (keycode==input.getDropDown()){
-                controller.dropDown();
+                pieceController.dropDown();
             }
 
 

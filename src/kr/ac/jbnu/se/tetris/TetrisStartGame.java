@@ -7,7 +7,7 @@ import kr.ac.jbnu.se.tetris.views.TetrisFrameForTwo;
 public class TetrisStartGame {
     public
     static void main(String[] args) {
-        TetrisFrame game = new TetrisFrameForTwo();
+        TetrisFrame game = new TetrisFrame();
         game.setLocationRelativeTo(null);
         game.init();
     }
