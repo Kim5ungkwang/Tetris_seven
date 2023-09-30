@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.tetris.models;
 
+import kr.ac.jbnu.se.tetris.ShapeData;
+
 import java.util.Arrays;
 
 
@@ -9,7 +11,7 @@ import java.util.Arrays;
  * 사이클이 끝나면 이전에 등장했던 Tetromino가 다시 등장할 수 있다.
  */
 public class BrickGenerator {
-    private Shape.Tetrominoes[] BrickQueue = new Shape.Tetrominoes[7];  //블록 배열
+    private ShapeData.Tetrominoes[] BrickQueue = new ShapeData.Tetrominoes[7];  //블록 배열
     private boolean[] visitedTetrominoes = new boolean[8];  //테트로미노가 등장했는지 확인하는 변수
     private int brickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
     private int seed;   //배열을 만들때 사용되는 시드 값 (네트웍으로 받음)
@@ -37,14 +39,14 @@ public class BrickGenerator {
      *seed값을 메개변수로 새로운 블록 배열을 만드는 메서드이다
      */
     private void makeNewBrickArray(int seed){
-        if(brickQueueIndex == Shape.TETROMINOES_SIZE) return;
+        if(brickQueueIndex == ShapeData.TETROMINOES_SIZE) return;
 
-        int currentIndex = (seed % Shape.TETROMINOES_SIZE) + 1;  //+1은 NoShape이 나오는 것을 방지
+        int currentIndex = (seed % ShapeData.TETROMINOES_SIZE) + 1;  //+1은 NoShape이 나오는 것을 방지
         if(isVisitedTetrominoes(currentIndex)){
             makeNewBrickArray(currentIndex);   //메서드 내부에서 currentIndex를 1증가하기 때문에 방문하지 않은 테트로미노를 찾을 수 있다.
         }
         else {
-            this.BrickQueue[brickQueueIndex++] = Shape.Tetrominoes.values()[currentIndex];
+            this.BrickQueue[brickQueueIndex++] = ShapeData.Tetrominoes.values()[currentIndex];
             visitedTetrominoes[currentIndex] = true;
             makeNewBrickArray(currentIndex + this.seed);    //재귀
         }
@@ -60,7 +62,7 @@ public class BrickGenerator {
     /**
      *새로운 블록 배열을 반환하는 메서드이다.
      */
-    public Shape.Tetrominoes[] getBrickQueue(){
+    public ShapeData.Tetrominoes[] getBrickQueue(){
         return BrickQueue;
     }
 

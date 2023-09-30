@@ -1,23 +1,26 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.models.Shape;
+import kr.ac.jbnu.se.tetris.ShapeData;
+import kr.ac.jbnu.se.tetris.models.BoardModel;
+import kr.ac.jbnu.se.tetris.models.Coordinates;
+import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 
 /**
  *바닥에 떨어질 위치를 미리 표시해 주는 GhostPiece를 관리하는 클래스이다.
  */
 public class GhostPiece{
-    private BoardController boardController;
-    private Shape currentGhostPiece;    //고스트피스
+    private PieceController pieceController;
+    private Piece currentGhostPiece;    //고스트피스
     private int currentGhostPieceY;
     private int currentGhostPieceX;
     /**
      * BoardController를 매개변수로 한다.
      */
-    public GhostPiece(BoardController boardController){
-        this.boardController = boardController;
-        this.currentGhostPiece = boardController.getCurrentPiece();
-        this.currentGhostPieceY = boardController.getCurrentY();
+    public GhostPiece(PieceController pieceController){
+        this.pieceController = pieceController;
+        this.currentGhostPiece = pieceController.getCurrentPiece();
+        this.currentGhostPieceY = pieceController.getCurrentPiece().getCurrentY();
     }
     /**
      * GhostPiece를 업데이트한다
@@ -25,22 +28,22 @@ public class GhostPiece{
      * 움직이는 것을 완료한 시점이다.
      */
     public void updateGhostPiece(){
-        this.currentGhostPiece = boardController.getCurrentPiece();
-        this.currentGhostPieceY = boardController.getCurrentY();
-        this.currentGhostPieceX = boardController.getCurrentX();
+        this.currentGhostPiece = pieceController.getCurrentPiece();
+        this.currentGhostPieceY = pieceController.getCurrentPiece().getCurrentY();
+        this.currentGhostPieceX =  pieceController.getCurrentPiece().getCurrentX();
         makeGhostBrick();
     }
     /**
      * GhostPiece가 떨어질 위치에 다른 블록이 있는지 체크하는 메서드이다.
      */
-    private boolean makeGhostBrickHelper(Shape newGhostPiece, int newX, int newY){
+    private boolean makeGhostBrickHelper(Piece newGhostPiece, int newX, int newY){
         for(int i = 0; i < 4; ++i){
-            int y = newY - newGhostPiece.y(i);
-            int x = newX + newGhostPiece.x(i);
-            if(y < 0 || y >= TetrisBoard.BOARD_HEIGHT)
+            int y = newY - newGhostPiece.getCoordinates().y(i);
+            int x = newX + newGhostPiece.getCoordinates().x(i);
+            if(y < 0 || y >= BoardModel.getBoardHeight())
                 return false;
 
-            if(this.boardController.shapeAt(x, y) != Shape.Tetrominoes.NoShape)
+            if(this.pieceController.shapeAt(x, y) != ShapeData.Tetrominoes.NoShape)
                 return false;
         }
         currentGhostPiece = newGhostPiece;
@@ -60,7 +63,7 @@ public class GhostPiece{
         }
     }
 
-    public Shape getCurrentGhostPiece(){
+    public Piece getCurrentGhostPiece(){
         return currentGhostPiece;
     }
     public int getCurrentGhostPieceY(){

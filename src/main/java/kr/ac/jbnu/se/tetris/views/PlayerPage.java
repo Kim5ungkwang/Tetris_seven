@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.logging.Logger;
 
 public class PlayerPage extends JPanel {
+
     Logger logger=Logger.getLogger(PlayerPage.class.getName());
     private JLabel statusBar;
     private TetrisBoard board;
@@ -26,8 +27,8 @@ public class PlayerPage extends JPanel {
         add(statusBar, BorderLayout.SOUTH);
         add(board, BorderLayout.CENTER);
         board.start();
-        setSize(200, 400);
-        setPreferredSize(new Dimension(200, 400));
+        setSize(300, 600);
+        setPreferredSize(new Dimension(300, 600));
     }
 
     JLabel getStatusBar() {
