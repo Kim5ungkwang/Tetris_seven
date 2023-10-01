@@ -4,10 +4,18 @@ import java.awt.*;
 
 public class ShapeData {
     static final public int TETROMINOES_SIZE = 7;
+
+    /**
+     * Tetrominoes
+     */
     public enum Tetrominoes {
         NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
         LShape, MirroredLShape
     }
+
+    /**
+     * piece의 coordinates 정보
+     */
     static public final int[][][] COORDS_TABLE = new int[][][]{
             {{0, 0}, {0, 0}, {0, 0}, {0, 0}},
             {{-1, 1}, {0, 1}, {0, 0}, {1, 0}},    //ZShape
@@ -19,6 +27,9 @@ public class ShapeData {
             {{-1, 1}, {-1, 0}, {0, 0}, {1, 0}}      //MirroredLShape
     };
 
+    /**
+     * Tetrominoes 색상 표
+     */
     static public final Color[] SHAPE_COLOR = new Color[]{
             new Color(0, 0, 0),
             new Color(204, 102, 102),

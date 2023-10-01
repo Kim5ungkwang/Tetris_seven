@@ -49,4 +49,5 @@ public class BrickQueueManager {
             brickQueue[index + i] = brickGenerator.getBrickQueue()[i];
         }
     }
+
 }

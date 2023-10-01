@@ -46,10 +46,6 @@ public class TetrisBoard extends JPanel implements ActionListener {
 
     }
 
-    /**
-     * 블록 하나를 그리는 메서드이다
-     * isGhost는 GhostPiece 여부를 확인하는 변수이다.
-     */
 
     public int toLower(int x){
         if(x>64){

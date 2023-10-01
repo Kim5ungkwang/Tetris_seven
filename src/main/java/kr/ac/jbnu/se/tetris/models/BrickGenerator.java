@@ -1,6 +1,7 @@
 package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
+import lombok.Getter;
 
 import java.util.Arrays;
 
@@ -11,10 +12,11 @@ import java.util.Arrays;
  * 사이클이 끝나면 이전에 등장했던 Tetromino가 다시 등장할 수 있다.
  */
 public class BrickGenerator {
+    @Getter
     private ShapeData.Tetrominoes[] BrickQueue = new ShapeData.Tetrominoes[7];  //블록 배열
     private boolean[] visitedTetrominoes = new boolean[8];  //테트로미노가 등장했는지 확인하는 변수
     private int brickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
-    private int seed;   //배열을 만들때 사용되는 시드 값 (네트웍으로 받음)
+    private int seed;   //배열을 만들때 사용되는 시드 값
 
     /**
      *visitedTetrominoes를 false로 초기화한다
@@ -36,7 +38,8 @@ public class BrickGenerator {
     }
 
     /**
-     *seed값을 메개변수로 새로운 블록 배열을 만드는 메서드이다
+     * 새로운 블록 배열을 만드는 메서드
+     * @param seed 블록 생성을 위한 seed값
      */
     private void makeNewBrickArray(int seed){
         if(brickQueueIndex == ShapeData.TETROMINOES_SIZE) return;
@@ -53,18 +56,14 @@ public class BrickGenerator {
     }
 
     /**
-     *index를 매개변수로 해당 블록이 방문되었는지 확인하는 메서드이다.
+     * Tetrominoes가 방문되었는지 확인하는 메서드이다.
+     * @param index 1번부터 Tetrominoes ordinal에 해당하는 숫자
+     * @return index에 해당하는 순서의 Tetrominoes가 방문되었는지 여부
      */
     private boolean isVisitedTetrominoes(int index){
         return visitedTetrominoes[index];
     }
 
-    /**
-     *새로운 블록 배열을 반환하는 메서드이다.
-     */
-    public ShapeData.Tetrominoes[] getBrickQueue(){
-        return BrickQueue;
-    }
 
 
 }

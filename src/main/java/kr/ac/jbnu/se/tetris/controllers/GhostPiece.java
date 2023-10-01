@@ -23,14 +23,12 @@ public class GhostPiece{
         this.currentGhostPieceY = pieceController.getCurrentPiece().getCurrentY();
     }
     /**
-     * GhostPiece를 업데이트한다
-     * 업데이트하는 시점은 BoardController의 currentPiece가
-     * 움직이는 것을 완료한 시점이다.
+     * GhostPieced의 x값과 y값을 Current Piece와 같게 업데이트해주는 메서드
      */
     public void updateGhostPiece(){
         this.currentGhostPiece = pieceController.getCurrentPiece();
-        this.currentGhostPieceY = pieceController.getCurrentPiece().getCurrentY();
-        this.currentGhostPieceX =  pieceController.getCurrentPiece().getCurrentX();
+        this.currentGhostPieceY = pieceController.getCurrentPiece().getCurrentY();  //piece의 y값을 가져옴
+        this.currentGhostPieceX =  pieceController.getCurrentPiece().getCurrentX(); //piece의 X값을 가져옴
         makeGhostBrick();
     }
     /**
