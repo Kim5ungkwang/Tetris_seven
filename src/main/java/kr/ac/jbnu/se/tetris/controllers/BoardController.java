@@ -5,6 +5,7 @@ import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.Coordinates;
 import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,16 +14,23 @@ import java.awt.event.ActionListener;
 
 
 public class BoardController{
+    @Getter
     private BoardModel boardModel;
+    @Getter
     private TetrisBoard tetrisBoard;
+    @Getter
     private PieceController pieceController;
     private int numLinesRemoved = 0;
-
+    @Getter
     private Timer timer;
 
     private boolean isStarted;
     private boolean isPaused;
 
+    /**
+     * 게임이 이루어지는 보드 클래스
+     * @param tetrisBoard 뷰와 연결
+     */
     public BoardController(TetrisBoard tetrisBoard){
         this.boardModel = new BoardModel();
         this.tetrisBoard = tetrisBoard;
@@ -36,25 +44,13 @@ public class BoardController{
 
     /////////////////////////////////////////////////////////////////////////////////
 
-    public BoardModel getBoardModel(){
-        return boardModel;
-    }
-
-    public TetrisBoard getTetrisBoard(){
-        return tetrisBoard;
-    }
-
-    public PieceController getPieceController(){
-        return pieceController;
-    }
-    public Timer getTimer(){
-        return timer;
-    }
 
 
 //////////////////////////////////////////////////////////
 
-
+    /**
+     * Timer Delay마다 실행되는 메서드
+     */
     public void gameAction() {
         if (pieceController.getIsFallingFinished()) {
             pieceController.setIsFallingFinished(false);

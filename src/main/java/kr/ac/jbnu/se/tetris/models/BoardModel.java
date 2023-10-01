@@ -1,29 +1,32 @@
 package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
+import lombok.Getter;
 
 import java.awt.*;
 
+/**
+ * 보드의 모델 클래스
+ */
 public class BoardModel {
     static private final int BOARD_WIDTH = 10;
     static private final int BOARD_HEIGHT = 22;
     private ShapeData.Tetrominoes[] board;
 
+    @Getter
     private int timerDelay;
     private boolean isStarted;
     private boolean isPaused;
-
     private int numLinesRemoved;
 
+    /**
+     * 생성자는 게임을 진행 할 보드의 크기를 지정한다.
+     */
     public BoardModel(){
         board = new ShapeData.Tetrominoes[BOARD_WIDTH * BOARD_HEIGHT];
     }
 
     //////////////////////////////////////////////////
-
-    public int getTimerDelay(){
-        return timerDelay;
-    }
 
     public static int getBoardWidth(){
         return BOARD_WIDTH;
@@ -67,6 +70,11 @@ public class BoardModel {
         this.isPaused = isPaused;
     }
 
+    /**
+     * 보드의 해당 위치에 Tetrominoes를 설정하는 메서드
+     * @param index 보드의 index (x + y * BoardHeight)
+     * @param pieceShape 해당 index에 들어갈 Tetrominoes 값
+     */
     public void setboard(int index, ShapeData.Tetrominoes pieceShape){
         this.board[index] = pieceShape;
     }

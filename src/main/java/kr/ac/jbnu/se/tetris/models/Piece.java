@@ -4,22 +4,26 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 
 import java.awt.*;
 
+/**
+ * 피스를 관리하는 클래스
+ */
 public class Piece {
     private Coordinates coordinates;
     private ShapeData.Tetrominoes pieceShape;
 
-    private int currentX = 0;
-    private int currentY = 0;
+    private int currentX = 0;   //piece의 중심을 기준으로 x값이 board의 어디에 위치하는지
+    private int currentY = 0;   //piece의 중심을 기준으로 y값이 board의 어디에 위치하는지
 
-    private int rotateIndex;
+    private int rotateIndex = 0;    //회전 인덱스 0>1은 오른쪽 회전 1>0은 왼쪽 회전
 
+    /**
+     * Coordinates 의 객체를 가치며
+     * 생성자 호출 시 PieceShape를 Noshape로 초기화 한다.
+     */
     public Piece(){
         coordinates = new Coordinates();
         setPieceShape(ShapeData.Tetrominoes.NoShape); // 시작블록은 NoShape
     }
-
-
-
 
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -79,13 +83,16 @@ public class Piece {
     ////////////////////////////////////////////////////////////////
 
 
-
-
+    /**
+     * 회전 인덱스를 1증가
+     */
     public void plusRotateIndex(){
         this.rotateIndex = (this.rotateIndex + 1) % 4;
     }
 
-    //회전 인덱스를 1감소하는 메서드
+    /**
+     * 회전 인덱스를 1감소
+     */
     public void minusRotateIndex(){
         this.rotateIndex = (3 + this.rotateIndex) % 4;
     }
