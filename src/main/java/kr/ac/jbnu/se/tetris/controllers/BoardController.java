@@ -1,244 +1,112 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-
-import kr.ac.jbnu.se.tetris.BrickRotator;
-import kr.ac.jbnu.se.tetris.models.BrickGenerator;
-import kr.ac.jbnu.se.tetris.models.BrickQueueManager;
-import kr.ac.jbnu.se.tetris.models.Shape;
+import kr.ac.jbnu.se.tetris.ShapeData;
+import kr.ac.jbnu.se.tetris.models.BoardModel;
+import kr.ac.jbnu.se.tetris.models.Coordinates;
+import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 
 import javax.swing.*;
 import java.awt.*;
-/**
- * 보드에 들어간 블럭을 관리하는 컨트롤러 클래스
- *
- */
-public class BoardController {
-    private TetrisBoard tetrisBoard;
-    private int boardWidth;
-    private int boardHeight;
-    private boolean isFallingFinished = false;
-    private boolean infinity;   //인피니티 여부 체크
-    private boolean isStarted = false;
-    private boolean isPaused = false;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+
+public class BoardController{
+    private BoardModel boardModel;
+    private TetrisBoard tetrisBoard;
+    private PieceController pieceController;
     private int numLinesRemoved = 0;
-    private int currentX = 0;
-    private int currentY = 0;
+
     private Timer timer;
 
-    private Shape currentPiece;
-    private BrickQueueManager brickQueueManager;
-    private Shape.Tetrominoes[] board;
-    private GhostPiece ghostPiece;
+    private boolean isStarted;
+    private boolean isPaused;
 
-    /**
-     * 보드너비와 보드높이 뷰 클래스인 테트리스 보드를 매개변수로 받는다.
-     *
-     */
-
-    public BoardController(int boardWidth, int boardHeight, TetrisBoard tetrisBoard) {
-        //객체 초기화
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
+    public BoardController(TetrisBoard tetrisBoard){
+        this.boardModel = new BoardModel();
         this.tetrisBoard = tetrisBoard;
-        this.brickQueueManager = new BrickQueueManager();
-        this.ghostPiece = new GhostPiece(this);
-        currentPiece = new Shape();
-        //타이머
-        timer = new Timer(400, tetrisBoard);
-        timer.start();
-        //보드를 크기 지정
-        board = new Shape.Tetrominoes[boardWidth * boardHeight];
+        this.pieceController = new PieceController(this);
 
-        clearBoard();
+        this.boardModel.setTimerDelay(400);
+
+        this.timer = new Timer(boardModel.getTimerDelay(), tetrisBoard);
+
     }
 
+    /////////////////////////////////////////////////////////////////////////////////
+
+    public BoardModel getBoardModel(){
+        return boardModel;
+    }
+
+    public TetrisBoard getTetrisBoard(){
+        return tetrisBoard;
+    }
+
+    public PieceController getPieceController(){
+        return pieceController;
+    }
+    public Timer getTimer(){
+        return timer;
+    }
+
+
+//////////////////////////////////////////////////////////
+
+
     public void gameAction() {
-        if (isFallingFinished) {
-            isFallingFinished = false;
-            newPiece();
+        if (pieceController.getIsFallingFinished()) {
+            pieceController.setIsFallingFinished(false);
+            pieceController.newPiece();
         } else {
-            oneLineDown();
+            pieceController.oneLineDown();
         }
     }
 
-    public boolean isPaused() {
+    public boolean isPaused(){
         return isPaused;
     }
 
-    //게임 시작
-    public void start() {
-        if (isPaused) return;
+    public void start(){
+        if(isPaused()) return;
         isStarted = true;
-        isFallingFinished = false;
+        pieceController.setIsFallingFinished(false);
         numLinesRemoved = 0;
         clearBoard();
-        newPiece();
+        pieceController.newPiece();
         timer.start();
     }
 
-    //게임 일시정지
-    public void pause() {
-        if (!isStarted)
-            return;
+    public void pause(){
+        if(!isStarted) return;
 
         isPaused = !isPaused;
-        if (isPaused) {
+
+        if(!isPaused){
             timer.stop();
             tetrisBoard.setStatusText("paused");
-        } else {
-            timer.start();
+        }else{
+            timer.start();;
             tetrisBoard.setStatusText(String.valueOf(numLinesRemoved));
         }
         tetrisBoard.repaint();
     }
 
-    /**
-     *블록이 한칸 씩 떨어지는 메서드
-     *인피니트 구현
-     */
-    public void oneLineDown()
-    {
-        if(infinity && !tryMove(currentPiece, currentX, currentY - 1)) {
-            pieceDropped();
-        }
-        else if (!tryMove(currentPiece, currentX, currentY - 1)) {
-            infinity = true;
-            return;
-        }
-
-        infinity = false;
+    private void clearBoard(){
+        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
+            boardModel.setboard(i, ShapeData.Tetrominoes.NoShape);
     }
 
-    public int getCurrentX() {
-        return currentX;
-    }
-
-    public int getCurrentY(){
-        return currentY;
-    }
-
-    public Shape getCurrentPiece(){
-        return  currentPiece;
-    }
-
-    //보드 클리어
-    private void clearBoard()
-    {
-        for (int i = 0; i < boardHeight * boardWidth; ++i)
-            board[i] = Shape.Tetrominoes.NoShape;
-    }
-
-    //하드 드롭
-    public void dropDown()
-    {
-        if(infinity)
-            return;
-        int newY = currentY;
-        while (newY > 0) {
-            if (!tryMove(currentPiece, currentX, newY - 1))
-                break;
-            --newY;
-        }
-    }
-
-    //보드 위치에 무슨 블록이 들어있는지 확인하는 메서드
-    public Shape.Tetrominoes shapeAt(int x, int y) {
-        return board[(y * boardWidth) + x];
-    }
-
-    //보드와 보드 안의 블록을 그리는 함수
-    public void paint(Graphics g, double width, double height) {
-        int squareWidth = (int) width / boardWidth;
-        int squareHeight = (int) height / boardHeight;
-        int boardTop = (int) height - boardHeight * squareHeight;
-
-
-        for (int i = 0; i < boardHeight; ++i) {
-            for (int j = 0; j < boardWidth; ++j) {
-                Shape.Tetrominoes shape = shapeAt(j, boardHeight - i - 1);
-                if (shape != Shape.Tetrominoes.NoShape)
-                    tetrisBoard.drawSquare(g, j * squareWidth,
-                            boardTop + i * squareHeight, shape, false);
-            }
-        }
-
-        if (currentPiece.getPieceShape() != Shape.Tetrominoes.NoShape) {
-            for (int i = 0; i < 4; ++i) {
-                int ghostY =  ghostPiece.getCurrentGhostPieceY()- ghostPiece.getCurrentGhostPiece().y(i);
-                int x = currentX + currentPiece.x(i);
-                int y = currentY - currentPiece.y(i);
-                tetrisBoard.drawSquare(g, x * squareWidth,
-                        boardTop + (boardHeight - ghostY - 1) * squareHeight,
-                        currentPiece.getPieceShape(), true);
-
-                tetrisBoard.drawSquare(g, x * squareWidth,
-                        boardTop + (boardHeight - y - 1) * squareHeight,
-                        currentPiece.getPieceShape(), false);
-            }
-        }
-    }
-
-    //새로운 블록을 가져오는 메서드
-    private void newPiece()
-    {
-        currentPiece.setPieceShape(brickQueueManager.getNewShape());
-        currentX = boardWidth / 2 + 1;
-        currentY = boardHeight - 1 + currentPiece.minY();
-
-        if (!tryMove(currentPiece, currentX, currentY)) {
-            currentPiece.setPieceShape(Shape.Tetrominoes.NoShape);
-            timer.stop();
-            isStarted = false;
-            tetrisBoard.setStatusText("game over");
-        }
-    }
-
-    //블록을 움직이는 시도를 하는 메서드
-    public boolean tryMove(Shape newPiece, int newX, int newY)
-    {
-        for (int i = 0; i < 4; ++i) {
-            int x = newX + newPiece.x(i);
-            int y = newY - newPiece.y(i);
-            if (x < 0 || x >= boardWidth || y < 0 || y >= boardHeight)
-                return false;
-            if (shapeAt(x, y) != Shape.Tetrominoes.NoShape)
-                return false;
-        }
-        currentPiece = newPiece;
-        currentX = newX;
-        currentY = newY;
-        ghostPiece.updateGhostPiece();
-        tetrisBoard.repaint();
-        return true;
-    }
-
-    //피스 고정
-    private void pieceDropped()
-    {
-        for (int i = 0; i < 4; ++i) {
-            int x = currentX + currentPiece.x(i);
-            int y = currentY - currentPiece.y(i);
-            board[(y * boardWidth) + x] = currentPiece.getPieceShape();
-        }
-
-        removeFullLines();
-
-        if (!isFallingFinished)
-            newPiece();
-    }
-
-    //블록이 차면 삭제하는 메서드
     private void removeFullLines()
     {
         int numFullLines = 0;
 
-        for (int i = boardHeight - 1; i >= 0; --i) {
+        for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
             boolean lineIsFull = true;
 
-            for (int j = 0; j < boardWidth; ++j) {
-                if (shapeAt(j, i) == Shape.Tetrominoes.NoShape) {
+            for (int j = 0; j < BoardModel.getBoardWidth(); ++j) {
+                if (shapeAt(j, i) == ShapeData.Tetrominoes.NoShape) {
                     lineIsFull = false;
                     break;
                 }
@@ -246,9 +114,9 @@ public class BoardController {
 
             if (lineIsFull) {
                 ++numFullLines;
-                for (int k = i; k < boardHeight - 1; ++k) {
-                    for (int j = 0; j < boardWidth; ++j)
-                        board[(k * boardWidth) + j] = shapeAt(j, k + 1);
+                for (int k = i; k < BoardModel.getBoardHeight() - 1; ++k) {
+                    for (int j = 0; j < BoardModel.getBoardWidth(); ++j)
+                        boardModel.setboard((k * BoardModel.getBoardWidth()) + j, shapeAt(j, k + 1));
                 }
             }
         }
@@ -256,30 +124,96 @@ public class BoardController {
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
             tetrisBoard.setStatusText(String.valueOf(numLinesRemoved));
-            isFallingFinished = true;
-            currentPiece.setPieceShape(Shape.Tetrominoes.NoShape);
+            pieceController.setIsFallingFinished(true);
+            pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             tetrisBoard.repaint();
         }
     }
 
-    //블록을 왼쪽으로 1칸 움직이는 메서드
-    public void moveLeft() {
-        tryMove(currentPiece, currentX - 1, currentY);
+    public void pieceDropped(Piece droppedPiece){
+        for(int i = 0; i < 4; i++){
+            int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
+            int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
+            boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape()) ;
+        }
+
+        removeFullLines();
+
+        if(!pieceController.getIsFallingFinished())
+            pieceController.newPiece();
     }
 
-    //블록을 오른쪽으로 1칸 움직이는 메서드
-    public void moveRight() {
-        tryMove(currentPiece, currentX + 1, currentY);
+    public ShapeData.Tetrominoes shapeAt(int x, int y){
+        return boardModel.getBoard((y * BoardModel.getBoardWidth()) + x);
+    }
+//////////////////////////////////////////////////////////////////////////////////////
+
+public void paintHelper(Graphics g, double width, double height){
+    int squareWidth = (int) width / BoardModel.getBoardWidth();
+    int squareHeight = (int) height / BoardModel.getBoardHeight();
+
+    int boardTop = (int) height - BoardModel.getBoardHeight() * squareHeight;
+
+
+    for (int i = 0; i < BoardModel.getBoardHeight(); ++i) {
+
+        for (int j = 0; j < BoardModel.getBoardWidth(); ++j) {
+            ShapeData.Tetrominoes shape = shapeAt(j, BoardModel.getBoardHeight() - i - 1);
+
+            if (shape != ShapeData.Tetrominoes.NoShape)
+                drawSquare(g, j * squareWidth, boardTop + i * squareHeight, squareWidth,
+                        squareHeight, shape, false);
+        }
     }
 
-    //SRS를 적용한 블록 왼쪽 회전 메서드
-    public void rotateLeft(){
-        BrickRotator.rotateLeft(this, currentPiece);
+    if (pieceController.getCurrentPiece().getPieceShape() != ShapeData.Tetrominoes.NoShape) {
+        for (int i = 0; i < 4; ++i) {
+            int ghostY =  pieceController.getGhostPiece().getCurrentGhostPieceY()
+                    - pieceController.getGhostPiece().getCurrentGhostPiece().getCoordinates().y(i);
+
+            int x = pieceController.getCurrentPiece().getCurrentX()
+                    + pieceController.getCurrentPiece().getCoordinates().x(i);
+
+            int y = pieceController.getCurrentPiece().getCurrentY()
+                    - pieceController.getCurrentPiece().getCoordinates().y(i);
+
+            drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - ghostY - 1) * squareHeight,
+                    squareWidth, squareHeight,pieceController.getCurrentPiece().getPieceShape(), true);
+
+            drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - y - 1) * squareHeight,
+                    squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape(), false);
+        }
+    }
+}
+
+    public void drawSquare(Graphics g, int x, int y, int squareWidth, int squareHeight, ShapeData.Tetrominoes shape, boolean isGhost)
+    {
+        Color color = ShapeData.SHAPE_COLOR[shape.ordinal()];
+
+        if(isGhost){
+            color = ShapeData.SHAPE_COLOR[shape.ordinal() + ShapeData.TETROMINOES_SIZE];   //GhostPiece라면 연한색으로 출력
+        }
+
+        g.setColor(color);
+        g.fillRect(x + 1, y + 1, squareWidth - 2, squareHeight - 2);
+
+        g.setColor(color.brighter());
+        g.drawLine(x, y + squareHeight - 1, x, y);
+        g.drawLine(x, y, x + squareWidth - 1, y);
+
+        g.setColor(color.darker());
+        g.drawLine(x + 1, y + squareHeight - 1,
+                x + squareWidth - 1, y + squareHeight - 1);
+        g.drawLine(x + squareWidth - 1, y + squareHeight - 1,
+                x + squareWidth - 1, y + 1);
     }
 
-    //SRS를 적용한 블록 오른쪽 회전 메서드
-    public void rotateRight(){
-        BrickRotator.rotateRight(this, currentPiece);
+    public void paintUpdate(){
+        tetrisBoard.repaint();
+    }
+
+    public void gameOver(){
+        tetrisBoard.setStatusText("game over");
     }
 
 }

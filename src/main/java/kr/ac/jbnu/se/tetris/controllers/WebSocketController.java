@@ -1,9 +1,10 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import java.awt.event.KeyAdapter;
 import java.util.logging.Logger;
 
 
-public class WebSocketController {
+public class WebSocketController extends KeyAdapter {
 
     private Logger logger = Logger.getLogger(WebSocketController.class.getName());
     private KeyInputController inputController1;
