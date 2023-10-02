@@ -23,7 +23,11 @@ public class AdapterController extends KeyAdapter {
         logger.info("pressed : "+in);
 
         for(int i=0;i<memberList.size();i++){
-            memberList.get(i).action(in);
+            try {
+                memberList.get(i).action(in);
+            } catch (CloneNotSupportedException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     public void addList(KeyInputController controller){

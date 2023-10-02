@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * 피스를 관리하는 클래스
  */
-public class Piece {
+public class Piece implements Cloneable{
     private Coordinates coordinates;
     private ShapeData.Tetrominoes pieceShape;
 
@@ -97,4 +97,10 @@ public class Piece {
         this.rotateIndex = (3 + this.rotateIndex) % 4;
     }
 
+    @Override
+    public Piece clone() throws CloneNotSupportedException{
+        return (Piece) super.clone();
+    }
+
 }
+

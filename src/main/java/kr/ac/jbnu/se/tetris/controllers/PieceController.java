@@ -15,11 +15,14 @@ public class PieceController {
     @Getter
     private Piece currentPiece;
     @Getter
+    private Piece holdPiece;
+    @Getter
     private GhostPiece ghostPiece;
     @Getter
     private BrickQueueManager brickQueueManager;
     private NextBlockPanel nextBlockPanel;
     private boolean isFallingFinished = false;
+    private boolean isHolding = false;
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
 
     /**
@@ -31,6 +34,7 @@ public class PieceController {
         this.currentPiece = new Piece();
         this.ghostPiece = new GhostPiece(this);
         this.brickQueueManager = new BrickQueueManager();
+        this.holdPiece = new Piece();
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -58,6 +62,7 @@ public class PieceController {
     public boolean getIsInfinity(){
         return isInfinity;
     }
+
 
     ////////////////////////////////////////////////////////////////////
 
@@ -147,6 +152,28 @@ public class PieceController {
         boardController.pieceDropped(currentPiece);
     }
 
+    public void holdingPiece() throws CloneNotSupportedException {
+        try {
+            if (!isHolding) {
+                Piece holdPieceTmp = holdPiece.clone();
+                holdPiece = currentPiece.clone();
+
+                if (holdPieceTmp.getPieceShape() == ShapeData.Tetrominoes.NoShape) {
+                    newPiece();
+                    currentPiece.setCurrentX(holdPiece.getCurrentX());
+                    currentPiece.setCurrentY(holdPiece.getCurrentY());
+                } else {
+                    currentPiece = holdPieceTmp.clone();
+                    currentPiece.setCurrentY(holdPiece.getCurrentY());
+                    currentPiece.setCurrentX(holdPiece.getCurrentX());
+                }
+                isHolding = true;
+                nextBlockPanel.update();
+                nextBlockPanel.repaint();
+            }
+        }catch(CloneNotSupportedException e){e.printStackTrace();}
+    }
+
     /**
      * currentPiece를 한칸 인쪽으로 이동
      */
@@ -231,6 +258,7 @@ public class PieceController {
      *새로운 Piece객체 생성 후 해당 Piece객체를 board의 맨 위로 올린다.
      */
     public void newPiece(){
+        isHolding = false;
         currentPiece = new Piece();
         currentPiece.setPieceShape(brickQueueManager.getNewShape());
         nextBlockPanel.update();
@@ -248,8 +276,4 @@ public class PieceController {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 }
