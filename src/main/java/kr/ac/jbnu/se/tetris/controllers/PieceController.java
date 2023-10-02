@@ -153,25 +153,23 @@ public class PieceController {
     }
 
     public void holdingPiece() throws CloneNotSupportedException {
-        try {
-            if (!isHolding) {
-                Piece holdPieceTmp = holdPiece.clone();
-                holdPiece = currentPiece.clone();
+        if (!isHolding) {
+            Piece holdPieceTmp = holdPiece.clone();
+            holdPiece = currentPiece.clone();
 
-                if (holdPieceTmp.getPieceShape() == ShapeData.Tetrominoes.NoShape) {
-                    newPiece();
-                    currentPiece.setCurrentX(holdPiece.getCurrentX());
-                    currentPiece.setCurrentY(holdPiece.getCurrentY());
-                } else {
-                    currentPiece = holdPieceTmp.clone();
-                    currentPiece.setCurrentY(holdPiece.getCurrentY());
-                    currentPiece.setCurrentX(holdPiece.getCurrentX());
-                }
-                isHolding = true;
-                nextBlockPanel.update();
-                nextBlockPanel.repaint();
+            if (holdPieceTmp.getPieceShape() == ShapeData.Tetrominoes.NoShape) {
+                newPiece();
+                currentPiece.setCurrentX(holdPiece.getCurrentX());
+                currentPiece.setCurrentY(holdPiece.getCurrentY());
+            } else {
+                currentPiece = holdPieceTmp.clone();
+                currentPiece.setCurrentY(holdPiece.getCurrentY());
+                currentPiece.setCurrentX(holdPiece.getCurrentX());
             }
-        }catch(CloneNotSupportedException e){e.printStackTrace();}
+            isHolding = true;
+            nextBlockPanel.update();
+            nextBlockPanel.repaint();
+        }
     }
 
     /**
