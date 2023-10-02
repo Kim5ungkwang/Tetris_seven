@@ -17,7 +17,7 @@ public class KeyInputController {
         this.pieceController = controller.getPieceController();
     }
 
-    public void action(int keycode){
+    public void action(int keycode) throws CloneNotSupportedException {
         logger.info("input : "+keycode);
         if (controller.isPaused())
             return;
@@ -32,7 +32,7 @@ public class KeyInputController {
                 pieceController.moveRight();
             }
             else if(keycode==input.getBlockHold()){
-                //블록홀드 추가시 추가할것.
+                pieceController.holdingPiece();
             }
             else if(keycode==input.getRotateLeft()){
                 pieceController.rotateLeft();

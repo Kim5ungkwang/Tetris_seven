@@ -18,7 +18,7 @@ public class NextBlockPanelController extends JPanel {
     }
 
     public void init(){
-        setPreferredSize(new Dimension(70, 70));
+        setPreferredSize(new Dimension(100, 100));
         setBackground(new Color(220, 200, 200));
         setPieceController();
     }
@@ -47,7 +47,7 @@ public class NextBlockPanelController extends JPanel {
 
     public void holdInit(){
         setPieceController();
-        showBrick = ShapeData.Tetrominoes.SquareShape;  //아직 구현 안됨
+        showBrick = pieceController.getHoldPiece().getPieceShape();  //아직 구현 안됨
     }
 
     public void paint(Graphics g){

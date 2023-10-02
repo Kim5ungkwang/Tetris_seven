@@ -34,13 +34,13 @@ public class NextBlockPanel extends JPanel {
         setPreferredSize(new Dimension(100, 600));
 
         setLayout(new FlowLayout());
-        add(new JLabel("HOLD"));
+        add(new JLabel("///////HOLD///////"));
         add(holdBox);
-        add(new JLabel("NEXT"));
+        add(new JLabel("///////NEXT///////"));
         add(next1Box);
-        add(new JLabel("/////"));
+        add(new JLabel("//////////////////"));
         add(next2Box);
-        add(new JLabel("/////"));
+        add(new JLabel("//////////////////"));
         add(next3Box);
 
         setBackground(new Color(220, 200, 200));
