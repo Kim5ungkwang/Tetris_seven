@@ -12,5 +12,5 @@ public class TetrisStartGame {
         game.setLocationRelativeTo(null);
         game.init();
         //new Page();
-    }
+     }
 }

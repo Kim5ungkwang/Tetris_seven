@@ -44,6 +44,10 @@ public class BoardController{
 
     /////////////////////////////////////////////////////////////////////////////////
 
+    public void init(){
+        pieceController.init();
+    }
+
 
     public boolean tutorialMode = true;
     private int tutorialStep = 0;
@@ -76,7 +80,7 @@ public class BoardController{
         pieceController.newPiece();
         timer.start();
         if (tutorialMode) {
-            showTutorial();
+        //    showTutorial();
         }
     }
 

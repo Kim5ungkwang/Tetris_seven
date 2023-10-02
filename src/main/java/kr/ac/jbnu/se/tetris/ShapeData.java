@@ -23,9 +23,11 @@ public class ShapeData {
             {{-1, 0}, {0, 0}, {1, 0}, {2, 0}},    //LineShape
             {{-1, 0}, {0, 0}, {1, 0}, {0, 1}},    //TShape
             {{0, 0}, {1, 0}, {0, 1}, {1, 1}},     //squareShape
-            {{-1, -1}, {0, -1}, {0, 0}, {0, 1}},    //LShape,
+            {{-1, 0}, {0, 0}, {1, 0}, {1, 1}},    //LShape,
             {{-1, 1}, {-1, 0}, {0, 0}, {1, 0}}      //MirroredLShape
     };
+
+    static public final int[] COORDS_MIN_Y = new int[]{0, 0, 0, 0, 0, 0, -1, 0};
 
     /**
      * Tetrominoes 색상 표
