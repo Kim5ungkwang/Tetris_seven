@@ -11,8 +11,8 @@ public class TetrisFrameForTwo extends TetrisFrame {
 
     private PlayerPage playerPage1;
     private PlayerPage playerPage2;
-    private int sizeX=400;
-    private int sizeY=400;
+    private int sizeX=600;
+    private int sizeY=700;
 
     private Member player1;
     private Member player2;
@@ -52,7 +52,8 @@ public class TetrisFrameForTwo extends TetrisFrame {
         KeyInput p2Key = new KeyInput('i','k','l','j','o','p','i');
         Member p1= new Member();
         Member p2=new Member();
-        setLayout(new GridLayout(1,2));
+        //setLayout(new GridLayout(1,2));
+        setLayout(new BorderLayout());
         //플레이어1은 왼쪽으로, 플레이어2는 오른쪽에 배치
         playerPage1=new PlayerPage(p1,p1Key);
         playerPage2=new PlayerPage(p2,p2Key);

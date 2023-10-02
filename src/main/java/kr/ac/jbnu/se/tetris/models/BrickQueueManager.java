@@ -50,4 +50,19 @@ public class BrickQueueManager {
         }
     }
 
+    public ShapeData.Tetrominoes getFirstNextTetrominoes(){
+        int index = brickQueueIndex;
+        return brickQueue[index];
+    }
+
+    public ShapeData.Tetrominoes getSecondNextTetrominoes(){
+        int index = (brickQueueIndex + 2) % BRICK_QUEUE_SIZE;
+        return brickQueue[index];
+    }
+
+    public ShapeData.Tetrominoes getThirdNextTetrominoes(){
+        int index = (brickQueueIndex + 3) % BRICK_QUEUE_SIZE;
+        return brickQueue[index];
+    }
+
 }

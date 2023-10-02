@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.BrickRotator;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
+import kr.ac.jbnu.se.tetris.views.NextBlockPanel;
 import lombok.Getter;
 
 /**
@@ -17,7 +18,7 @@ public class PieceController {
     private GhostPiece ghostPiece;
     @Getter
     private BrickQueueManager brickQueueManager;
-    private NextBlockPanelController nextBlockPanelController;
+    private NextBlockPanel nextBlockPanel;
     private boolean isFallingFinished = false;
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
 
@@ -30,10 +31,13 @@ public class PieceController {
         this.currentPiece = new Piece();
         this.ghostPiece = new GhostPiece(this);
         this.brickQueueManager = new BrickQueueManager();
-        this.nextBlockPanelController = new NextBlockPanelController(this);
     }
 
     ///////////////////////////////////////////////////////////////////
+
+    public void init(){
+        setNextBlockPanel();
+    }
 
     public BoardController getBoardControllerRe(){
         return boardController;
@@ -58,10 +62,16 @@ public class PieceController {
     ////////////////////////////////////////////////////////////////////
 
     /**
+     * 의존성 주입
+     */
+    public void setNextBlockPanel(){
+        this.nextBlockPanel = boardController.getTetrisBoard().getPlayerPage().getNextBlockPanel();
+    }
+
+    /**
      * isFallingFinished를 초기화하는 메서드
      * @param isFallingFinished true, false
      */
-
     public void setIsFallingFinished(boolean isFallingFinished){
         this.isFallingFinished = isFallingFinished;
     }
@@ -223,6 +233,8 @@ public class PieceController {
     public void newPiece(){
         currentPiece = new Piece();
         currentPiece.setPieceShape(brickQueueManager.getNewShape());
+        nextBlockPanel.update();
+        nextBlockPanel.repaint();
         currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
         currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
         currentPiece.setRotateIndex(0);
