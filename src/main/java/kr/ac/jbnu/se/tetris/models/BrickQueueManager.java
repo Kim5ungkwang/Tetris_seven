@@ -51,7 +51,7 @@ public class BrickQueueManager {
     }
 
     public ShapeData.Tetrominoes getFirstNextTetrominoes(){
-        int index = brickQueueIndex;
+        int index = brickQueueIndex % BRICK_QUEUE_SIZE;
         return brickQueue[index];
     }
 
