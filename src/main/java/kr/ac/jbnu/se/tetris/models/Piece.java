@@ -44,6 +44,11 @@ public class Piece implements Cloneable{
         return rotateIndex;
     }
 
+    /**
+     * 해당 객체의 currentPiece의 Tetrominoes shape 반환
+     * @return Tetrominoes
+     */
+
     public ShapeData.Tetrominoes getPieceShape(){
         return pieceShape;
     }
