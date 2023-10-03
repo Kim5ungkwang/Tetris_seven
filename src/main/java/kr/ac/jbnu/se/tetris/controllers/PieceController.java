@@ -153,6 +153,10 @@ public class PieceController {
         boardController.pieceDropped(currentPiece);
     }
 
+    /**
+     * 블럭 hold 메서드
+     * @throws CloneNotSupportedException
+     */
     public void holdingPiece() throws CloneNotSupportedException {
         if (!isHolding) {
             Piece holdPieceTmp = holdPiece.clone();
@@ -160,12 +164,12 @@ public class PieceController {
 
             if (holdPieceTmp.getPieceShape() == ShapeData.Tetrominoes.NoShape) {
                 newPiece();
-                currentPiece.setCurrentX(holdPiece.getCurrentX());
-                currentPiece.setCurrentY(holdPiece.getCurrentY());
+                boardController.paintUpdate();
             } else {
                 currentPiece = holdPieceTmp.clone();
-                currentPiece.setCurrentY(holdPiece.getCurrentY());
-                currentPiece.setCurrentX(holdPiece.getCurrentX());
+                currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
+                currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
+                boardController.paintUpdate();
             }
             isHolding = true;
             nextBlockPanel.update();
