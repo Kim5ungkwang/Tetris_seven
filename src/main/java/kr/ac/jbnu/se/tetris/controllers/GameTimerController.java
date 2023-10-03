@@ -25,20 +25,19 @@ public class GameTimerController implements ActionListener {
         runningTime = 0;
         pasuedTime = 0;
         oldTime = 0;
-        printTimer = new Timer(100,this);
+        printTimer = new Timer(1000,this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(isRunning){
-            printGameTime();
-        }
+        printGameTime();
     }
 
     public void timerstart(){
         if(!isRunning) {
             pasuedTime = (int) System.currentTimeMillis() / 1000 - oldTime;
             isRunning = true;
+            printTimer.start();
         }
     }
 
@@ -46,6 +45,7 @@ public class GameTimerController implements ActionListener {
         if(isRunning) {
             oldTime = (int) System.currentTimeMillis() / 1000 - pasuedTime;
             isRunning = false;
+            printTimer.stop();
         }
     }
 

@@ -63,7 +63,7 @@ public class BoardController{
             pieceController.newPiece();
         } else {
             pieceController.oneLineDown();
-            gameTimerController.printGameTime();
+            //gameTimerController.printGameTime();
         }
     }
 
