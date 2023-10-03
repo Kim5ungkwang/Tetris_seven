@@ -8,10 +8,8 @@ import java.util.Timer;
 public class GameTimerModel{
 
     @Getter
-    private int timeCount;
-    @Getter
     @Setter
-    private int timeLimit;
+    private int timeLimit;  //타임어택 모드에서 사용
 
     public GameTimerModel(){
     }

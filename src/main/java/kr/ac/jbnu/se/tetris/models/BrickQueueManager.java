@@ -50,16 +50,28 @@ public class BrickQueueManager {
         }
     }
 
+    /**
+     * 다음번에 등장할 Tetromino Shape을 반환하는 메서드
+     * @return 다음에 등장할 Tetrominoe
+     */
     public ShapeData.Tetrominoes getFirstNextTetrominoes(){
         int index = brickQueueIndex % BRICK_QUEUE_SIZE;
         return brickQueue[index];
     }
 
+    /**
+     * 두번 째에 등장할 Tetromino Shape을 반환하는 메서드
+     * @return 두번 째에 등장할 Tetromino
+     */
     public ShapeData.Tetrominoes getSecondNextTetrominoes(){
         int index = (brickQueueIndex + 2) % BRICK_QUEUE_SIZE;
         return brickQueue[index];
     }
 
+    /**
+     * 세번 째에 등장할 Tetromino Shape을 반환하는 메서드
+     * @return 세번 째에 등장할 Tetromino
+     */
     public ShapeData.Tetrominoes getThirdNextTetrominoes(){
         int index = (brickQueueIndex + 3) % BRICK_QUEUE_SIZE;
         return brickQueue[index];

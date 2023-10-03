@@ -17,9 +17,9 @@ public class PieceController {
     @Getter
     private Piece holdPiece;
     @Getter
-    private GhostPiece ghostPiece;
+    final private GhostPiece ghostPiece;
     @Getter
-    private BrickQueueManager brickQueueManager;
+    final private BrickQueueManager brickQueueManager;
     private NextBlockPanel nextBlockPanel;
     private boolean isFallingFinished = false;
     private boolean isHolding = false;
@@ -253,13 +253,13 @@ public class PieceController {
     }
 
     /**
-     *새로운 Piece객체 생성 후 해당 Piece객체를 board의 맨 위로 올린다.
+     *새로운 Piece객체 생성 후 해당 Piece객체를 board좌표 맨 위로 올린다.
      */
     public void newPiece(){
         isHolding = false;
         currentPiece = new Piece();
         currentPiece.setPieceShape(brickQueueManager.getNewShape());
-        nextBlockPanel.update();
+        nextBlockPanel.update();    //brickQueueManager에서 새로운 블럭을 받아온 후 다음 블럭들을 패널에 갱신
         nextBlockPanel.repaint();
         currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
         currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
