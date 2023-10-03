@@ -18,38 +18,30 @@ public class KeyInputController {
     }
 
     public void action(int keycode) throws CloneNotSupportedException {
-        logger.info("input : "+keycode);
-        if (controller.isPaused())
-            return;
-        {
-            if(keycode==input.getPause()){
-                controller.pause();
-            }
-            if(keycode==input.getMoveLeft()){
+        logger.info("input : " + keycode);
+
+        if(keycode == input.getPause())
+            controller.pause();
+
+        if (!controller.isPaused()) {
+
+            if (keycode == input.getMoveLeft()) {
                 pieceController.moveLeft();
-            }
-            else if(keycode==input.getMoveRight()){
+            } else if (keycode == input.getMoveRight()) {
                 pieceController.moveRight();
-            }
-            else if(keycode==input.getBlockHold()){
+            } else if (keycode == input.getBlockHold()) {
                 pieceController.holdingPiece();
-            }
-            else if(keycode==input.getRotateLeft()){
+            } else if (keycode == input.getRotateLeft()) {
                 pieceController.rotateLeft();
-            }
-            else if(keycode==input.getRotateRight()){
+            } else if (keycode == input.getRotateRight()) {
                 pieceController.rotateRight();
-            }
-            else if (keycode==input.getDropDown()){
+            } else if (keycode == input.getDropDown()) {
                 pieceController.dropDown();
             }
-
-
-
         }
-
     }
-
 }
+
+
 
 

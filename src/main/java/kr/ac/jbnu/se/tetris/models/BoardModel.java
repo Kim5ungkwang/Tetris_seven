@@ -3,8 +3,6 @@ package kr.ac.jbnu.se.tetris.models;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
 
-import java.awt.*;
-
 /**
  * 보드의 모델 클래스
  */
@@ -14,7 +12,7 @@ public class BoardModel {
     private ShapeData.Tetrominoes[] board;
 
     @Getter
-    private int timerDelay;
+    private int loopDelay;
     private boolean isStarted;
     private boolean isPaused;
     private int numLinesRemoved;
@@ -54,8 +52,8 @@ public class BoardModel {
 
     ///////////////////////////////////////////////
 
-    public void setTimerDelay(int timerDelay){
-        this.timerDelay = timerDelay;
+    public void setLoopDelay(int loopDelay){
+        this.loopDelay = loopDelay;
     }
 
     public void plusNumLinesRemoved(){

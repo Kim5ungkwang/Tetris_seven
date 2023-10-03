@@ -2,15 +2,12 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
-import kr.ac.jbnu.se.tetris.models.Coordinates;
 import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class BoardController{
@@ -23,9 +20,10 @@ public class BoardController{
     private int numLinesRemoved = 0;
     @Getter
     private Timer timer;
+    private GameTimerController gameTimerController;
 
-    private boolean isStarted;
-    private boolean isPaused;
+    private boolean isStarted = false;
+    private boolean isPaused = false;
 
     /**
      * 게임이 이루어지는 보드 클래스
@@ -36,9 +34,10 @@ public class BoardController{
         this.tetrisBoard = tetrisBoard;
         this.pieceController = new PieceController(this);
 
-        this.boardModel.setTimerDelay(400);
+        this.boardModel.setLoopDelay(400);
 
-        this.timer = new Timer(boardModel.getTimerDelay(), tetrisBoard);
+        this.timer = new Timer(boardModel.getLoopDelay(), tetrisBoard);
+        this.gameTimerController = new GameTimerController();
 
     }
 
@@ -64,6 +63,7 @@ public class BoardController{
             pieceController.newPiece();
         } else {
             pieceController.oneLineDown();
+            //gameTimerController.printGameTime();
         }
     }
 
@@ -79,6 +79,7 @@ public class BoardController{
         clearBoard();
         pieceController.newPiece();
         timer.start();
+        gameTimerController.timerstart();
         if (tutorialMode) {
         //    showTutorial();
         }
@@ -89,12 +90,13 @@ public class BoardController{
 
         isPaused = !isPaused;
 
-        if (!isPaused) {
+        if (isPaused) {
             timer.stop();
+            gameTimerController.timerpause();
             tetrisBoard.setStatusText("paused");
         } else {
             timer.start();
-            ;
+            gameTimerController.timerstart();
             tetrisBoard.setStatusText(String.valueOf(numLinesRemoved));
         }
         tetrisBoard.repaint();

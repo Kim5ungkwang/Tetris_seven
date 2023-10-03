@@ -19,10 +19,6 @@ public class NextBlockPanel extends JPanel {
         this.next2Box = new NextBlockPanelController(this);
         this.next3Box = new NextBlockPanelController(this);
         this.holdBox = new NextBlockPanelController(this);
-        //next1Box.setPreferredSize(new Dimension(70, 70));
-        //next2Box.setPreferredSize(new Dimension(70, 70));
-        //next3Box.setPreferredSize(new Dimension(70, 70));
-        //holdBox.setPreferredSize(new Dimension(70, 70));
     }
 
     public void init(){
