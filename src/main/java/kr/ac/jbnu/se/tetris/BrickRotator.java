@@ -64,7 +64,7 @@ public class BrickRotator {
             for (int i = 0; i < 4; i++) {
                 int moveX = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex()][i][0];
                 int moveY = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex()][i][1];
-                isRotate = pieceController.tryMove(pieceController.rotateLeftHelper(), currentX + moveX, currentY + moveY);
+                isRotate = pieceController.tryMove(pieceController.rotateRightHelper(), currentX + moveX, currentY + moveY);
                 if(isRotate) break;
             }
         }
@@ -73,7 +73,7 @@ public class BrickRotator {
             for (int i = 0; i < 4; i++) {
                 int moveX = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex()][i][0];
                 int moveY = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex()][i][1];
-                isRotate = pieceController.tryMove(pieceController.rotateLeftHelper(), currentX + moveX, currentY + moveY);
+                isRotate = pieceController.tryMove(pieceController.rotateRightHelper(), currentX + moveX, currentY + moveY);
                 if(isRotate) break;
             }
         }

@@ -234,6 +234,7 @@ public class PieceController {
 
         Piece result = new Piece();
         result.setRotateIndex(currentPiece.getRotateIndex());
+        result.setPieceShape(currentPiece.getPieceShape());
 
         for (int i = 0; i < 4; ++i) {
             result.getCoordinates().setX(i, -currentPiece.getCoordinates().y(i));
