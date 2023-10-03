@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 @Getter
 @Setter
+
 //키 입력 세팅 자체를 클래스로 만들고, 이걸 TetrisBoard클래스에 넣는 방향으로 구상변경
 public class KeyInput {
     Logger logger= Logger.getLogger(KeyInput.class.getName());
@@ -20,7 +21,7 @@ public class KeyInput {
     private int dropDown;
     private int pause;
     private int blockHold;
-
+// onelineDown 추가해주세요 *성광
     public KeyInput() {
     }
     public KeyInput(int rotateRight, int rotateLeft, int moveRight, int moveLeft,

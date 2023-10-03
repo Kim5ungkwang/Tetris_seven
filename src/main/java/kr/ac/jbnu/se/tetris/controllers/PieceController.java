@@ -116,6 +116,7 @@ public class PieceController {
                 break;
             --newY;
         }
+        pieceDropped();
     }
 
     /**
