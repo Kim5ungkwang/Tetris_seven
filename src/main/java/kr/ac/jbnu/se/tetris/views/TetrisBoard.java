@@ -17,12 +17,12 @@ import java.util.logging.Logger;
 public class TetrisBoard extends JPanel implements ActionListener {
     Logger logger=Logger.getLogger(TetrisBoard.class.getName());
 
-    private JLabel statusBar;
+    final private JLabel statusBar;
     @Getter
-    private PlayerPage playerPage;
+    final private PlayerPage playerPage;
 
     @Getter
-    private BoardController boardcontroller;
+    final private BoardController boardcontroller;
 
     TetrisBoard(PlayerPage parent, KeyInput input) {
         setFocusable(true);

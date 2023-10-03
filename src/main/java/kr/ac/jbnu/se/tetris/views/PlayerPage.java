@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 public class PlayerPage extends JPanel {
 
     Logger logger=Logger.getLogger(PlayerPage.class.getName());
+    static final public int PLAYERPAGE_WIDTH = 400;
+    static final public int PLAYERPAGE_HEIGTH = 600;
     private JLabel statusBar;
     @Getter
     private TetrisBoard board;
@@ -33,7 +35,7 @@ public class PlayerPage extends JPanel {
         add(statusBar, BorderLayout.SOUTH);
         add(board, BorderLayout.CENTER);
         add(nextBlockPanel, BorderLayout.WEST);
-        setPreferredSize(new Dimension(400, 600));
+        setPreferredSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
 
         board.init();
         board.start();

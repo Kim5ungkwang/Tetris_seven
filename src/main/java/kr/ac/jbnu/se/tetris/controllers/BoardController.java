@@ -9,24 +9,26 @@ import lombok.Getter;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ *게임이 이루어지는 보드를 관리하는 클래스
+ */
 public class BoardController{
     @Getter
-    private BoardModel boardModel;
+    final private BoardModel boardModel;
     @Getter
-    private TetrisBoard tetrisBoard;
+    final private TetrisBoard tetrisBoard;
     @Getter
-    private PieceController pieceController;
+    final private PieceController pieceController;
     private int numLinesRemoved = 0;
     @Getter
-    private Timer timer;
-    private GameTimerController gameTimerController;
+    final private Timer timer;
+    final private GameTimerController gameTimerController;
 
     private boolean isStarted = false;
     private boolean isPaused = false;
 
     /**
-     * 게임이 이루어지는 보드 클래스
+     * 게임이 이루어지는 보드를 관리하는 클래스
      * @param tetrisBoard 뷰와 연결
      */
     public BoardController(TetrisBoard tetrisBoard){
@@ -34,7 +36,7 @@ public class BoardController{
         this.tetrisBoard = tetrisBoard;
         this.pieceController = new PieceController(this);
 
-        this.boardModel.setLoopDelay(400);
+        this.boardModel.setLoopDelay(400);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), tetrisBoard);
         this.gameTimerController = new GameTimerController();
@@ -43,6 +45,10 @@ public class BoardController{
 
     /////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * BoardController 초기화
+     * pieceController 초기화
+     */
     public void init(){
         pieceController.init();
     }
@@ -63,7 +69,6 @@ public class BoardController{
             pieceController.newPiece();
         } else {
             pieceController.oneLineDown();
-            //gameTimerController.printGameTime();
         }
     }
 
@@ -71,6 +76,9 @@ public class BoardController{
         return isPaused;
     }
 
+    /**
+     * board의 게임을 시작한다.
+     */
     public void start() {
         if (isPaused()) return;
         isStarted = true;
@@ -85,6 +93,9 @@ public class BoardController{
         }
     }
 
+    /**
+     * 게임을 일시중지한다.
+     */
     public void pause() {
         if (!isStarted) return;
 
@@ -102,11 +113,17 @@ public class BoardController{
         tetrisBoard.repaint();
     }
 
+    /**
+     * 보드의 영역을 NoShape으로 초기화
+     */
     private void clearBoard() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             boardModel.setboard(i, ShapeData.Tetrominoes.NoShape);
     }
 
+    /**
+     * board에서 지울 수 있는 줄이 있다면 해당 줄을 지우고 윗 줄을 한칸씩 내리는 메서드
+     */
     private void removeFullLines() {
         int numFullLines = 0;
 
@@ -138,6 +155,10 @@ public class BoardController{
         }
     }
 
+    /**
+     * 앉은 상태의 piece를 board에 고정하는 메서드
+     * @param droppedPiece 앉은 상태의 piece
+     */
     public void pieceDropped(Piece droppedPiece) {
         for (int i = 0; i < 4; i++) {
             int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
@@ -145,17 +166,30 @@ public class BoardController{
             boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape());
         }
 
-        removeFullLines();
+        removeFullLines();  //고정한 이후 지울 수 있는 줄이 있는지 확인
 
         if (!pieceController.getIsFallingFinished())
             pieceController.newPiece();
     }
 
+    /**
+     * board에 해당 좌표에 어떤 Shape이 있는지 확인하는 메서드
+     * @param x board의 x좌표
+     * @param y board의 y좌표
+     * @return 해당 board 좌표상 위치하는 TetrominoShape
+     */
     public ShapeData.Tetrominoes shapeAt(int x, int y) {
         return boardModel.getBoard((y * BoardModel.getBoardWidth()) + x);
     }
 //////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * 컴포넌트의 width, height값으로 사각형의 크기를 계산해 board에 위치한 블럭과
+     * currentPiece를 그리는 메서드
+     * @param g Graphics g
+     * @param width 컴포넌트 width
+     * @param height 컴포넌트 height
+     */
     public void paintHelper(Graphics g, double width, double height) {
         int squareWidth = (int) width / BoardModel.getBoardWidth();
         int squareHeight = (int) height / BoardModel.getBoardHeight();
@@ -194,6 +228,16 @@ public class BoardController{
         }
     }
 
+    /**
+     * 해당 좌표에 블럭을 그리는 메서드
+     * @param g Grahpics g
+     * @param x x좌표
+     * @param y y좌표
+     * @param squareWidth 블럭의 width
+     * @param squareHeight 블럭의 height
+     * @param shape 어떤 Tetrominoes 모양인지
+     * @param isGhost GhostPiece면 true 아니면 false
+     */
     public void drawSquare(Graphics g, int x, int y, int squareWidth, int squareHeight, ShapeData.Tetrominoes shape, boolean isGhost) {
         Color color = ShapeData.SHAPE_COLOR[shape.ordinal()];
 
@@ -215,10 +259,16 @@ public class BoardController{
                 x + squareWidth - 1, y + 1);
     }
 
+    /**
+     * TetrisBoard의 repaint호출하는 메서드
+     */
     public void paintUpdate() {
         tetrisBoard.repaint();
     }
 
+    /**
+     * gameOver했을때 사용하는 메서드
+     */
     public void gameOver() {
         tetrisBoard.setStatusText("game over");
     }

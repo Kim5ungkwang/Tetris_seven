@@ -7,15 +7,16 @@ import lombok.Getter;
  * 보드의 모델 클래스
  */
 public class BoardModel {
-    static private final int BOARD_WIDTH = 10;
-    static private final int BOARD_HEIGHT = 22;
+    static private final int BOARD_WIDTH = 10;  //board의 너비
+    static private final int BOARD_HEIGHT = 22; //board의 높이
     private ShapeData.Tetrominoes[] board;
 
     @Getter
-    private int loopDelay;
-    private boolean isStarted;
-    private boolean isPaused;
-    private int numLinesRemoved;
+    private int loopDelay;  //board에서 블럭이 떨어지는 시간
+    private boolean isStarted;  //게임이 시작 되었는지
+    private boolean isPaused;   //게임이 일시중지 되었는지
+    @Getter
+    private int numLinesRemoved;    //얼마 만큼의 블럭이 삭제되었는지
 
     /**
      * 생성자는 게임을 진행 할 보드의 크기를 지정한다.
@@ -37,10 +38,6 @@ public class BoardModel {
         return board[index];
     }
 
-
-    public int getNumLinesRemoved(){
-        return numLinesRemoved;
-    }
 
     public boolean getIsStarted(){
         return isStarted;
