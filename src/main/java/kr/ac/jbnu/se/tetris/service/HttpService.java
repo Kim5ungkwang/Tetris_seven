@@ -26,7 +26,7 @@ public class HttpService {
         url= url+ "?id=" + id + "&password=" + password;
         logger.info(url);
         String ans=getConnection(url);
-        if(ans=="success"){
+        if(ans.equals("success")){
             logger.info("join success");
         }
         else{
@@ -36,11 +36,11 @@ public class HttpService {
     //로그인
     public boolean logIn(String id, String password){
 
-        String url="http://localhost:8080/join";
+        String url="http://localhost:8080/logIn";
         url= url + "?id=" + id + "&password=" + password;
 
         String ans=getConnection(url);
-        if(ans=="success"){
+        if(ans.equals("success")){
             logger.info("logIn success");
             return true;
         }

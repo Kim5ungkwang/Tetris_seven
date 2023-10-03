@@ -1,8 +1,11 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import lombok.Setter;
+
 import java.awt.event.KeyAdapter;
 import java.util.logging.Logger;
 
+@Setter
 
 public class WebSocketController extends KeyAdapter {
 
@@ -14,11 +17,5 @@ public class WebSocketController extends KeyAdapter {
 
     private WebSocketController(){logger.info("WebSocketController start");}
 
-    public void setInputController1(KeyInputController inputController) {
-        this.inputController1= inputController;
-    }
 
-    public void setInputController2(KeyInputController inputController2) {
-        this.inputController2 = inputController2;
-    }
 }

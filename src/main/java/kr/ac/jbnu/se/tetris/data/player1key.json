@@ -1,0 +1,8 @@
+{"rotateR": 101,
+"rotateL": 113,
+  "moveR" : 100,
+  "moveL" : 97,
+  "down" : 115,
+  "blockHold": 114,
+  "pause": 112
+}

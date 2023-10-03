@@ -1,19 +1,16 @@
 package kr.ac.jbnu.se.tetris.views;
 
-import kr.ac.jbnu.se.tetris.models.KeyInput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import static kr.ac.jbnu.se.tetris.service.HttpService.httpService;
 
-//일반적인 메뉴를 포함한, 게임 페이즐 제외한 페이지
+//일반적인 메뉴를 포함한, 게임 페이지 제외한 페이지
 public class Page extends JFrame {
     String choice = null;
-
+//현재 페이지는 더미. 나중에 고쳐야함.
     public Page() {
 
         setTitle("회원관리 화면");
