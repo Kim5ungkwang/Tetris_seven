@@ -80,7 +80,7 @@ public class BoardController{
      * board의 게임을 시작한다.
      */
     public void start() {
-        if (isPaused()) return;
+        if (isPaused()) return; // 일시정지 상태에선 게임을 시작할 수 없다.
         isStarted = true;
         pieceController.setIsFallingFinished(false);
         numLinesRemoved = 0;
