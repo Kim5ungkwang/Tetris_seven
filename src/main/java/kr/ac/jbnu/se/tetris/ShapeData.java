@@ -43,7 +43,7 @@ public class ShapeData {
             new Color(255, 255, 102),   // 연한 노랑
             new Color(255, 102, 255),   // 연한 자주
             new Color(102, 255, 255),   // 연한 시안
-            new Color(255, 204, 0),      // 연한 주황
+            new Color(255, 204, 0),     // 연한 주황
             new Color(204, 102, 102),
             new Color(102, 204, 102),
             new Color(102, 102, 204),
