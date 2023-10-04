@@ -20,6 +20,7 @@ public class GameTimerController implements ActionListener {
     private int oldTime;
     private String timerBuffer;
 
+
     /**
      * 게임이 진행되는 시간을 관리하는 클래스
      */
@@ -88,4 +89,5 @@ public class GameTimerController implements ActionListener {
         secToMMSS(getCurrentTimeSec());
         System.out.println(timerBuffer);
     }
+
 }

@@ -32,20 +32,21 @@ public class ShapeData {
      */
     static public final Color[] SHAPE_COLOR = new Color[]{
             new Color(0, 0, 0),
-            new Color(204, 102, 102),   //빨강
-            new Color(102, 204, 102),   //초록
-            new Color(102, 204, 204),   //시안
-            new Color(204, 102, 204),   //자주
-            new Color(204, 204, 102),   //노랑
-            new Color(218, 170, 0),     //주황
-            new Color(102, 102, 204),   //파랑
             new Color(255, 102, 102),   // 연한 빨강
             new Color(102, 255, 102),   // 연한 초록
-            new Color(102, 255, 255),   // 연한 시안
-            new Color(255, 102, 255),   // 연한 자주
-            new Color(255, 255, 102),   // 연한 노랑
-            new Color(255, 204, 0),     // 연한 주황
             new Color(102, 102, 255),   // 연한 파랑
+            new Color(255, 255, 102),   // 연한 노랑
+            new Color(255, 102, 255),   // 연한 자주
+            new Color(102, 255, 255),   // 연한 시안
+            new Color(255, 204, 0),      // 연한 주황
+            new Color(204, 102, 102),
+            new Color(102, 204, 102),
+            new Color(102, 102, 204),
+            new Color(204, 204, 102),
+            new Color(204, 102, 204),
+            new Color(102, 204, 204),
+            new Color(218, 170, 0)
+
     };
 
     private ShapeData(){
