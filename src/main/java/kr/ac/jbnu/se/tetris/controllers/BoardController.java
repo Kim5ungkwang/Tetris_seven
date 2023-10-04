@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  *게임이 이루어지는 보드를 관리하는 클래스
@@ -190,7 +191,7 @@ public class BoardController{
      * @param width 컴포넌트 width
      * @param height 컴포넌트 height
      */
-    public void paintHelper(Graphics g, double width, double height) {
+    public void paintHelper(Graphics g, double width, double height) throws IOException {
         int squareWidth = (int) width / BoardModel.getBoardWidth();
         int squareHeight = (int) height / BoardModel.getBoardHeight();
 
@@ -203,8 +204,11 @@ public class BoardController{
                 ShapeData.Tetrominoes shape = shapeAt(j, BoardModel.getBoardHeight() - i - 1);
 
                 if (shape != ShapeData.Tetrominoes.NoShape)
-                    drawSquare(g, j * squareWidth, boardTop + i * squareHeight, squareWidth,
-                            squareHeight, shape, false);
+                    ShapeData.drawSquare(g,j * squareWidth, boardTop + i * squareHeight, squareWidth, squareHeight,
+                    shape);
+                else{
+                    drawEmptySquare(g,j * squareWidth, boardTop + i * squareHeight, squareWidth, squareHeight);
+                }
             }
         }
 
@@ -219,11 +223,11 @@ public class BoardController{
                 int y = pieceController.getCurrentPiece().getCurrentY()
                         - pieceController.getCurrentPiece().getCoordinates().y(i);
 
-                drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - ghostY - 1) * squareHeight,
-                        squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape(), true);
+                drawGhostSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - ghostY - 1) * squareHeight,
+                        squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape());
 
-                drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - y - 1) * squareHeight,
-                        squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape(), false);
+                ShapeData.drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - y - 1) * squareHeight,
+                        squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape());
             }
         }
     }
@@ -235,28 +239,21 @@ public class BoardController{
      * @param y y좌표
      * @param squareWidth 블럭의 width
      * @param squareHeight 블럭의 height
-     * @param shape 어떤 Tetrominoes 모양인지
-     * @param isGhost GhostPiece면 true 아니면 false
      */
-    public void drawSquare(Graphics g, int x, int y, int squareWidth, int squareHeight, ShapeData.Tetrominoes shape, boolean isGhost) {
-        Color color = ShapeData.SHAPE_COLOR[shape.ordinal()];
-
-        if (isGhost) {
-            color = ShapeData.SHAPE_COLOR[shape.ordinal() + ShapeData.TETROMINOES_SIZE];   //GhostPiece라면 연한색으로 출력
-        }
+    public void drawEmptySquare(Graphics g, int x, int y, int squareWidth, int squareHeight) {
+        Color color = new Color(150, 150, 150);
 
         g.setColor(color);
-        g.fillRect(x + 1, y + 1, squareWidth - 2, squareHeight - 2);
+        g.drawRect(x, y, squareWidth, squareHeight);
+    }
 
+    public void drawGhostSquare(Graphics g, int x, int y, int squareWidth, int squareHeight, ShapeData.Tetrominoes shape){
+        Color color = ShapeData.SHAPE_COLOR[shape.ordinal()];
         g.setColor(color.brighter());
-        g.drawLine(x, y + squareHeight - 1, x, y);
-        g.drawLine(x, y, x + squareWidth - 1, y);
+        g.fillRect(x, y, squareWidth, squareHeight);
 
         g.setColor(color.darker());
-        g.drawLine(x + 1, y + squareHeight - 1,
-                x + squareWidth - 1, y + squareHeight - 1);
-        g.drawLine(x + squareWidth - 1, y + squareHeight - 1,
-                x + squareWidth - 1, y + 1);
+        g.drawRect(x, y, squareWidth, squareHeight);
     }
 
     /**

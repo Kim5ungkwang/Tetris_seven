@@ -1,6 +1,11 @@
 package kr.ac.jbnu.se.tetris;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class ShapeData {
     static final public int TETROMINOES_SIZE = 7;
@@ -10,7 +15,7 @@ public class ShapeData {
      */
     public enum Tetrominoes {
         NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
-        LShape, MirroredLShape
+        LShape, MirroredLShape, InterruptShape
     }
 
     /**
@@ -48,6 +53,50 @@ public class ShapeData {
             new Color(218, 170, 0)
 
     };
+
+    static public void drawSquare(Graphics g, int x, int y, int imgWidth, int imgHeight, Tetrominoes shape) throws IOException {
+        BufferedImage bufferedImage = getImageFile(getBlockImagePath(shape));
+
+
+        g.drawImage(bufferedImage, x, y, imgWidth, imgHeight, null);
+    }
+
+    public static BufferedImage getImageFile(String filePath) throws IOException {
+        return ImageIO.read(new File(filePath));
+    }
+
+    /**
+     * 블럭 이미지 파일 가져옴
+     * @param shape Tetrominoes
+     * @return 블럭 이미지 파일 위치
+     */
+    public static String getBlockImagePath(Tetrominoes shape){
+        String imgPath = "";
+        switch(shape){
+            case ZShape:
+                imgPath = "source/image/blocks/01.png";
+                break;
+            case SShape:
+                imgPath = "source/image/blocks/02.png";
+                break;
+            case LineShape:
+                imgPath = "source/image/blocks/03.png";
+                break;
+            case TShape:
+                imgPath = "source/image/blocks/04.png";
+                break;
+            case SquareShape:
+                imgPath = "source/image/blocks/05.png";
+                break;
+            case LShape:
+                imgPath = "source/image/blocks/06.png";
+                break;
+            case MirroredLShape:
+                imgPath = "source/image/blocks/07.png";
+                break;
+        }
+        return imgPath;
+    }
 
     private ShapeData(){
     }
