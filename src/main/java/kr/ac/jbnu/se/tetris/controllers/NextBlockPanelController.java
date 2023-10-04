@@ -5,6 +5,7 @@ import kr.ac.jbnu.se.tetris.views.NextBlockPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * 홀드 블록과 다음 블록을 보여주는 박스를 관리하는 클래스
@@ -91,8 +92,12 @@ public class NextBlockPanelController extends JPanel {
             if(showBrick == ShapeData.Tetrominoes.NoShape) break;
             int drawX = showBoxWidth / 2 - 1 + ShapeData.COORDS_TABLE[showBrick.ordinal()][i][0];
             int drawY = showBoxHeight - 1 - ShapeData.COORDS_TABLE[showBrick.ordinal()][i][1];
-            drawSquare(g, drawX * squareWidth, boardTop + (showBoxHeight - drawY - 1) * squareHeight,
-                    squareWidth, squareHeight, showBrick);
+            try {
+                ShapeData.drawSquare(g, drawX * squareWidth, boardTop + (showBoxHeight - drawY - 1) * squareHeight,
+                        squareWidth, squareHeight, showBrick);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

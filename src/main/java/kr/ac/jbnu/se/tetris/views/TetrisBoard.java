@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 
@@ -50,7 +51,11 @@ public class TetrisBoard extends JPanel implements ActionListener {
     //보드를 그리는 메서드
     public void paint(Graphics g) {
         super.paint(g);
-        boardcontroller.paintHelper(g, getSize().getWidth(), getSize().getHeight());
+        try {
+            boardcontroller.paintHelper(g, getSize().getWidth(), getSize().getHeight());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
