@@ -36,6 +36,7 @@ public class TetrisBoard extends JPanel implements ActionListener {
 
     public void init(){
         boardcontroller.init();
+        setBackground(new Color(95, 95, 95));   //배경색 일단 회색
     }
 
     void start() {
