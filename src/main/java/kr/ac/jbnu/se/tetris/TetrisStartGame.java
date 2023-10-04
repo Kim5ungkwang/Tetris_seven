@@ -11,6 +11,6 @@ public class TetrisStartGame {
         TetrisFrame game = new TetrisFrame();
         game.setLocationRelativeTo(null);
         game.init();
-        //new Page();
+        //anew Page();
      }
 }
