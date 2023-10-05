@@ -91,7 +91,7 @@ public class NextBlockPanelController extends JPanel {
         for(int i = 0; i < 4; ++i) {
             if(showBrick == ShapeData.Tetrominoes.NoShape) break;
             int drawX = showBoxWidth / 2 - 1 + ShapeData.COORDS_TABLE[showBrick.ordinal()][i][0];
-            int drawY = showBoxHeight - 1 - ShapeData.COORDS_TABLE[showBrick.ordinal()][i][1];
+            int drawY = showBoxHeight - 3 - ShapeData.COORDS_TABLE[showBrick.ordinal()][i][1];
             try {
                 ShapeData.drawSquare(g, drawX * squareWidth, boardTop + (showBoxHeight - drawY - 1) * squareHeight,
                         squareWidth, squareHeight, showBrick);
