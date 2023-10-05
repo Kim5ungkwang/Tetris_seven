@@ -44,6 +44,8 @@ public class KeyInput {
             throw new RuntimeException(ex);
         }
     }
+
+    //대상이 되는 키 하나에 대해, 키의 값을 변경. Update
     public void playerKeySetting(String filePath,String key, long val) {
         try {
             Reader reader = new FileReader(filePath);

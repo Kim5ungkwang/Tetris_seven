@@ -27,9 +27,7 @@ public class BoardController{
         this.boardModel = new BoardModel();
         this.tetrisBoard = tetrisBoard;
         this.pieceController = new PieceController(this);
-
         this.boardModel.setTimerDelay(400);
-
         this.timer = new Timer(boardModel.getTimerDelay(), tetrisBoard);
 
     }
