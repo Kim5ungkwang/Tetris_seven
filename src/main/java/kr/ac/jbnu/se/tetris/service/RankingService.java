@@ -2,6 +2,8 @@ package kr.ac.jbnu.se.tetris.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,10 +16,11 @@ import java.util.List;
 
 public class RankingService {
     String filePath = "src/main/java/kr/ac/jbnu/se/tetris/data/ranking.json";
+    ObjectMapper objectMapper = new ObjectMapper();
 
     //랭킹 가져오기
     public List<Integer> readRanking() {
-        ObjectMapper objectMapper = new ObjectMapper();
+
         List<Integer> scoreList = new ArrayList<>();
         try {
             // JSON 파일을 읽어옴
@@ -55,11 +58,22 @@ public class RankingService {
         return highRank;
     }
     //랭킹 저장하기
-    public void saveRanking(){
-        try{
-            FileWriter writer= new FileWriter(filePath);
+    public void saveRanking(int score){
+        try {
+            // JSON 파일 열기
+            File jsonFile = new File(filePath);
+            JsonNode rootNode = objectMapper.readTree(jsonFile);
 
-        }catch (IOException e){
+            // 데이터 추가
+            ArrayNode scoreArray = (ArrayNode) rootNode.get("score");
+            scoreArray.add(score);
+
+            // JSON 파일 다시 쓰기
+            objectMapper.writeValue(jsonFile, rootNode);
+
+            System.out.println("데이터 추가 완료");
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
