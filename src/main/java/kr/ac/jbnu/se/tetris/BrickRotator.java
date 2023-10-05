@@ -29,7 +29,7 @@ public class BrickRotator {
             isRotate = pieceController.tryMove(pieceController.rotateLeftHelper(), currentX, currentY);
         }
         else if(pieceController.getCurrentPiece().getPieceShape() == ShapeData.Tetrominoes.LineShape) {   //I블록인 경우 SRS IShape의 offset적용
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 int moveX = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex() + 4][i][0];
                 int moveY = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex() + 4][i][1];
                 isRotate = pieceController.tryMove(pieceController.rotateLeftHelper(), currentX + moveX, currentY + moveY);
@@ -38,14 +38,16 @@ public class BrickRotator {
         }
 
         else{   //나머지 Tetromino에 대해서 SRS offset적용
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 int moveX = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex() + 4][i][0];
                 int moveY = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex() + 4][i][1];
                 isRotate = pieceController.tryMove(pieceController.rotateLeftHelper(), currentX + moveX, currentY + moveY);
                 if(isRotate) break;
             }
         }
-        if(isRotate) pieceController.getCurrentPiece().minusRotateIndex();
+        if(isRotate){
+            pieceController.getCurrentPiece().minusRotateIndex();
+        };
     }
 
     /**
@@ -61,7 +63,7 @@ public class BrickRotator {
         }
 
         else if(pieceController.getCurrentPiece().getPieceShape() == ShapeData.Tetrominoes.LineShape) {   //I블록인 경우 IShape SRS offset적용
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 int moveX = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex()][i][0];
                 int moveY = SRSData.IShapeSrsKick[pieceController.getCurrentPiece().getRotateIndex()][i][1];
                 isRotate = pieceController.tryMove(pieceController.rotateRightHelper(), currentX + moveX, currentY + moveY);
@@ -70,13 +72,15 @@ public class BrickRotator {
         }
 
         else{   //나머지 Tetromino에 대해서 SRS offset적용
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 int moveX = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex()][i][0];
                 int moveY = SRSData.srsKick[pieceController.getCurrentPiece().getRotateIndex()][i][1];
                 isRotate = pieceController.tryMove(pieceController.rotateRightHelper(), currentX + moveX, currentY + moveY);
                 if(isRotate) break;
             }
         }
-        if(isRotate) pieceController.getCurrentPiece().plusRotateIndex();
+        if(isRotate) {
+            pieceController.getCurrentPiece().plusRotateIndex();
+        }
     }
 }

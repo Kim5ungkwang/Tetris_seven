@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Arrays;
 
@@ -16,6 +17,7 @@ public class BrickGenerator {
     private ShapeData.Tetrominoes[] BrickQueue = new ShapeData.Tetrominoes[7];  //블록 배열
     private boolean[] visitedTetrominoes = new boolean[8];  //테트로미노가 등장했는지 확인하는 변수
     private int brickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
+    @Setter
     private int seed;   //배열을 만들때 사용되는 시드 값
 
     /**

@@ -37,7 +37,7 @@ public class BoardController{
         this.tetrisBoard = tetrisBoard;
         this.pieceController = new PieceController(this);
 
-        this.boardModel.setLoopDelay(400);  //루프 딜레이 설정 400
+        this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), tetrisBoard);
         this.gameTimerController = new GameTimerController();
