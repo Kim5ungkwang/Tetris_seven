@@ -54,7 +54,7 @@ public class RankingService {
         for(int i=0;i<10;i++){
             highRank.add(allList.get(i));
         }
-        System.out.println(highRank);
+
         return highRank;
     }
     //랭킹 저장하기
@@ -70,8 +70,6 @@ public class RankingService {
 
             // JSON 파일 다시 쓰기
             objectMapper.writeValue(jsonFile, rootNode);
-
-            System.out.println("데이터 추가 완료");
 
         } catch (IOException e) {
             e.printStackTrace();
