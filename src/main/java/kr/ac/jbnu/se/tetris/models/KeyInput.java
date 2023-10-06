@@ -26,6 +26,7 @@ public class KeyInput {
     private Long dropDown;
     private Long pause;
     private Long blockHold;
+    private Long oneLineDown;
 
 
     public KeyInput(String filePath)  {
@@ -40,6 +41,7 @@ public class KeyInput {
             dropDown=(long)  jsonObject.get("down");
             blockHold=(long) jsonObject.get("blockHold");
             pause=(long)  jsonObject.get("pause");
+            oneLineDown=(long) jsonObject.get("oneLineDown");
         } catch (IOException | ParseException ex) {
             throw new RuntimeException(ex);
         }
@@ -56,4 +58,6 @@ public class KeyInput {
             throw new RuntimeException(ex);
         }
     }
+
+
 }

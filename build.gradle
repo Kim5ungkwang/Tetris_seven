@@ -21,10 +21,14 @@ repositories {
 
 dependencies {
     implementation group: 'jakarta.websocket', name: 'jakarta.websocket-client-api', version: '2.1.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    // https://mvnrepository.com/artifact/org.webjars/stomp-websocket
+   implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7' // Jackson 의존성
+
 
 }
 
