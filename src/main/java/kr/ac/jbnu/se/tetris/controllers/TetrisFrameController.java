@@ -9,17 +9,19 @@ import java.awt.event.KeyEvent;
 
 
 public class TetrisFrameController extends JFrame {
+    static private final int TETRIS_FRAME_SIZE_WIDTH = 1280;
+    static private final int TETRIS_FRAME_SIZE_HEIGHT = 720;
     public TetrisFrameController() {
     }
 
     public void init() {
 
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(500, 800));
+        setLayout(new FlowLayout());
+        setPreferredSize(new Dimension(TETRIS_FRAME_SIZE_WIDTH, TETRIS_FRAME_SIZE_HEIGHT));
 
         KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");
         PlayerPageController playerPage = new PlayerPageController(new Member(), p1Key);
-        add(playerPage,BorderLayout.CENTER);
+        add(playerPage);
 
         setTitle("Tetris");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

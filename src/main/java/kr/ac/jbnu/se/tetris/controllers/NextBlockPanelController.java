@@ -41,7 +41,7 @@ public class NextBlockPanelController extends JPanel {
         add(new JLabel("///////////////////////////"));
         add(next3Box);
 
-        setBackground(new Color(220, 200, 200));
+        setBackground(new Color(66, 66, 66));
         setVisible(true);
     }
     public void NextBlockPanelUpdate(){

@@ -19,7 +19,7 @@ public class NextBlockBox extends JPanel {
         this.nextBlockPanelController = parent;
 
         setPreferredSize(new Dimension(BOX_WIDTH, BOX_HEIGHT));
-        setBackground(new Color(220, 200, 200));    //Box의 배경색
+        setBackground(new Color(66, 66, 66, 179));    //Box의 배경색
         setVisible(true);
     }
 
@@ -51,12 +51,12 @@ public class NextBlockBox extends JPanel {
     }
 
     public void paint(Graphics g){
+        super.paint(g);
         int squareWidth = (int) getSize().getWidth() /showBoxWidth;
         int squareHeight = (int) getSize().getHeight() / showBoxHeight;
 
         int boardTop = (int) getSize().getHeight() - showBoxHeight * squareHeight;
 
-        super.paint(g);
 
         for(int i = 0; i < 4; ++i) {
             if(showBox == ShapeData.Tetrominoes.NoShape) break;
