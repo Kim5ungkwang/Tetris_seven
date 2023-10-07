@@ -2,25 +2,20 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
+import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.TutorialModel;
-import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 import lombok.Getter;
 
-import static kr.ac.jbnu.se.tetris.models.TutorialModel.currentStepIndex;
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
 
-    /**
-     * 게임이 이루어지는 보드를 관리하는 클래스
-     *
-     * @param tetrisBoard 뷰와 연결
-     */
-    public TutorialController(TetrisBoard tetrisBoard, TutorialModel tutorialModel) {
-        super(tetrisBoard);
-        this.tutorialModel = tutorialModel;
+
+    public TutorialController(PlayerPageController parent, KeyInput input) {
+        super(parent, input);
+        this.tutorialModel = new TutorialModel();
     }
 
     @Override
@@ -29,18 +24,18 @@ public class TutorialController extends BoardController {
     }
 
     private void displayCurrentStep() {
-        if (currentStepIndex >= 0 && currentStepIndex < tutorialSteps.length) {
-            String currentStepText = tutorialSteps[currentStepIndex];
-            TetrisBoard.setStatusText(currentStepText);
+        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
+            String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
+            setStatusText(currentStepText);
         }
     }
 
     public void moveToNextStep() {
-        if (currentStepIndex < tutorialSteps.length - 1) {
-            currentStepIndex++;
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
+            tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
             performStepAciton();
-        } else if (currentStepIndex == 4) {
+        } else if (tutorialModel.getCurrentStepIndex() == 4) {
             drawBackgroundblock();
         }else {
             // 튜토리얼 마지막 단계 도달한 경우 로직 추가
@@ -48,7 +43,7 @@ public class TutorialController extends BoardController {
         }
     }
     private void performStepAciton() {
-        switch(currentStepIndex) {
+        switch(tutorialModel.getCurrentStepIndex()) {
             case 0:
 
         }
@@ -75,9 +70,9 @@ public class TutorialController extends BoardController {
                     int boardY = initialY + y;
                     // 1열 12행에 해당하는 좌표의 블록을 NoShape로 설정
                     if (x == targetColumn && y == 0) {
-                        tutorialModel.setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
+                        getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
                     }
-                    tutorialModel.setboard(boardX + boardY * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
+                    getBoardModel().setboard(boardX + boardY * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
                 }
             }
         }

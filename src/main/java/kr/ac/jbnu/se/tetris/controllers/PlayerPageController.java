@@ -25,7 +25,8 @@ public class PlayerPageController extends JPanel{
 
     public PlayerPageController(Member member, KeyInput keyInput){
         this.statusBar = new JLabel(" 0");
-        this.board = new BoardController(this,keyInput);
+        //this.board = new BoardController(this,keyInput);
+        this.board = new TutorialController(this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
