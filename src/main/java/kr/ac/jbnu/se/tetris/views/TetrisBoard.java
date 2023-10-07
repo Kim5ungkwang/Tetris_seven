@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class TetrisBoard extends JPanel implements ActionListener {
     Logger logger=Logger.getLogger(TetrisBoard.class.getName());
 
-    final private JLabel statusBar;
+    static private JLabel statusBar = null;
     @Getter
     final private PlayerPage playerPage;
 
@@ -71,7 +71,7 @@ public class TetrisBoard extends JPanel implements ActionListener {
         return x;
     }
 
-    public void setStatusText(String text) {
+    public static void setStatusText(String text) {
         statusBar.setText(text);
     }
 }
