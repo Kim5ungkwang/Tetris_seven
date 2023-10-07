@@ -4,7 +4,7 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.Coordinates;
 import kr.ac.jbnu.se.tetris.models.Piece;
-import kr.ac.jbnu.se.tetris.views.TetrisBoard;
+
 
 /**
  *바닥에 떨어질 위치를 미리 표시해 주는 GhostPiece를 관리하는 클래스이다.
