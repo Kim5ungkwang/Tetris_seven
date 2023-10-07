@@ -16,7 +16,7 @@ public class TetrisFrame extends JFrame {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(500, 800));
 
-        KeyInput p1Key = new KeyInput('w','s','d','a',(char)(KeyEvent.VK_SPACE),'p','h');
+        KeyInput p1Key = new KeyInput("data/player1key.json");
         PlayerPage playerPage = new PlayerPage(new Member(), p1Key);
         add(playerPage,BorderLayout.CENTER);
 

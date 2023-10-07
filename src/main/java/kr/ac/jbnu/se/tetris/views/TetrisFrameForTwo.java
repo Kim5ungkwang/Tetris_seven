@@ -21,8 +21,9 @@ public class TetrisFrameForTwo extends TetrisFrame {
 
     }
     public void init(){
-        KeyInput p1Key = new KeyInput('w','s','d','a',(char)(KeyEvent.VK_SPACE),'p','h');
-        KeyInput p2Key = new KeyInput('i','k','l','j','o','p','i');
+        KeyInput p1Key = new KeyInput("data/player1key.json");
+        KeyInput p2Key = new KeyInput("data/player2key.json");
+
         Member p1= new Member();
         Member p2=new Member();
         setLayout(new GridLayout(1,2));
@@ -48,8 +49,8 @@ public class TetrisFrameForTwo extends TetrisFrame {
     }
     public void initForMulti(){
 
-        KeyInput p1Key = new KeyInput('w','s','d','a',(char)(KeyEvent.VK_SPACE),'p','h');
-        KeyInput p2Key = new KeyInput('i','k','l','j','o','p','i');
+        KeyInput p1Key = new KeyInput("data/player1key.json");
+        KeyInput p2Key = new KeyInput("data/player2key.json");
         Member p1= new Member();
         Member p2=new Member();
         //setLayout(new GridLayout(1,2));

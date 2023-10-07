@@ -3,7 +3,13 @@ package kr.ac.jbnu.se.tetris.models;
 import kr.ac.jbnu.se.tetris.views.TetrisBoard;
 import lombok.Getter;
 import lombok.Setter;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.logging.Logger;
 
 @Getter
@@ -14,27 +20,42 @@ public class KeyInput {
     Logger logger= Logger.getLogger(KeyInput.class.getName());
     //각 동작마다의 키 바인딩.
     //세팅 UI를 따로 준비하고 거기서 플레이어가 변경하도록 만들것.
-    private int rotateRight;
-    private int rotateLeft;
-    private int moveRight;
-    private int moveLeft;
-    private int dropDown;
-    private int pause;
-    private int blockHold;
+    private Long rotateRight;
+    private Long rotateLeft;
+    private Long moveRight;
+    private Long moveLeft;
+    private Long dropDown;
+    private Long pause;
+    private Long blockHold;
+    private Long oneLineDown;
 // onelineDown 추가해주세요 *성광
-    public KeyInput() {
+public KeyInput(String filePath)  {
+    try {
+        Reader reader= new FileReader(filePath);
+        JSONParser parser=new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(reader);
+        rotateRight= (long) jsonObject.get("rotateR");
+        rotateLeft=(long)  jsonObject.get("rotateL");
+        moveRight=(long)  jsonObject.get("moveR");
+        moveLeft=(long)  jsonObject.get("moveL");
+        dropDown=(long)  jsonObject.get("down");
+        blockHold=(long) jsonObject.get("blockHold");
+        pause=(long)  jsonObject.get("pause");
+        oneLineDown=(long) jsonObject.get("oneLineDown");
+    } catch (IOException | ParseException ex) {
+        throw new RuntimeException(ex);
     }
-    public KeyInput(int rotateRight, int rotateLeft, int moveRight, int moveLeft,
-                    int dropDown, int pause, int blockHold) {
-        this.rotateRight = rotateRight;
-        this.rotateLeft = rotateLeft;
-        this.moveRight = moveRight;
-        this.moveLeft = moveLeft;
-        this.dropDown = dropDown;
-        this.pause = pause;
-        this.blockHold = blockHold;
-
-        logger.info("rotate"+rotateLeft+rotateRight+dropDown);
+}
+    public void playerKeySetting(String filePath,String key, long val) {
+        try {
+            Reader reader = new FileReader(filePath);
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            jsonObject.replace(key, val);
+        } catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
-   }
+
+}
