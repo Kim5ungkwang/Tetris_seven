@@ -15,7 +15,7 @@ public class ShapeData {
      */
     public enum Tetrominoes {
         NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
-        LShape, MirroredLShape, InterruptShape
+        LShape, MirroredLShape, InterruptShape, TutorialBackground
     }
 
     /**
@@ -29,7 +29,8 @@ public class ShapeData {
             {{-1, 0}, {0, 0}, {1, 0}, {0, -1}},     //TShape
             {{0, 0}, {1, 0}, {0, -1}, {1, -1}},     //squareShape
             {{-1, -1}, {-1, 0}, {0, 0}, {1, 0}},    //LShape,
-            {{-1, 0}, {0, 0}, {1, 0}, {1, -1}}      //MirroredLShape
+            {{-1, 0}, {0, 0}, {1, 0}, {1, -1}},      //MirroredLShape
+            {{0, 0}, {0, 1}, {0, 2}, {0, 3}}
     };
 
     /**
@@ -110,6 +111,9 @@ public class ShapeData {
                 break;
             case MirroredLShape:
                 imgPath = "source/image/blocks/07.png";
+                break;
+            case TutorialBackground:
+                imgPath = "source/image/blocks/08.png";
                 break;
         }
         return imgPath;
