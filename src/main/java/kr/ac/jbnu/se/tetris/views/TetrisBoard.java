@@ -71,7 +71,7 @@ public class TetrisBoard extends JPanel implements ActionListener {
         return x;
     }
 
-    public void setStatusText(String text) {
+    public static void setStatusText(String text) {
         statusBar.setText(text);
     }
 }

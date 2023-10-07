@@ -31,7 +31,7 @@ public class TutorialController extends BoardController {
     private void displayCurrentStep() {
         if (currentStepIndex >= 0 && currentStepIndex < tutorialSteps.length) {
             String currentStepText = tutorialSteps[currentStepIndex];
-            tetrisBoard.setStatusText(currentStepText);
+            TetrisBoard.setStatusText(currentStepText);
         }
     }
 
