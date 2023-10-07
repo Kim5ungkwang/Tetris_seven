@@ -3,7 +3,6 @@ package kr.ac.jbnu.se.tetris;
 
 import kr.ac.jbnu.se.tetris.views.Page;
 import kr.ac.jbnu.se.tetris.views.TetrisFrame;
-import kr.ac.jbnu.se.tetris.views.TetrisFrameForTwo;
 
 public class TetrisStartGame {
     public

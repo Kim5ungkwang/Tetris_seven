@@ -3,13 +3,12 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.BrickRotator;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
-import kr.ac.jbnu.se.tetris.views.NextBlockPanel;
+import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
 import lombok.Getter;
 
 /**
  * 움직이는 piece를 관리하는 클래스
  */
-
 public class PieceController {
     BoardController boardController;
     @Getter
@@ -20,7 +19,7 @@ public class PieceController {
     final private GhostPiece ghostPiece;
     @Getter
     final private BrickQueueManager brickQueueManager;
-    private NextBlockPanel nextBlockPanel;
+    private NextBlockPanelController nextBlockPanelController;
     private boolean isFallingFinished = false;
     private boolean isHolding = false;
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
@@ -70,7 +69,7 @@ public class PieceController {
      * 의존성 주입
      */
     public void setNextBlockPanel(){
-        this.nextBlockPanel = boardController.getTetrisBoard().getPlayerPage().getNextBlockPanel();
+        nextBlockPanelController = boardController.getPlayerPageController().getNextBlockPanelController();
     }
 
     /**
@@ -141,7 +140,7 @@ public class PieceController {
         currentPiece.setCurrentX(newX);
         currentPiece.setCurrentY(newY);
         ghostPiece.updateGhostPiece();
-        boardController.paintUpdate();
+        boardController.repaint();
         return true;
     }
 
@@ -164,16 +163,17 @@ public class PieceController {
 
             if (holdPieceTmp.getPieceShape() == ShapeData.Tetrominoes.NoShape) {
                 newPiece();
-                boardController.paintUpdate();
+                boardController.repaint();
             } else {
                 currentPiece = holdPieceTmp.clone();
                 currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
                 currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
-                boardController.paintUpdate();
+                boardController.repaint();
             }
             isHolding = true;
-            nextBlockPanel.update();
-            nextBlockPanel.repaint();
+            ghostPiece.updateGhostPiece();
+            nextBlockPanelController.NextBlockPanelUpdate();
+            nextBlockPanelController.repaint();
         }
     }
 
@@ -265,8 +265,8 @@ public class PieceController {
         isHolding = false;
         currentPiece = new Piece();
         currentPiece.setPieceShape(brickQueueManager.getNewShape());
-        nextBlockPanel.update();    //brickQueueManager에서 새로운 블럭을 받아온 후 다음 블럭들을 패널에 갱신
-        nextBlockPanel.repaint();
+        nextBlockPanelController.NextBlockPanelUpdate();    //brickQueueManager에서 새로운 블럭을 받아온 후 다음 블럭들을 패널에 갱신
+        nextBlockPanelController.repaint();
         currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
         currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
         currentPiece.setRotateIndex(0);
