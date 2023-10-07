@@ -1,17 +1,16 @@
-package kr.ac.jbnu.se.tetris.views;
+package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Member;
-import kr.ac.jbnu.se.tetris.controllers.PlayerPageController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 
-public class TetrisFrame extends JFrame {
+public class TetrisFrameController extends JFrame {
     public static final int FRAME_WIDTH = 1200;
     public static final int FRAME_HEIGHT = 700;
-    public TetrisFrame() {
+    public TetrisFrameController() {
     }
 
     public void init() {

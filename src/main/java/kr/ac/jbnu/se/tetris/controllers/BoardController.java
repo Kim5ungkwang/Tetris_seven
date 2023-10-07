@@ -38,9 +38,6 @@ public class BoardController extends JPanel implements ActionListener {
         this.boardModel = new BoardModel();
         this.playerPageController = parent;
 
-        addKeyListener(AdapterController.adapterController);
-        AdapterController.adapterController.addList(new KeyInputController(input, this));
-
         this.statusBar = parent.getStatusBar();
         this.pieceController = new PieceController(this);
 
@@ -48,6 +45,10 @@ public class BoardController extends JPanel implements ActionListener {
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController();
+
+        addKeyListener(AdapterController.adapterController);
+        AdapterController.adapterController.addList(new KeyInputController(input, this));
+        setFocusable(true);
     }
 
     /////////////////////////////////////////////////////////////////////////////////
