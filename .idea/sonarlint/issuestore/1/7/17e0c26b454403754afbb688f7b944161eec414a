@@ -1,0 +1,18 @@
+
+`	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+C
+java:S1948"(Make "logger" transient or serializable.(Ö¥õ°øÿÿÿÿ
+G
+java:S1948"1Make "boardcontroller" transient or serializable.(â­è
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(»ü™Äøÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÚÌÂõûÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(â­è
+H
+java:S3010!"&Remove this assignment of "statusBar".(Í±…ˆüÿÿÿÿ8™±ÛÆ°1
+P
+java:S11616":Add the "@Override" annotation above this method signature(¶øÂÁ
+m
+java:S1128"PRemove this unused import 'kr.ac.jbnu.se.tetris.controllers.TutorialController'.(´±çğ8‡ÕÇ°1
