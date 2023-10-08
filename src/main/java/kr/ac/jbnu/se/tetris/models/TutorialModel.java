@@ -37,12 +37,11 @@ public class TutorialModel{
     }
 
     public void plusCurrnetStepIndex(){
-       this.currentStepIndex++;
+        this.currentStepIndex++;
     }
 
     public void resetCurrentStepIndex() {
         currentStepIndex = 0;
     }
 }
-
 
