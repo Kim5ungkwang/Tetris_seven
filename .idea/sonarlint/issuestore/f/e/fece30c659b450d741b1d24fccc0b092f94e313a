@@ -1,0 +1,20 @@
+
+h
+java:S1301."KReplace this "switch" statement by "if" statements to increase readability.(ãÑ…å8É¦”Ñ°1
+b
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¹Ë 8©§”Ñ°1
+D
+java:S1185"(Remove this method to simply inherit it.(ú¡­,8ª§”Ñ°1
+W
+java:S2209"5Change this instance-reference to a static reference.(Ü›Á·ûÿÿÿÿ8«§”Ñ°1
+W
+java:S2209"5Change this instance-reference to a static reference.(Ü›Á·ûÿÿÿÿ8¬§”Ñ°1
+R
+java:S2209"5Change this instance-reference to a static reference.(¤Œš•8¬§”Ñ°1
+W
+java:S2209""5Change this instance-reference to a static reference.( õ…Ôûÿÿÿÿ8­§”Ñ°1
+R
+java:S2209&"5Change this instance-reference to a static reference.(õ­ã’8®§”Ñ°1
+>	java:S131.""Add a default case to this switch.(ãÑ…å8¯§”Ñ°1
+R
+java:S2209."5Change this instance-reference to a static reference.(ãÑ…å8°§”Ñ°1
