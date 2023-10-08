@@ -52,22 +52,21 @@ public class TutorialController extends BoardController {
     }
 
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex()!=4) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
         } else if (tutorialModel.getCurrentStepIndex() == 4) {
             drawBackgroundblock();
+
         }else {
             // 튜토리얼 마지막 단계 도달한 경우 로직 추가
             start();
         }
     }
-    private void performStepAciton() {
-        switch(tutorialModel.getCurrentStepIndex()) {
-            case 0:
-        }
-    }
+
     private void drawBackgroundblock() {
+        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
+            getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
         int[][] tutorialBackgroundCoords = ShapeData.COORDS_TABLE[ShapeData.Tetrominoes.TutorialBackground.ordinal()];
 
         // 배치할 TutorialBackground 블록 단 수
