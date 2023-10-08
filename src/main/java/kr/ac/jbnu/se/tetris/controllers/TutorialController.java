@@ -22,7 +22,7 @@ public class TutorialController extends BoardController {
 
     private Timer timer;
 
-    public TutorialController(PlayerPageController parent, KeyInput input){
+    public TutorialController(PlayerPageController parent, KeyInput input) {
         super(parent, input);
         this.tutorialModel = new TutorialModel();
         startTutorial();
@@ -32,9 +32,10 @@ public class TutorialController extends BoardController {
             public void run() {
                 moveToNextStep();
             }
-        }, 0 , 10000);
+        }, 0, 10000);
     }
-    public void startTutorial(){
+
+    public void startTutorial() {
         tutorialModel.resetCurrentStepIndex();
         displayCurrentStep();
     }
@@ -54,13 +55,13 @@ public class TutorialController extends BoardController {
     }
 
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex()!=4) {
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 4) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
         } else if (tutorialModel.getCurrentStepIndex() == 4) {
             drawBackgroundblock();
 
-        }else {
+        } else {
             // 튜토리얼 마지막 단계 도달한 경우 로직 추가
             start();
         }
@@ -69,28 +70,16 @@ public class TutorialController extends BoardController {
     private void drawBackgroundblock() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
-        for(int x = 3; x<BoardModel.getBoardWidth(); x++){
-            for(int y = 0; y < 12; y++){
+        for (int x = 3; x < BoardModel.getBoardWidth(); x++) {
+            for (int y = 0; y < 12; y++) {
                 getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
-                getBoardModel().setboard(3+11*BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
+                getBoardModel().setboard(3 + 11 * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
             }
         }
     }
-    public void drawNextTutorialBlock(){
+
+    public void drawNextTutorialBlock() {
         piece = new Piece();
         ShapeData.Tetrominoes block = tutorialModel.getTutorialBlock(tutorialModel.getCurrentBrickIndex());
     }
-    /*@Override
-    public void gameAction(){
-        ShapeData.Tetrominoes firstBlock = brickQueueManager.getNewShape();
-        if (firstBlock == ShapeData.Tetrominoes.LShape){
-            getPieceController().newPiece();
-        }
-    }
-    private void setTutorialBrickQueue{
-       ShapeData.Tetrominoes firstBlock = brickQueueManager.getNewShape();
-       if (firstBlock == ShapeData.Tetrominoes.LShape){
-           getPieceController().newPiece();
-       }
-    }*/
 }
