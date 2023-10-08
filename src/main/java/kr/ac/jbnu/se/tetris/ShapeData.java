@@ -30,7 +30,7 @@ public class ShapeData {
             {{0, 0}, {1, 0}, {0, -1}, {1, -1}},     //squareShape
             {{-1, -1}, {-1, 0}, {0, 0}, {1, 0}},    //LShape,
             {{-1, 0}, {0, 0}, {1, 0}, {1, -1}},      //MirroredLShape
-            {{0, 0}, {0, 1}, {0, 2}, {0, 3}}
+            {{0, 0}}    //TutorialBackground
     };
 
     /**
