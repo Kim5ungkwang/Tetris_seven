@@ -20,10 +20,14 @@ public class PlayerPageController extends JPanel{
     @Getter
     private final NextBlockPanelController nextBlockPanelController;
 
-    public PlayerPageController(Member member, KeyInput keyInput){
+    public PlayerPageController(Member member, KeyInput keyInput, int mode){
         this.statusBar = new JLabel(" 0");
+        if(mode == 1){
+            this.board = new TutorialBoardController(this, keyInput);
+        } else if (mode == 2) {
+            this.board = new BoardController(this, keyInput);
+        }
 
-        this.board = new TutorialBoardController(this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);

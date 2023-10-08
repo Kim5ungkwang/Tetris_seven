@@ -40,8 +40,8 @@ public class NextBlockPanelController extends JPanel {
         add(next2Box);
         add(new JLabel("///////////////////////////"));
         add(next3Box);
-
-        setBackground(new Color(66, 66, 66));
+        setOpaque(true);
+        setBackground(new Color(255, 255, 255));
         setVisible(true);
     }
     public void NextBlockPanelUpdate(){
@@ -51,7 +51,12 @@ public class NextBlockPanelController extends JPanel {
         next3Box.next3Update();
     }
 
+
+
     public void paint(Graphics g){
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+
         NextBlockPanelUpdate();
         super.paint(g);
     }

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class TetrisStartGame {
     public static void main(String[] args) throws IOException {
-        TetrisFrameController game = new TetrisFrameController();
+        TetrisFrameController game = new TetrisFrameController(1);
         game.setLocationRelativeTo(null);
         game.init();
         //MainPageController mainPage = new MainPageController();
