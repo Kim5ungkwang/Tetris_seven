@@ -15,13 +15,13 @@ public class NextBlockPanelController extends JPanel {
     static public int NEXT_BLOCK_PANEL_SIZE_HEIGHT = 600;
 
     @Getter
-    PlayerPageController playerPage;
+    PlayerPage playerPage;
     NextBlockBox next1Box;
     NextBlockBox next2Box;
     NextBlockBox next3Box;
     NextBlockBox holdBox;
 
-    public NextBlockPanelController(PlayerPageController parent){
+    public NextBlockPanelController(PlayerPage parent){
         this.playerPage = parent;
         next1Box = new NextBlockBox(this);
         next2Box = new NextBlockBox(this);
@@ -40,8 +40,8 @@ public class NextBlockPanelController extends JPanel {
         add(next2Box);
         add(new JLabel("///////////////////////////"));
         add(next3Box);
-
-        setBackground(new Color(66, 66, 66));
+        setOpaque(true);
+        setBackground(new Color(255, 255, 255));
         setVisible(true);
     }
     public void NextBlockPanelUpdate(){
@@ -51,7 +51,12 @@ public class NextBlockPanelController extends JPanel {
         next3Box.next3Update();
     }
 
+
+
     public void paint(Graphics g){
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+
         NextBlockPanelUpdate();
         super.paint(g);
     }

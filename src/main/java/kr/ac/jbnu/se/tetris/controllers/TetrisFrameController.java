@@ -1,16 +1,15 @@
 package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Member;
-import kr.ac.jbnu.se.tetris.controllers.PlayerPageController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 
 public class TetrisFrameController extends JFrame {
     static private final int TETRIS_FRAME_SIZE_WIDTH = 1280;
     static private final int TETRIS_FRAME_SIZE_HEIGHT = 720;
+
     public TetrisFrameController() {
     }
 
@@ -20,7 +19,7 @@ public class TetrisFrameController extends JFrame {
         setPreferredSize(new Dimension(TETRIS_FRAME_SIZE_WIDTH, TETRIS_FRAME_SIZE_HEIGHT));
 
         KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");
-        PlayerPageController playerPage = new PlayerPageController(new Member(), p1Key);
+        PlayerPage playerPage = new PlayerPage(new Member(), p1Key);
         add(playerPage);
 
         setTitle("Tetris");

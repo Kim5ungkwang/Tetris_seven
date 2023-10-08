@@ -12,9 +12,9 @@ public class TutorialBoardController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
 
-    public TutorialBoardController(PlayerPageController parent, KeyInput input){
+    public TutorialBoardController(PlayerPage parent, KeyInput input){
         this.boardModel = new BoardModel();
-        this.playerPageController = parent;
+        this.playerPage = parent;
 
         this.statusBar = parent.getStatusBar();
         this.pieceController = new TutorialPieaceController(this);

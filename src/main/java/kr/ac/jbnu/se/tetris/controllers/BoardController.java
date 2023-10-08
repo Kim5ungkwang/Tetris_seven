@@ -20,7 +20,7 @@ public class BoardController extends JPanel implements ActionListener {
     @Getter
     protected BoardModel boardModel;
     @Getter
-    protected PlayerPageController playerPageController;
+    protected PlayerPage playerPage;
     @Getter
     protected PieceController pieceController;
     private int numLinesRemoved = 0;
@@ -32,9 +32,9 @@ public class BoardController extends JPanel implements ActionListener {
     private boolean isPaused = false;
 
 
-    public BoardController(PlayerPageController parent, KeyInput input){
+    public BoardController(PlayerPage parent, KeyInput input){
         this.boardModel = new BoardModel();
-        this.playerPageController = parent;
+        this.playerPage = parent;
 
         this.statusBar = parent.getStatusBar();
         this.pieceController = new PieceController(this);
@@ -111,11 +111,11 @@ public class BoardController extends JPanel implements ActionListener {
         if (isPaused) {
             timer.stop();
             gameTimerController.timerpause();
-            playerPageController.getStatusBar().setText(("paused"));
+            playerPage.getStatusBar().setText(("paused"));
         } else {
             timer.start();
             gameTimerController.timerstart();
-            playerPageController.getStatusBar().setText(String.valueOf(numLinesRemoved));
+            playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
         }
         repaint();
     }
@@ -155,7 +155,7 @@ public class BoardController extends JPanel implements ActionListener {
 
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
-            playerPageController.getStatusBar().setText(String.valueOf(numLinesRemoved));
+            playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
@@ -208,7 +208,7 @@ public class BoardController extends JPanel implements ActionListener {
 
                 if (shape != ShapeData.Tetrominoes.NoShape)
                     ShapeData.drawSquare(g,j * squareWidth, boardTop + i * squareHeight, squareWidth, squareHeight,
-                    shape);
+                            shape);
                 else{
                     drawEmptySquare(g,j * squareWidth, boardTop + i * squareHeight, squareWidth, squareHeight);
                 }
@@ -267,7 +267,7 @@ public class BoardController extends JPanel implements ActionListener {
     }
 
     public void setStatusText(String text) {
-        playerPageController.getStatusBar().setText(text);
+        playerPage.getStatusBar().setText(text);
     }
 }
 

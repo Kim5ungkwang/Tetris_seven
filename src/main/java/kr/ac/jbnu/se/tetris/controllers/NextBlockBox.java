@@ -27,7 +27,7 @@ public class NextBlockBox extends JPanel {
      * 의존성 주입
      */
     public void setPieceController() {
-        this.pieceController = nextBlockPanelController.getPlayerPage().getBoard().getPieceController();
+        this.pieceController = nextBlockPanelController.getPlayerPage().getBoard().pieceController;
     }
 
     public void next1Update(){

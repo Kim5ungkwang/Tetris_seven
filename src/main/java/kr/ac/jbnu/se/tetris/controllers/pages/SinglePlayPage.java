@@ -1,6 +1,8 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
+import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
+import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -23,6 +25,7 @@ public class SinglePlayPage extends JPanel {
     static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg;
     @Getter
     JButton sprintBt, tutorialBt, timeAttackBt, undoBt;
+    KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");   //임시
 
     public SinglePlayPage(MainPageController parent){
         this.mainPage = parent;
@@ -93,7 +96,10 @@ public class SinglePlayPage extends JPanel {
         sprintBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //여기에 스프린트 보드를 삽입
+                setVisible(false);
+                SprintPage sprintPage = new SprintPage(new Member(), p1Key);
+                add(sprintPage);
+                sprintPage.setVisible(true);
             }
         });
         timeAttackBt.addActionListener(new ActionListener() {

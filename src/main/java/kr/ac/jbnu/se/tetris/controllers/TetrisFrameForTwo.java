@@ -8,7 +8,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
         public class TetrisFrameForTwo extends TetrisFrameController {
-        /*
+
+                public TetrisFrameForTwo(int mode) {
+                        super();
+                }
+                /*
             private PlayerPage playerPage1;
             private PlayerPage playerPage2;
             private int sizeX=600;
