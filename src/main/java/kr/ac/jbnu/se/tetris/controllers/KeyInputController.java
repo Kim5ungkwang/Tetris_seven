@@ -31,7 +31,7 @@ public class KeyInputController {
 
             if (keycode == input.getMoveLeft()) {
                 pieceController.moveLeft();
-                moveSound.start();
+                //moveSound.start();
             } else if (keycode == input.getMoveRight()) {
                 pieceController.moveRight();
             } else if (keycode == input.getBlockHold()) {
@@ -43,7 +43,7 @@ public class KeyInputController {
             } else if (keycode == input.getDropDown()) {
                 pieceController.dropDown();
             }else if (keycode==input.getOneLineDown()){
-                pieceController.dropDown();
+                pieceController.oneLineDown();
             }
         }
     }

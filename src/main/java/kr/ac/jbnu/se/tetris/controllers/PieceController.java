@@ -5,23 +5,24 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
 import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 움직이는 piece를 관리하는 클래스
  */
 public class PieceController {
-    BoardController boardController;
+    protected BoardController boardController;
     @Getter
-    private Piece currentPiece;
+    protected Piece currentPiece;
     @Getter
-    private Piece holdPiece;
+    protected Piece holdPiece;
     @Getter
-    final private GhostPiece ghostPiece;
+    protected GhostPiece ghostPiece;
     @Getter
-    final private BrickQueueManager brickQueueManager;
+    protected BrickQueueManager brickQueueManager;
     private NextBlockPanelController nextBlockPanelController;
     private boolean isFallingFinished = false;
-    private boolean isHolding = false;
+    protected boolean isHolding = false;
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
 
     /**
@@ -34,6 +35,10 @@ public class PieceController {
         this.ghostPiece = new GhostPiece(this);
         this.brickQueueManager = new BrickQueueManager();
         this.holdPiece = new Piece();
+    }
+
+    public PieceController() {
+        //상속용
     }
 
     ///////////////////////////////////////////////////////////////////

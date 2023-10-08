@@ -4,7 +4,6 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Piece;
-import kr.ac.jbnu.se.tetris.models.KeyInput;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -12,23 +11,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  *게임이 이루어지는 보드를 관리하는 클래스
  */
 public class BoardController extends JPanel implements ActionListener {
-    final private JLabel statusBar;
+    protected JLabel statusBar;
     @Getter
-    final private BoardModel boardModel;
+    protected BoardModel boardModel;
     @Getter
-    final private PlayerPageController playerPageController;
+    protected PlayerPageController playerPageController;
     @Getter
-    final private PieceController pieceController;
+    protected PieceController pieceController;
     private int numLinesRemoved = 0;
     @Getter
-    final private Timer timer;
-    final private GameTimerController gameTimerController;
+    protected Timer timer;
+    protected GameTimerController gameTimerController;
 
     private boolean isStarted = false;
     private boolean isPaused = false;
@@ -50,6 +48,11 @@ public class BoardController extends JPanel implements ActionListener {
         AdapterController.adapterController.addList(new KeyInputController(input, this));
         setFocusable(true);
     }
+
+    public BoardController() {
+        //상속용
+    }
+
 
     /////////////////////////////////////////////////////////////////////////////////
 

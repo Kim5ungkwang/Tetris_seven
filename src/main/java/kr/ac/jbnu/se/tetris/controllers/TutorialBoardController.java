@@ -4,35 +4,31 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import javax.swing.*;
 
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
-public class TutorialController extends BoardController {
+public class TutorialBoardController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
-    Piece piece;
-    TutorialModel brickQueueManager;
 
+    public TutorialBoardController(PlayerPageController parent, KeyInput input){
+        this.boardModel = new BoardModel();
+        this.playerPageController = parent;
 
-    private Timer timer;
+        this.statusBar = parent.getStatusBar();
+        this.pieceController = new TutorialPieaceController(this);
 
-    public TutorialController(PlayerPageController parent, KeyInput input){
-        super(parent, input);
+        this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
+
+        this.timer = new Timer(boardModel.getLoopDelay(), this);
+        this.gameTimerController = new GameTimerController();
+
+        addKeyListener(AdapterController.adapterController);
+        AdapterController.adapterController.addList(new KeyInputController(input, this));
+
         this.tutorialModel = new TutorialModel();
-        startTutorial();
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                moveToNextStep();
-            }
-        }, 0 , 10000);
+        setFocusable(true);
     }
     public void startTutorial(){
         tutorialModel.resetCurrentStepIndex();
@@ -43,7 +39,7 @@ public class TutorialController extends BoardController {
     public void start() {
         super.start();
         startTutorial();
-
+        drawBackgroundblock();
     }
 
     private void displayCurrentStep() {
@@ -75,9 +71,5 @@ public class TutorialController extends BoardController {
                 getBoardModel().setboard(3+11*BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
             }
         }
-    }
-    public void drawNextTutorialBlock(){
-        piece = new Piece();
-        ShapeData.Tetrominoes block = tutorialModel.getTutorialBlock(tutorialModel.getCurrentBrickIndex());
     }
 }

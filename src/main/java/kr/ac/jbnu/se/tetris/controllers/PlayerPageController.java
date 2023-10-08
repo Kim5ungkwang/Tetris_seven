@@ -1,11 +1,9 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
-import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
 
 import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +23,7 @@ public class PlayerPageController extends JPanel{
     public PlayerPageController(Member member, KeyInput keyInput){
         this.statusBar = new JLabel(" 0");
 
-        this.board = new TutorialController(this, keyInput);
+        this.board = new TutorialBoardController(this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
