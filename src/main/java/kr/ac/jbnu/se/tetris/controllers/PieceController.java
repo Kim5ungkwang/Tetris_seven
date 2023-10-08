@@ -3,9 +3,7 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.BrickRotator;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
-import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 움직이는 piece를 관리하는 클래스
@@ -74,7 +72,7 @@ public class PieceController {
      * 의존성 주입
      */
     public void setNextBlockPanel(){
-        nextBlockPanelController = boardController.getPlayerPageController().getNextBlockPanelController();
+        nextBlockPanelController = boardController.getPlayerPage().getNextBlockPanelController();
     }
 
     /**

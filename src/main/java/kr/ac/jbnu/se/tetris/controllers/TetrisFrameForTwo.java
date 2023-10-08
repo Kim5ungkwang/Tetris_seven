@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
         public class TetrisFrameForTwo extends TetrisFrameController {
 
                 public TetrisFrameForTwo(int mode) {
-                        super(mode);
+                        super();
                 }
                 /*
             private PlayerPage playerPage1;

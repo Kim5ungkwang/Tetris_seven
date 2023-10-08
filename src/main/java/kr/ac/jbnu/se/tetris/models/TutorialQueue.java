@@ -5,9 +5,9 @@ import kr.ac.jbnu.se.tetris.models.BrickQueueManager;
 
 public class TutorialQueue extends BrickQueueManager {
     public TutorialQueue() {
-        brickQueue = new ShapeData.Tetrominoes[10];
+        brickQueue = new ShapeData.Tetrominoes[11];
         brickQueueIndex = 0;
-        brickQueueSize = 8;
+        brickQueueSize = 11;
         setBrickQueue();
     }
 
@@ -26,5 +26,8 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueue[5] = ShapeData.Tetrominoes.MirroredLShape;
         brickQueue[6] = ShapeData.Tetrominoes.TShape;
         brickQueue[7] = ShapeData.Tetrominoes.TShape;
+        brickQueue[8] = ShapeData.Tetrominoes.TShape;
+        brickQueue[9] = ShapeData.Tetrominoes.TShape;
+        brickQueue[10] = ShapeData.Tetrominoes.TShape;
     }
 }

@@ -19,7 +19,7 @@ public class NextBlockBox extends JPanel {
         this.nextBlockPanelController = parent;
 
         setPreferredSize(new Dimension(BOX_WIDTH, BOX_HEIGHT));
-        setBackground(new Color(0, 0, 0, 179));    //Box의 배경색
+        setBackground(new Color(66, 66, 66, 179));    //Box의 배경색
         setVisible(true);
     }
 
@@ -27,7 +27,7 @@ public class NextBlockBox extends JPanel {
      * 의존성 주입
      */
     public void setPieceController() {
-        this.pieceController = nextBlockPanelController.getPlayerPage().getBoard().getPieceController();
+        this.pieceController = nextBlockPanelController.getPlayerPage().getBoard().pieceController;
     }
 
     public void next1Update(){

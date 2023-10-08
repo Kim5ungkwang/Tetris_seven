@@ -15,13 +15,13 @@ public class NextBlockPanelController extends JPanel {
     static public int NEXT_BLOCK_PANEL_SIZE_HEIGHT = 600;
 
     @Getter
-    PlayerPageController playerPage;
+    PlayerPage playerPage;
     NextBlockBox next1Box;
     NextBlockBox next2Box;
     NextBlockBox next3Box;
     NextBlockBox holdBox;
 
-    public NextBlockPanelController(PlayerPageController parent){
+    public NextBlockPanelController(PlayerPage parent){
         this.playerPage = parent;
         next1Box = new NextBlockBox(this);
         next2Box = new NextBlockBox(this);

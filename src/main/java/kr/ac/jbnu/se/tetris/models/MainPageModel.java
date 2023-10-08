@@ -16,13 +16,13 @@ public class MainPageModel{
     @Getter
     private JPanel backgroundPanel, multiPlayPagePanel, singlePlayPagePanel;    //백그라운드, 멀티플레이 누르면나오는 패널, 싱글플레이 누르면 나오는 패널
     @Getter
-    static ImageIcon backGroundImg, multiPlayImg, settingImg, singlePlayImg;
+    static ImageIcon backGroundImg, multiPlayImg, settingImg, singlePlayImg, gameBackgroundImg;
     @Getter
     JButton singlePlayBt, multiPlayBt, settingBt;
 
 
     public MainPageModel() throws IOException {
-
+        gameBackgroundImg = new ImageIcon("source/image/background/gamebackground.png");
         backGroundImg = new ImageIcon("source/image/background/mainpagebackground.png");    //버튼 이미지 아이콘 위치
         multiPlayImg = new ImageIcon("source/image/button/multiplay.png");
         settingImg = new ImageIcon("source/image/button/setting.png");

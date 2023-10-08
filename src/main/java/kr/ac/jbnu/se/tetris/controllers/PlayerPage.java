@@ -8,26 +8,22 @@ import lombok.Getter;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerPageController extends JPanel{
-    static final public int PLAYERPAGE_WIDTH = 400;
-    static final public int PLAYERPAGE_HEIGTH = 700;
+public class PlayerPage extends JPanel{
+    static final protected int PLAYERPAGE_WIDTH = 400;
+    static final protected int PLAYERPAGE_HEIGTH = 700;
     @Getter
-    private JLabel statusBar;
+    protected JLabel statusBar;
     @Getter
-    private BoardController board;
-    private static final int BOARD_SIZE_WIDTH = 250;
-    private static final int BOARD_SIZE_HEIGHT = 500;
+    protected BoardController board;
+    protected static final int BOARD_SIZE_WIDTH = 250;
+    protected static final int BOARD_SIZE_HEIGHT = 500;
     @Getter
-    private final NextBlockPanelController nextBlockPanelController;
+    protected NextBlockPanelController nextBlockPanelController;
 
-    public PlayerPageController(Member member, KeyInput keyInput, int mode){
+    public PlayerPage(Member member, KeyInput keyInput){
         this.statusBar = new JLabel(" 0");
-        if(mode == 1){
-            this.board = new TutorialBoardController(this, keyInput);
-        } else if (mode == 2) {
-            this.board = new BoardController(this, keyInput);
-        }
 
+        this.board = new TutorialBoardController(this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
@@ -38,5 +34,9 @@ public class PlayerPageController extends JPanel{
         add(board, BorderLayout.CENTER);
         add(nextBlockPanelController, BorderLayout.WEST);
         setSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
+    }
+
+    public PlayerPage() {
+        //상속용
     }
 }
