@@ -78,7 +78,6 @@ public class TutorialController extends BoardController {
     }
     public void drawNextTutorialBlock(){
         piece = new Piece();
-        Piece.setPieceShape(TutorialModel.tutorialQueue);
         ShapeData.Tetrominoes block = tutorialModel.getTutorialBlock(tutorialModel.getCurrentBrickIndex());
     }
     /*@Override
