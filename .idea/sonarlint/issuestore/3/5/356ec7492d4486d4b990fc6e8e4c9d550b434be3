@@ -1,27 +1,29 @@
 
 N
-java:S1948",Make "boardModel" transient or serializable.(èîÀÅüÿÿÿÿ8œ¦”Ñ°1
+java:S1948",Make "boardModel" transient or serializable.(èîÀÅüÿÿÿÿ8éğğì°1
 S
-java:S1948"1Make "pieceController" transient or serializable.(ì‰¾şÿÿÿÿÿ8œ¦”Ñ°1
+java:S1948"1Make "pieceController" transient or serializable.(ì‰¾şÿÿÿÿÿ8åØ²ì°1
 W
-java:S1948"5Make "gameTimerController" transient or serializable.(§“¤ÿÿÿÿÿ8œ¦”Ñ°1
+java:S1948"5Make "gameTimerController" transient or serializable.(§“¤ÿÿÿÿÿ8åØ²ì°1
 b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ïòô‹8¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ïòô‹8çØ²ì°1
 g
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(èîÀÅüÿÿÿÿ8Ÿ¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(èîÀÅüÿÿÿÿ8çØ²ì°1
 b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(–÷¶ë8Ÿ¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(–÷¶ë8çØ²ì°1
 g
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ì‰¾şÿÿÿÿÿ8Ÿ¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ì‰¾şÿÿÿÿÿ8çØ²ì°1
 b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(“”ß8Ÿ¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(“”ß8çØ²ì°1
 g
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(§“¤ÿÿÿÿÿ8Ÿ¦”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(§“¤ÿÿÿÿÿ8çØ²ì°1
 u
-java:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(³½İÆøÿÿÿÿ8¨¦”Ñ°1
+java:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(³½İÆøÿÿÿÿ8íØ²ì°1
 X
-java:S1161Á":Add the "@Override" annotation above this method signature(¶øÂÁ8¯¦”Ñ°1
+java:S1161Á":Add the "@Override" annotation above this method signature(¶øÂÁ8ñØ²ì°1
 ;
-java:S1128"Remove this duplicated import.(Âßµ8·¦”Ñ°1
+java:S1128"Remove this duplicated import.(Âßµ8÷Ø²ì°1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8çêï°1
 J
-java:S1068"-Remove this unused "statusBar" private field.(Ïòô‹8·¦”Ñ°1
+java:S1068"-Remove this unused "statusBar" private field.(Ïòô‹8øØ²ì°1

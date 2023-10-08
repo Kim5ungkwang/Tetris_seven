@@ -80,5 +80,4 @@ public class BrickQueueManager {
         int index = (brickQueueIndex + 3) % BRICK_QUEUE_SIZE;
         return brickQueue[index];
     }
-
 }

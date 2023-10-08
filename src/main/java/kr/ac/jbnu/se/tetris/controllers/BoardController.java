@@ -123,7 +123,7 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * 보드의 영역을 NoShape으로 초기화
      */
-    private void clearBoard() {
+    void clearBoard() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             boardModel.setboard(i, ShapeData.Tetrominoes.NoShape);
     }

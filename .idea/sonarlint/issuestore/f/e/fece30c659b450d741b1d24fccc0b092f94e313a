@@ -1,20 +1,15 @@
 
-h
-java:S1301."KReplace this "switch" statement by "if" statements to increase readability.(ãÑ…å8É¦”Ñ°1
+L
+java:S1948"/Make "tutorialModel" transient or serializable.(¹Ë 8•Ïáí°1
+I
+java:S1948"'Make "timer" transient or serializable.(å¡Ê˜ûÿÿÿÿ8•Ïáí°1
 b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¹Ë 8©§”Ñ°1
-D
-java:S1185"(Remove this method to simply inherit it.(ú¡­,8ª§”Ñ°1
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¹Ë 8³ÿûì°1
+\
+java:S1128":Remove this unused import 'java.util.concurrent.Executor'.(÷ı¶Œúÿÿÿÿ8›Ïáí°1
+]
+java:S1128";Remove this unused import 'java.util.concurrent.Executors'.(äåÒÛÿÿÿÿÿ8›Ïáí°1
+l
+java:S1128"JRemove this unused import 'java.util.concurrent.ScheduledExecutorService'.(Êßˆÿÿÿÿÿ8›Ïáí°1
 W
-java:S2209"5Change this instance-reference to a static reference.(Ü›Á·ûÿÿÿÿ8«§”Ñ°1
-W
-java:S2209"5Change this instance-reference to a static reference.(Ü›Á·ûÿÿÿÿ8¬§”Ñ°1
-R
-java:S2209"5Change this instance-reference to a static reference.(¤Œš•8¬§”Ñ°1
-W
-java:S2209""5Change this instance-reference to a static reference.( õ…Ôûÿÿÿÿ8­§”Ñ°1
-R
-java:S2209&"5Change this instance-reference to a static reference.(õ­ã’8®§”Ñ°1
->	java:S131.""Add a default case to this switch.(ãÑ…å8¯§”Ñ°1
-R
-java:S2209."5Change this instance-reference to a static reference.(ãÑ…å8°§”Ñ°1
+java:S1128":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8›Ïáí°1
