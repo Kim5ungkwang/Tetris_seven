@@ -1,15 +1,19 @@
 package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
 *다음에 등장할 블록의 배열을 관리하는 클래스이다.
 */
+@Getter
+@Setter
 public class BrickQueueManager {
-    private ShapeData.Tetrominoes[] brickQueue; //블록이 저장될 배열
-    private int brickQueueIndex;    //brickQueue에 사용되는 인덱스
-    private BrickGenerator brickGenerator;  //블록 배열을 만들기 위한 객체
-    private final int BRICK_QUEUE_SIZE = ShapeData.TETROMINOES_SIZE * 2;    //블록 배열의 크기
+    protected ShapeData.Tetrominoes[] brickQueue; //블록이 저장될 배열
+    protected int brickQueueIndex;    //brickQueue에 사용되는 인덱스
+    protected BrickGenerator brickGenerator;  //블록 배열을 만들기 위한 객체
+    protected final int BRICK_QUEUE_SIZE = ShapeData.TETROMINOES_SIZE * 2;    //블록 배열의 크기
 
     /**
      *길이가 (테트로미노의 개수 * 2)인 블록 배열을 생성한다.
