@@ -15,10 +15,10 @@ public class GameTimerController implements ActionListener {
     @Getter
     final private GameTimerModel gameTimerModel;
     final private Timer printTimer;
-    private boolean isRunning;
-    private int pasuedTime;
-    private int oldTime;
-    private String timerBuffer;
+    private static boolean isRunning;
+    private static int pasuedTime;
+    private static int oldTime;
+    private static String timerBuffer;
 
 
     /**
@@ -76,7 +76,7 @@ public class GameTimerController implements ActionListener {
      * 진행된 시간을 반환하는 메서드
      * @return 진행된 시간을 초 단위로 반환
      */
-    public int getCurrentTimeSec(){
+    public static int getCurrentTimeSec(){
         if(isRunning)
             return (int) System.currentTimeMillis() / 1000 - pasuedTime;
         return oldTime;

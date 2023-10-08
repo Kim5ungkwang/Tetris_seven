@@ -1,20 +1,27 @@
 
-u
-java:S11047"XMake tutorialMode a static final constant or non-public and provide accessors if needed.(ÑÄ•8Ú€—Ì®1
->
-java:S1116b"Remove this empty statement.(Åñ­õşÿÿÿÿ8Ö—Ì®1
-t
-java:S3776m"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(³½İÆøÿÿÿÿ8×—Ì®1
-H	java:S106ö"+Replace this use of System.out by a logger.(†¤ÓÀ8Ş—Ì®1
-R
-java:S1481ù"/Remove this unused "inTutorial" local variable.(£…âÛøÿÿÿÿ8ß—Ì®1
-d
-java:S1075ú"ARefactor your code to get this URI from a customizable parameter.(ƒáØ©üÿÿÿÿ8ß—Ì®1
-M	java:S106ˆ"+Replace this use of System.out by a logger.(´å÷ºşÿÿÿÿ8ß—Ì®1
-^	java:S125Š"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ß—Ì®1
-a
-java:S1128"DRemove this unused import 'kr.ac.jbnu.se.tetris.models.Coordinates'.(‹ãü‰8òÉ˜Ì®1
-T
-java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8òÉ˜Ì®1
+N
+java:S1948",Make "boardModel" transient or serializable.(èîÀÅüÿÿÿÿ8œ¦”Ñ°1
+S
+java:S1948"1Make "pieceController" transient or serializable.(ì‰¾şÿÿÿÿÿ8œ¦”Ñ°1
 W
-java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8òÉ˜Ì®1
+java:S1948"5Make "gameTimerController" transient or serializable.(§“¤ÿÿÿÿÿ8œ¦”Ñ°1
+b
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ïòô‹8¦”Ñ°1
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(èîÀÅüÿÿÿÿ8Ÿ¦”Ñ°1
+b
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(–÷¶ë8Ÿ¦”Ñ°1
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ì‰¾şÿÿÿÿÿ8Ÿ¦”Ñ°1
+b
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(“”ß8Ÿ¦”Ñ°1
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(§“¤ÿÿÿÿÿ8Ÿ¦”Ñ°1
+u
+java:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(³½İÆøÿÿÿÿ8¨¦”Ñ°1
+X
+java:S1161Á":Add the "@Override" annotation above this method signature(¶øÂÁ8¯¦”Ñ°1
+;
+java:S1128"Remove this duplicated import.(Âßµ8·¦”Ñ°1
+J
+java:S1068"-Remove this unused "statusBar" private field.(Ïòô‹8·¦”Ñ°1

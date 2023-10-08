@@ -6,21 +6,42 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.TutorialModel;
 import lombok.Getter;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
+    private Timer timer;
 
-
-    public TutorialController(PlayerPageController parent, KeyInput input) {
+    public TutorialController(PlayerPageController parent, KeyInput input){
         super(parent, input);
         this.tutorialModel = new TutorialModel();
+        startTutorial();
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                moveToNextStep();
+            }
+        }, 0 , 10000);
+    }
+    public void startTutorial(){
+        tutorialModel.resetCurrentStepIndex();
+        displayCurrentStep();
     }
 
     @Override
     public void start() {
         super.start();
+        startTutorial();
+
     }
 
     private void displayCurrentStep() {
@@ -34,7 +55,6 @@ public class TutorialController extends BoardController {
         if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
-            performStepAciton();
         } else if (tutorialModel.getCurrentStepIndex() == 4) {
             drawBackgroundblock();
         }else {
@@ -45,7 +65,6 @@ public class TutorialController extends BoardController {
     private void performStepAciton() {
         switch(tutorialModel.getCurrentStepIndex()) {
             case 0:
-
         }
     }
     private void drawBackgroundblock() {

@@ -1,6 +1,2 @@
 
-Q	java:S125"<This block of commented-out lines of code should be removed.(ÿÖ±í
-R
-java:S1128"<Remove this unused import 'kr.ac.jbnu.se.tetris.views.Page'.(Ğ‘Ê
-_
-java:S1128"IRemove this unused import 'kr.ac.jbnu.se.tetris.views.TetrisFrameForTwo'.(Ò“¦ì
+Q	java:S125"<This block of commented-out lines of code should be removed.(ÿÖ±í
