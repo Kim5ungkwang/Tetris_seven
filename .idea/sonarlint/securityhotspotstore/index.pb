@@ -35,8 +35,6 @@ u
 Esrc/main/java/kr/ac/jbnu/se/tetris/controllers/AdapterController.java,5\6\5631b2c50060df2d9b7393378434cfd710def333
 g
 7src/main/java/kr/ac/jbnu/se/tetris/TetrisStartGame.java,1\2\12ab0ebd2b9b5ebd15306aca90d8b00d8c62a648
-v
-Fsrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialController.java,f\e\fece30c659b450d741b1d24fccc0b092f94e313a
 l
 <src/main/java/kr/ac/jbnu/se/tetris/models/TutorialModel.java,7\d\7de70ea1f885210f8a518192670b43b666893240
 b
@@ -45,8 +43,6 @@ i
 9src/main/java/kr/ac/jbnu/se/tetris/views/LoginScreen.java,0\c\0cb7c6c5fdeec4cc46d7f5310d1365beb10ec135
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-x
-Hsrc/main/java/kr/ac/jbnu/se/tetris/controllers/PlayerPageController.java,3\5\35b2fbef4f1254b192d2721ceeac5fdff6a83b9b
 y
 Isrc/main/java/kr/ac/jbnu/se/tetris/controllers/TetrisFrameController.java,e\6\e65678cea5f82976bdffb7661cc097dfaecec0ac
 m
@@ -59,3 +55,11 @@ w
 Gsrc/main/java/kr/ac/jbnu/se/tetris/controllers/GameTimerController.java,f\0\f09eee234f9022f79881bb37461b84cde200ba74
 d
 4src/main/java/kr/ac/jbnu/se/tetris/models/Music.java,b\7\b71ab8788c16e29a5234c620b45e67fd4b3ec526
+n
+>src/main/java/kr/ac/jbnu/se/tetris/controllers/PlayerPage.java,a\b\ab0a6e13560d16ff7c0684b28212940b7dcf7073
+l
+<src/main/java/kr/ac/jbnu/se/tetris/models/TutorialQueue.java,c\5\c5739a5483fc0ce3c57babd98c35fc44625ae182
+|
+Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialPieaceController.java,4\5\453b701c632544c0e56c77c1dcd5b748d31400de
+{
+Ksrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialBoardController.java,6\e\6edbf605741bfe5cfe916d8fb7ad3362e0f1b82b

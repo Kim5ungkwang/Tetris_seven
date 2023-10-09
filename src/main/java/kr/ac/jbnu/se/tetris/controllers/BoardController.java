@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 public class BoardController extends JPanel implements ActionListener {
     protected JLabel statusBar;
     @Getter
-    protected BoardModel boardModel;
+    protected static BoardModel boardModel;
     @Getter
     protected PlayerPage playerPage;
     @Getter
@@ -123,7 +123,7 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * 보드의 영역을 NoShape으로 초기화
      */
-    void clearBoard() {
+    public static void clearBoard() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             boardModel.setboard(i, ShapeData.Tetrominoes.NoShape);
     }
