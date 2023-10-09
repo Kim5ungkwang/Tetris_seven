@@ -25,12 +25,16 @@ public class SinglePlayPage extends JPanel {
     static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg;
     @Getter
     JButton sprintBt, tutorialBt, timeAttackBt, undoBt;
+
+
     KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");   //임시
 
     public SinglePlayPage(MainPageController parent){
         this.mainPage = parent;
         setLayout(null);
         setSize(1280, 720);
+
+
         buttonPanel = new JPanel();
         buttonInit();
         buttonPanelInit();
@@ -90,15 +94,16 @@ public class SinglePlayPage extends JPanel {
         tutorialBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 여기에 튜토리얼 보드를 삽입
+                mainPage.setVisible(false);
+                TutorialPage tutorialPage = new TutorialPage(new Member(), p1Key);
+                tutorialPage.setVisible(true);
             }
         });
         sprintBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                //mainPage.setVisible(false);
                 SprintPage sprintPage = new SprintPage(new Member(), p1Key);
-                add(sprintPage);
                 sprintPage.setVisible(true);
             }
         });

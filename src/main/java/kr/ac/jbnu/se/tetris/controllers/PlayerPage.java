@@ -4,11 +4,12 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 
 import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerPage extends JPanel{
+public class PlayerPage extends JFrame{
     static final protected int PLAYERPAGE_WIDTH = 400;
     static final protected int PLAYERPAGE_HEIGTH = 700;
     @Getter
@@ -19,8 +20,11 @@ public class PlayerPage extends JPanel{
     protected static final int BOARD_SIZE_HEIGHT = 500;
     @Getter
     protected NextBlockPanelController nextBlockPanelController;
+    @Getter
+    protected JLabel gameTimer;
 
     public PlayerPage(Member member, KeyInput keyInput){
+        this.gameTimer = new JLabel("00 : 00");
         this.statusBar = new JLabel(" 0");
 
         this.board = new TutorialBoardController(this, keyInput);
@@ -34,6 +38,9 @@ public class PlayerPage extends JPanel{
         add(board, BorderLayout.CENTER);
         add(nextBlockPanelController, BorderLayout.WEST);
         setSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
+
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public PlayerPage() {

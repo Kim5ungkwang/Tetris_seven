@@ -19,12 +19,14 @@ public class GameTimerController implements ActionListener {
     private static int pasuedTime;
     private static int oldTime;
     private static String timerBuffer;
+    private static BoardController boardController;
 
 
     /**
      * 게임이 진행되는 시간을 관리하는 클래스
      */
-    public GameTimerController(){
+    public GameTimerController(BoardController parent){
+        boardController = parent;
         this.gameTimerModel = new GameTimerModel();
         isRunning = false;
         pasuedTime = 0;
@@ -85,9 +87,14 @@ public class GameTimerController implements ActionListener {
     /**
      * 진행된 시간을 분 : 초로 consol에 띄우는 메서드
      */
-    public void printGameTime(){
+    public String printGameTime(){
         secToMMSS(getCurrentTimeSec());
-        System.out.println(timerBuffer);
+        boardController.getPlayerPage().getGameTimer().setText(timerBuffer);
+        return timerBuffer;
+    }
+
+    public void stop(){
+        printTimer.stop();
     }
 
 }

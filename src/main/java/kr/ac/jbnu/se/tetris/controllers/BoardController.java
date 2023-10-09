@@ -23,13 +23,13 @@ public class BoardController extends JPanel implements ActionListener {
     protected PlayerPage playerPage;
     @Getter
     protected PieceController pieceController;
-    private int numLinesRemoved = 0;
+    protected int numLinesRemoved = 0;
     @Getter
     protected Timer timer;
     protected GameTimerController gameTimerController;
 
-    private boolean isStarted = false;
-    private boolean isPaused = false;
+    protected boolean isStarted = false;
+    protected boolean isPaused = false;
 
 
     public BoardController(PlayerPage parent, KeyInput input){
@@ -42,7 +42,7 @@ public class BoardController extends JPanel implements ActionListener {
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
-        this.gameTimerController = new GameTimerController();
+        this.gameTimerController = new GameTimerController(this);
 
         addKeyListener(AdapterController.adapterController);
         AdapterController.adapterController.addList(new KeyInputController(input, this));
@@ -131,7 +131,7 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * board에서 지울 수 있는 줄이 있다면 해당 줄을 지우고 윗 줄을 한칸씩 내리는 메서드
      */
-    private void removeFullLines() {
+    protected void removeFullLines() {
         int numFullLines = 0;
 
         for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
@@ -231,6 +231,7 @@ public class BoardController extends JPanel implements ActionListener {
 
                 ShapeData.drawSquare(g, x * squareWidth, boardTop + (BoardModel.getBoardHeight() - y - 1) * squareHeight,
                         squareWidth, squareHeight, pieceController.getCurrentPiece().getPieceShape());
+
             }
         }
     }

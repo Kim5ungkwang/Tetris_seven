@@ -22,7 +22,7 @@ public class TutorialBoardController extends BoardController {
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
-        this.gameTimerController = new GameTimerController();
+        this.gameTimerController = new GameTimerController(this);
 
         addKeyListener(AdapterController.adapterController);
         AdapterController.adapterController.addList(new KeyInputController(input, this));
