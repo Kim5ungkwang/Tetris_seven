@@ -11,7 +11,7 @@ import lombok.Getter;
 public class PieceController {
     protected BoardController boardController;
     @Getter
-    protected Piece currentPiece;
+    protected static Piece currentPiece;
     @Getter
     protected Piece holdPiece;
     @Getter
@@ -19,7 +19,7 @@ public class PieceController {
     @Getter
     protected BrickQueueManager brickQueueManager;
     private NextBlockPanelController nextBlockPanelController;
-    private boolean isFallingFinished = false;
+    static boolean isFallingFinished = false;
     protected boolean isHolding = false;
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
 
