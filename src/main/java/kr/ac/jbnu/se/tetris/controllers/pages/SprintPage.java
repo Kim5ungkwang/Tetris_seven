@@ -18,9 +18,14 @@ public class SprintPage extends PlayerPage {
     @Getter
     JLabel removedLine;
     JFrame gameClearFrame;
+    JFrame sprintPageFrame;
     JButton goBackButton;
     public SprintPage(Member member, KeyInput keyInput){
         super();
+        sprintPageFrame = new JFrame();
+        sprintPageFrame.setSize(1280, 720);
+        sprintPageFrame.setLayout(null);
+
         this.removedLine = new JLabel("0");
         this.gameTimer = new JLabel("00 : 00");
         this.goBackButton = new JButton("돌아가기");
@@ -30,7 +35,6 @@ public class SprintPage extends PlayerPage {
         gameTimer.setFont(new Font("Serif", Font.BOLD, 35));
         gameTimer.setForeground(Color.white);
 
-        setLayout(null);
         this.board = new SprintBoardController(this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
@@ -41,10 +45,11 @@ public class SprintPage extends PlayerPage {
         removedLine.setBounds(800,300,100, 100);
         gameTimer.setBounds(800, 150, 150, 100);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
-        add(removedLine);
-        add(gameTimer);
-        add(board);
-        add(nextBlockPanelController);
+
+        sprintPageFrame.add(removedLine);
+        sprintPageFrame.add(gameTimer);
+        sprintPageFrame.add(board);
+        sprintPageFrame.add(nextBlockPanelController);
         setSize(new Dimension(1280, 720));
 
         backgroundPanel = new JPanel(){ //배경 패널 설정
@@ -55,12 +60,11 @@ public class SprintPage extends PlayerPage {
             }
         };
         backgroundPanel.setBounds(0,0,1280,720);
-        add(backgroundPanel);
+        sprintPageFrame.add(backgroundPanel);
 
-
-        setVisible(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
+        sprintPageFrame.setVisible(true);
+        sprintPageFrame.setResizable(false);
+        sprintPageFrame.setLocationRelativeTo(null);
     }
 
     public void gameClear(String score){
@@ -89,7 +93,7 @@ public class SprintPage extends PlayerPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameClearFrame.setVisible(false);
-                setVisible(false);
+                sprintPageFrame.setVisible(false);
             }
         });
     }
