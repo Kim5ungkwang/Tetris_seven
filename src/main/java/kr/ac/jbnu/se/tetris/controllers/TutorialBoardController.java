@@ -29,7 +29,7 @@ public class TutorialBoardController extends BoardController {
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);
-        this.gameTimerController = new GameTimerController();
+        this.gameTimerController = new GameTimerController(this);
         stepTimer = new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

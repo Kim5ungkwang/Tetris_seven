@@ -48,7 +48,7 @@ import java.awt.event.KeyEvent;
             pack();
             setVisible(true);
             setResizable(false);
-
+            setLocationRelativeTo(null);
 
         }
         public void initForMulti(){
