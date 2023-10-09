@@ -5,7 +5,6 @@ import kr.ac.jbnu.se.tetris.models.TutorialQueue;
 
 public class TutorialPieaceController extends PieceController {
 
-
     /**
      * PieceController 생성자
      *
@@ -17,6 +16,14 @@ public class TutorialPieaceController extends PieceController {
         this.ghostPiece = new GhostPiece(this);
         this.brickQueueManager = new TutorialQueue();
         this.holdPiece = new Piece();
+        this.isFallingFinished = false;
+    }
+    public static int getRotateIndex(){
+        return currentPiece.getRotateIndex();
+    }
+    @Override
+    public boolean getIsFallingFinished() {
+        return TutorialPieaceController.isFallingFinished;
     }
 }
 

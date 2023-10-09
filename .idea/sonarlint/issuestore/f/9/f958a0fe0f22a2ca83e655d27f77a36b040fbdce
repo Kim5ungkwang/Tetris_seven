@@ -1,5 +1,19 @@
 
-F	java:S106„"+Replace this use of System.out by a logger.(ëò»İùÿÿÿÿ
-F	java:S106Š"+Replace this use of System.out by a logger.(ëò»İùÿÿÿÿ
-B
-java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8õêÆË®1
+F
+java:S3010 ")Remove this assignment of "currentPiece".(¼µ¹ø8¬ÓÉ™±1
+R
+java:S2209 "5Change this instance-reference to a static reference.(¼µ¹ø8­ÓÉ™±1
+X
+java:S2696S"6Make the enclosing method "static" or remove this set.(şİıÿÿÿÿ8²ÓÉ™±1
+W
+java:S2209S"5Change this instance-reference to a static reference.(şİıÿÿÿÿ8²ÓÉ™±1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(»‹÷Ğ8·ÓÉ™±1
+Y
+java:S2696«"6Make the enclosing method "static" or remove this set.(¨Äº ûÿÿÿÿ8¼ÓÉ™±1
+H	java:S106Ê"+Replace this use of System.out by a logger.(ğª‚‡8¿ÓÉ™±1
+H	java:S106Ò"+Replace this use of System.out by a logger.(ğª‚‡8ÀÓÉ™±1
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(ååÓn8ÛÊ™±1
+S
+java:S2209˜"5Change this instance-reference to a static reference.(Õ”àŠ8ÜÊ™±1
