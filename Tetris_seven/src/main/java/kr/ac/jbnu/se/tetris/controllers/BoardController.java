@@ -85,7 +85,7 @@ public class BoardController{
             timer.stop();
             tetrisBoard.setStatusText("paused");
         }else{
-            timer.start();;
+            timer.start();
             tetrisBoard.setStatusText(String.valueOf(numLinesRemoved));
         }
         tetrisBoard.repaint();

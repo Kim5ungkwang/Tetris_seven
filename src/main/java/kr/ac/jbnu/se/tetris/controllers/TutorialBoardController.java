@@ -28,7 +28,8 @@ public class TutorialBoardController extends BoardController {
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
-        this.gameTimerController = new GameTimerController();
+        this.gameTimerController = new GameTimerController(this);
+        this.gameTimerController = new GameTimerController(this);
         stepTimer = new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

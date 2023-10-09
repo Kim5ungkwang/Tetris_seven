@@ -1,6 +1,7 @@
 package kr.ac.jbnu.se.tetris;
 
 
+import kr.ac.jbnu.se.tetris.controllers.TetrisFrameForTwo;
 import kr.ac.jbnu.se.tetris.controllers.pages.MainPageController;
 import kr.ac.jbnu.se.tetris.controllers.TetrisFrameController;
 
