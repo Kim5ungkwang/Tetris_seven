@@ -24,6 +24,7 @@ public class PlayerPage extends JPanel{
     protected JLabel gameTimer;
 
     public PlayerPage(Member member, KeyInput keyInput){
+        this.statusBar = new JLabel("0");   //사용안할예정
         this.gameTimer = new JLabel("00 : 00");
         this.statusBar = new JLabel(" 0");
 

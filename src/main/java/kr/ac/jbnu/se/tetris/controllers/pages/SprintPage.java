@@ -42,15 +42,15 @@ public class SprintPage extends PlayerPage {
 
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
-        removedLine.setBounds(800,300,100, 100);
-        gameTimer.setBounds(800, 150, 150, 100);
+        removedLine.setBounds(900,300,100, 100);
+        gameTimer.setBounds(900, 150, 150, 100);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
 
         sprintPageFrame.add(removedLine);
         sprintPageFrame.add(gameTimer);
         sprintPageFrame.add(board);
         sprintPageFrame.add(nextBlockPanelController);
-        setSize(new Dimension(1280, 720));
+        //setSize(new Dimension(1280, 720));
 
         backgroundPanel = new JPanel(){ //배경 패널 설정
             public void paintComponent(Graphics g){
@@ -65,6 +65,8 @@ public class SprintPage extends PlayerPage {
         sprintPageFrame.setVisible(true);
         sprintPageFrame.setResizable(false);
         sprintPageFrame.setLocationRelativeTo(null);
+
+        sprintPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     public void gameClear(String score){
@@ -92,8 +94,8 @@ public class SprintPage extends PlayerPage {
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameClearFrame.setVisible(false);
-                sprintPageFrame.setVisible(false);
+                sprintPageFrame.dispose();
+                gameClearFrame.dispose();
             }
         });
     }

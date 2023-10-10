@@ -11,7 +11,7 @@ import lombok.Getter;
 public class PieceController {
     protected BoardController boardController;
     @Getter
-    protected static Piece currentPiece;
+    protected Piece currentPiece;
     @Getter
     protected Piece holdPiece;
     @Getter
