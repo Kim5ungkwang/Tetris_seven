@@ -45,7 +45,7 @@ public class PieceController {
         setNextBlockPanel();
     }
 
-    public BoardController getBoardControllerRe(){
+    public BoardController getBoardController(){
         return boardController;
     }
 

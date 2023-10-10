@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static kr.ac.jbnu.se.tetris.controllers.PieceController.currentPiece;
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialBoardController extends BoardController {
@@ -34,6 +33,7 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);
         this.gameTimerController = new GameTimerController(this);
+
         stepTimer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +48,7 @@ public class TutorialBoardController extends BoardController {
 
         this.tutorialModel = new TutorialModel();
         setFocusable(true);
-        super.pieceDropped(currentPiece);
+        //super.pieceDropped(currentPiece);
     }
 
     public void startTutorial() {
@@ -60,7 +60,6 @@ public class TutorialBoardController extends BoardController {
     @Override
     public void start() {
         super.start();
-        startTutorial();
         //drawBackgroundblock();
     }
 
@@ -72,15 +71,15 @@ public class TutorialBoardController extends BoardController {
     }
 
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 4) {
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
-        } else if (tutorialModel.getCurrentStepIndex() == 4) {
-            //showImagePanel();
         } else if(tutorialModel.getCurrentStepIndex() == 5){
             pieceFixedCount = 0;
-            BoardController.clearBoard();
+            clearBoard();
+            start();
             drawBackgroundblock();
+            stepTimer.stop();
             ((TutorialQueue) pieceController.getBrickQueueManager()).setBrickQueue();
         }
         else {
