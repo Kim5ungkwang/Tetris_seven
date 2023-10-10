@@ -9,7 +9,7 @@ import java.awt.*;
 public class TutorialModel{
 
     @Getter
-    private int currentStepIndex = 0; //현재 튜토리얼 스텝
+    public static int currentStepIndex = 0; //현재 튜토리얼 스텝
     @Getter
     private int currentBrickIndex = 0; // 현재 블럭 인덱스
     public static final String[] tutorialSteps = {
@@ -17,7 +17,9 @@ public class TutorialModel{
             "<html>Step 2: 블록 이동하기<br>블록을 움직이려면 A, D 키를 누르세요</html>",
             "<html>Step 3: 블록 회전하기<br>블록을 회전하려면 Q, E 키를 누르세요</html>",
             "<html>Step 4: 행 제거하기<br>블록을 한 줄에 꽉 차도록 쌓으세요</html>",
+            "<html>그림과 같이 블럭을 쌓아주세요<html>",
             "<html>Step 5: SRS(Super Rotation System) 사용하기<br>블록의 빈 공간에 다다르면 회전하면서 홈 사이에 블록을 넣으세요</html>",
+            "<html>T모양 블럭을 이용해서 SRS를 수행하고 세 줄을 없애보세요<html>",
             "튜토리얼 끝! 게임을 시작합니다!"
     };
     public TutorialModel(){

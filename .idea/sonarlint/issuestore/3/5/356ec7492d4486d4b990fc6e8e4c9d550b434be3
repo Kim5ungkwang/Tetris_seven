@@ -1,31 +1,34 @@
 
 S
-java:S1948"1Make "pieceController" transient or serializable.(Õ•®Ñüÿÿÿÿ8·Ëú—±1
+java:S1948"1Make "pieceController" transient or serializable.(Õ•®Ñüÿÿÿÿ8ÙÔÜ¦±1
 R
-java:S1948"5Make "gameTimerController" transient or serializable.(—Âê´8·Ëú—±1
+java:S1948"5Make "gameTimerController" transient or serializable.(—Âê´8¤Â¢½±1
 I
-java:S3010$"'Remove this assignment of "boardModel".(µõÜíûÿÿÿÿ8†Åä˜±1
+java:S3010$"'Remove this assignment of "boardModel".(µõÜíûÿÿÿÿ8§Â¢½±1
 W
-java:S2209$"5Change this instance-reference to a static reference.(µõÜíûÿÿÿÿ8‡Åä˜±1
+java:S2209$"5Change this instance-reference to a static reference.(µõÜíûÿÿÿÿ8§Â¢½±1
 R
-java:S2209*"5Change this instance-reference to a static reference.(•ö³×8ˆÅä˜±1
-u
-java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(³½İÆøÿÿÿÿ8íØ²ì°1
+java:S2209*"5Change this instance-reference to a static reference.(•ö³×8¨Â¢½±1
+o
+java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ˆ…Â8®Â¢½±1
 X
-java:S2209 "5Change this instance-reference to a static reference.(Éƒ×Íùÿÿÿÿ8ÆËú—±1
+java:S2209 "5Change this instance-reference to a static reference.(Éƒ×Íùÿÿÿÿ8°Â¢½±1
+M	java:S106ª"+Replace this use of System.out by a logger.(Å«ûÿÿÿÿ8±Â¢½±1
+T
+java:S2696«"6Make the enclosing method "static" or remove this set.(ƒ¯ÃÑ8±Â¢½±1
 X
-java:S1161Ä":Add the "@Override" annotation above this method signature(¶øÂÁ8ñØ²ì°1
+java:S1161Æ":Add the "@Override" annotation above this method signature(¶øÂÁ8³Â¢½±1
 S
-java:S2209Ú"5Change this instance-reference to a static reference.(ŸúÛ8ËËú—±1
+java:S2209Ü"5Change this instance-reference to a static reference.(ŸúÛ8µÂ¢½±1
 S
-java:S2209ß"5Change this instance-reference to a static reference.(¸çé8ÌËú—±1
+java:S2209á"5Change this instance-reference to a static reference.(¸çé8µÂ¢½±1
 S
-java:S2209à"5Change this instance-reference to a static reference.(¨éÒ€8ÌËú—±1
+java:S2209â"5Change this instance-reference to a static reference.(¨éÒ€8µÂ¢½±1
 X
-java:S2209â"5Change this instance-reference to a static reference.(„ğƒ˜øÿÿÿÿ8ÌËú—±1
+java:S2209ä"5Change this instance-reference to a static reference.(„ğƒ˜øÿÿÿÿ8¶Â¢½±1
 S
-java:S2209ã"5Change this instance-reference to a static reference.(¡ÿÇÄ8ÍËú—±1
+java:S2209å"5Change this instance-reference to a static reference.(¡ÿÇÄ8¶Â¢½±1
 X
-java:S2209æ"5Change this instance-reference to a static reference.(àòÉşüÿÿÿÿ8ÍËú—±1
+java:S2209è"5Change this instance-reference to a static reference.(àòÉşüÿÿÿÿ8¶Â¢½±1
 X
-java:S2209é"5Change this instance-reference to a static reference.(àòÉşüÿÿÿÿ8ÎËú—±1
+java:S2209ë"5Change this instance-reference to a static reference.(àòÉşüÿÿÿÿ8¶Â¢½±1
