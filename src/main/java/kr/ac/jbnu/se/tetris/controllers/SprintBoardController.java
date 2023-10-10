@@ -40,6 +40,7 @@ public class SprintBoardController extends BoardController{
         }
 
         if (numFullLines > 0) {
+            new SoundEffectPlayer().start();        //블럭 사라짐 효과음
             numLinesRemoved += numFullLines;
             //playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
             sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));

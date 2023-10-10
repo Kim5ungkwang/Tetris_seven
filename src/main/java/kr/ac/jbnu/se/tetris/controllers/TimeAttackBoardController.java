@@ -55,6 +55,7 @@ public class TimeAttackBoardController extends BoardController{
         }
 
         if (numFullLines > 0) {
+            new SoundEffectPlayer().start();        // 블럭사라짐 효과음
             reverseCountTimer.addTimeLimit(numFullLines);
             numLinesRemoved += numFullLines;
             timeAttackPage.getRemovedLine().setText(String.valueOf(numLinesRemoved));
