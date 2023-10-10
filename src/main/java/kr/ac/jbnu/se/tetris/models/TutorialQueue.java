@@ -1,14 +1,13 @@
 package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
-import kr.ac.jbnu.se.tetris.controllers.BoardController;
 import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
 import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
-import kr.ac.jbnu.se.tetris.models.BrickQueueManager;
 
 public class TutorialQueue extends BrickQueueManager {
     TutorialPieaceController controller;
-    public TutorialQueue() {
+    public TutorialQueue(TutorialPieaceController tutorialPieaceController) {
+        controller = tutorialPieaceController;
         brickQueue = new ShapeData.Tetrominoes[11];
         brickQueueIndex = 0;
         brickQueueSize = 11;
@@ -25,7 +24,8 @@ public class TutorialQueue extends BrickQueueManager {
             if(TutorialBoardController.getPieceFixedCount() == 1){
                 return brickQueue[1];
             }else if(TutorialBoardController.getPieceFixedCount() < 1){
-                BoardController.clearBoard();
+                controller.getBoardController().clearBoard();
+                controller.getTutorialBoardController().startTutorial();
                 brickQueueIndex = 0;
                 return brickQueue[0];
             }

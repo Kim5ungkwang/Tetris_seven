@@ -17,7 +17,13 @@ public class MainPageController extends JFrame {
     MainPageModel mainPageModel;
     MusicController sound;
     @Getter
-    JPanel backgroundPanel, mainPagePanel, singlePagePanel, multiPlayPagePanel; //뒷 배경을 그린 패널, 메인 패널, 싱글 플레이 패널, 멀티플레이 패널
+    JPanel backgroundPanel;
+    @Getter
+    static JPanel mainPagePanel;
+    @Getter
+    JPanel singlePagePanel;
+    @Getter
+    JPanel multiPlayPagePanel; //뒷 배경을 그린 패널, 메인 패널, 싱글 플레이 패널, 멀티플레이 패널
     JButton multiPlayBt, settingBt, singlePlayBt;
     public MainPageController() throws IOException {
         setSize(new Dimension(MAINPAGE_SIZE_WIDTH, MAINPAGE_SIZE_HEIGHT));

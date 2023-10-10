@@ -2,19 +2,23 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.models.TutorialQueue;
+import lombok.Getter;
 
 public class TutorialPieaceController extends PieceController {
+    @Getter
+    TutorialBoardController tutorialBoardController;
 
     /**
      * PieceController 생성자
      *
      * @param boardController 게임이 진행되는 boardController
      */
-    public TutorialPieaceController(BoardController boardController) {
-        this.boardController = boardController;
+    public TutorialPieaceController(TutorialBoardController boardController) {
+        tutorialBoardController = boardController;
+        this.boardController = tutorialBoardController;
         this.currentPiece = new Piece();
         this.ghostPiece = new GhostPiece(this);
-        this.brickQueueManager = new TutorialQueue();
+        this.brickQueueManager = new TutorialQueue(this);
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
         this.setNextBlockPanel();
