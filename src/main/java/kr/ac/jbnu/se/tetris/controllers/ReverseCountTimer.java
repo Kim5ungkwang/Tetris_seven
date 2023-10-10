@@ -9,7 +9,7 @@ import java.util.concurrent.Delayed;
 
 public class ReverseCountTimer extends GameTimerController{
     private int timeLimit;  //초 단위
-    private final int INITIAL_TIME_LIMIT = 10;
+    private final int INITIAL_TIME_LIMIT = 30;
     TimeAttackBoardController board;
     public ReverseCountTimer(TimeAttackBoardController timeAttackBoardController){
         super(timeAttackBoardController);

@@ -47,7 +47,7 @@ public class SprintBoardController extends BoardController{
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
-            if(numLinesRemoved > gameClearPoint)
+            if(numLinesRemoved >= gameClearPoint)
                 gameClear();
         }
     }
