@@ -9,7 +9,7 @@ public class MusicController {
 
     public MusicController(){
         mainManuMusicInit();
-        setMainManuVolume(-40f);    //-80.0f ~ 6.0206f 값
+        setMainManuVolume(-20f);    //-80.0f ~ 6.0206f 값
     }
 
     public void mainManuMusicInit(){

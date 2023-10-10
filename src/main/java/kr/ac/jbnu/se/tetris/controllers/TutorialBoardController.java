@@ -24,7 +24,7 @@ public class TutorialBoardController extends BoardController {
     public static int pieceFixedCount = 0;
 
     public TutorialBoardController(TutorialPage parent, KeyInput input){
-
+        super(parent, input);
         this.boardModel = new BoardModel();
         this.tutorialPage = parent;
         playerPage = tutorialPage;
@@ -36,7 +36,7 @@ public class TutorialBoardController extends BoardController {
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
-        this.gameTimerController = new GameTimerController(this);
+
 
         stepTimer = new Timer(500, new ActionListener() {
             @Override
@@ -63,8 +63,9 @@ public class TutorialBoardController extends BoardController {
     @Override
     public void start(){
         super.start();
+        pause();
         startTutorial();
-        drawBackgroundblock();
+        //drawBackgroundblock();
     }
 
 
@@ -79,9 +80,12 @@ public class TutorialBoardController extends BoardController {
         if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
+        } else if (tutorialModel.getCurrentStepIndex() == 4) {
         } else if(tutorialModel.getCurrentStepIndex() == 5){
             pieceFixedCount = 0;
+            pause();
             drawBackgroundblock();
+            stepTimer.stop();
         }
         else {
             // 튜토리얼 마지막 단계 도달한 경우 로직 추가
