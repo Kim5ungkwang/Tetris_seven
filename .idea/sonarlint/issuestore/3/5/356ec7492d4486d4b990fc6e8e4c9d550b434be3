@@ -13,9 +13,9 @@ o
 java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ˆ…Â8®Â¢½±1
 X
 java:S2209 "5Change this instance-reference to a static reference.(Éƒ×Íùÿÿÿÿ8°Â¢½±1
-M	java:S106ª"+Replace this use of System.out by a logger.(Å«ûÿÿÿÿ8­ı©Á±1
+M	java:S106ª"+Replace this use of System.out by a logger.(Å«ûÿÿÿÿ8±Â¢½±1
 T
-java:S2696«"6Make the enclosing method "static" or remove this set.(ƒ¯ÃÑ8­ı©Á±1
+java:S2696«"6Make the enclosing method "static" or remove this set.(ƒ¯ÃÑ8±Â¢½±1
 X
 java:S1161Æ":Add the "@Override" annotation above this method signature(¶øÂÁ8³Â¢½±1
 S

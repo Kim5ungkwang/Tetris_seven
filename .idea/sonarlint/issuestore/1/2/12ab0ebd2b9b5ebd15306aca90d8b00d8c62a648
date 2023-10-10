@@ -2,7 +2,5 @@
 â
 java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ú˚øÿ8Õ≤√ù±1
 ]	java:S125"<This block of commented-out lines of code should be removed.(Ò≤∞Á˙ˇˇˇˇ8Àπ¡ó±1
-l
-java:S1128"ORemove this unused import 'kr.ac.jbnu.se.tetris.controllers.TetrisFrameForTwo'.(ÿÆ˚†8˘Ôó¡±1
 x
-java:S1128"VRemove this unused import 'kr.ac.jbnu.se.tetris.controllers.pages.MainPageController'.(ôÓúö˛ˇˇˇˇ8÷≤√ù±1
+java:S1128"VRemove this unused import 'kr.ac.jbnu.se.tetris.controllers.pages.MainPageController'.(ôÓúö˛ˇˇˇˇ8÷≤√ù±1
