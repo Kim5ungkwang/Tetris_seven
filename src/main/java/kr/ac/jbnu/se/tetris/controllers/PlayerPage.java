@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
 import kr.ac.jbnu.se.tetris.models.Member;
@@ -28,7 +29,7 @@ public class PlayerPage extends JPanel{
         this.gameTimer = new JLabel("00 : 00");
         this.statusBar = new JLabel(" 0");
 
-        this.board = new BoardController(this, keyInput);
+        this.board = new BoardController( this, keyInput);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);

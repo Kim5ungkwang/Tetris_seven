@@ -1,8 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
-import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
-import kr.ac.jbnu.se.tetris.controllers.PlayerPage;
-import kr.ac.jbnu.se.tetris.controllers.SprintBoardController;
+import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;

@@ -45,7 +45,6 @@ public class BoardController extends JPanel implements ActionListener {
         this.gameTimerController = new GameTimerController(this);
 
         AdapterController adapterController = new AdapterController();
-
         addKeyListener(adapterController);
         adapterController.addList(new KeyInputController(input,this));
         setFocusable(true);

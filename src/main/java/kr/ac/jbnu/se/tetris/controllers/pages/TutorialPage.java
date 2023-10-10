@@ -1,6 +1,7 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
 import com.sun.tools.javac.Main;
+import kr.ac.jbnu.se.tetris.controllers.BoardController;
 import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
 import kr.ac.jbnu.se.tetris.controllers.PlayerPage;
 import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
@@ -21,10 +22,10 @@ import static kr.ac.jbnu.se.tetris.models.TutorialModel.currentStepIndex;
 
 public class TutorialPage extends PlayerPage {
     JPanel backgroundPanel;
+    JFrame tutorialPageFrame;
     @Getter
     JLabel tutorialStep;
     JFrame tutorialSRSFrame; //SRS 블럭 쌓는 모양 알려주는 프레임
-    JFrame tutorialPageFrame;
     JButton skipButton; // 튜토리얼 건너뛰는 버튼
     JLabel imageLabel;
     ImageIcon imageIcon;
@@ -33,39 +34,30 @@ public class TutorialPage extends PlayerPage {
 
     public TutorialPage(Member member, KeyInput p1Key){
         super();
-
-        tutorialPageFrame = new JFrame();
+        this.tutorialPageFrame = new JFrame();
         tutorialPageFrame.setSize(1280, 720);
         tutorialPageFrame.setLayout(null);
 
         this.statusBar = new JLabel();
+        this.gameTimer = new JLabel();
         this.tutorialStep = new JLabel();
-        this.skipButton = new JButton("튜토리얼 스킵");
-        this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
-        this.imageLabel = new JLabel(imageIcon);
 
-        tutorialStep.setFont(new Font("Serif", Font.BOLD, 20));
+        tutorialStep.setFont(new Font("Serif", Font.BOLD, 25));
         tutorialStep.setForeground(Color.white);
 
-        tutorialBoardController = new TutorialBoardController(this, p1Key);
-        this.board = tutorialBoardController;
+
+        this.board = new TutorialBoardController(this, p1Key);
         this.nextBlockPanelController = new NextBlockPanelController(this);
+        this.board.start();
         board.setVisible(true);
-        tutorialBoardController.start();
-        tutorialBoardController.startTutorial();
 
-        board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
-        board.setBounds(515, 110, BOARD_SIZE_WIDTH,BOARD_SIZE_HEIGHT);
-        tutorialStep.setBounds(800, 150, 500, 300);
-        nextBlockPanelController.setBounds(415,110, 110, 500);
-        imageLabel.setBounds(93, 10, 256, 256);
+        board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
+        nextBlockPanelController.setBounds(415, 110, 100, 500);
+        tutorialStep.setBounds(900, 150, 350, 100);
 
-        tutorialPageFrame.add(tutorialStep);
-        tutorialPageFrame.add(skipButton);
         tutorialPageFrame.add(board);
         tutorialPageFrame.add(nextBlockPanelController);
-        setSize(new Dimension(1280, 720));
-
+        tutorialPageFrame.add(tutorialStep);
 
         backgroundPanel = new JPanel(){
             public void paintComponent(Graphics g){
@@ -74,6 +66,7 @@ public class TutorialPage extends PlayerPage {
                 super.paintComponent(g);
             }
         };
+
         backgroundPanel.setBounds(0, 0, 1280, 720);
         tutorialPageFrame.add(backgroundPanel);
 
