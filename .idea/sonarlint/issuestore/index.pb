@@ -63,3 +63,5 @@ l
 Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialPieaceController.java,4\5\453b701c632544c0e56c77c1dcd5b748d31400de
 {
 Ksrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialBoardController.java,6\e\6edbf605741bfe5cfe916d8fb7ad3362e0f1b82b
+v
+Fsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/TutorialPage.java,9\6\968e2103419f52263ca62a8a88edac57869270b4

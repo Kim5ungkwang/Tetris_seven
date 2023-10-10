@@ -18,7 +18,7 @@ public class KeyInputController {
         this.input = input;
         this.controller=controller;
         this.pieceController = controller.getPieceController();
-        moveSound = new Music("source/movesound.wav",false);
+        moveSound = new Music("source/music/movesound.wav",false);
     }
 
     public void action(int keycode) throws CloneNotSupportedException {
