@@ -21,14 +21,14 @@ public class TutorialQueue extends BrickQueueManager {
             brickQueueIndex = 0;
             return brickQueue[0];
         }*/
-            if(TutorialBoardController.getPieceFixedCount() == 1){
-                return brickQueue[1];
-            }else if(TutorialBoardController.getPieceFixedCount() < 1){
-                controller.getBoardController().clearBoard();
-                controller.getTutorialBoardController().startTutorial();
-                brickQueueIndex = 0;
-                return brickQueue[0];
-            }
+        if(TutorialBoardController.getPieceFixedCount() == 1){
+            return brickQueue[1];
+        }else if(TutorialBoardController.getPieceFixedCount() < 1){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
+        }
 
         if(brickQueueIndex == 1){
             if(TutorialBoardController.getPieceFixedCount() == 2){
