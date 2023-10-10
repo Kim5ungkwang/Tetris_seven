@@ -12,8 +12,6 @@ import javax.swing.Timer;
  * 클래스의 변수는 항상 업데이트 된 상태는 아니므로 반드시 메서드를 사용해서 접근할 것
  */
 public class GameTimerController implements ActionListener {
-    @Getter
-    final private GameTimerModel gameTimerModel;
     final private Timer printTimer;
     private static boolean isRunning;
     private static int pasuedTime;
@@ -27,7 +25,6 @@ public class GameTimerController implements ActionListener {
      */
     public GameTimerController(BoardController parent){
         boardController = parent;
-        this.gameTimerModel = new GameTimerModel();
         isRunning = false;
         pasuedTime = 0;
         oldTime = 0;

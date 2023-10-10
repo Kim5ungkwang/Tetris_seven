@@ -18,7 +18,7 @@ public class TutorialPieaceController extends PieceController {
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
     }
-    public static int getRotateIndex(){
+    public int getRotateIndex(){
         return currentPiece.getRotateIndex();
     }
     @Override
