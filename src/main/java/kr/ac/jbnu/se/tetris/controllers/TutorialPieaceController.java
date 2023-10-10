@@ -22,6 +22,8 @@ public class TutorialPieaceController extends PieceController {
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
         this.setNextBlockPanel();
+
+
     }
     public int getRotateIndex(){
         return currentPiece.getRotateIndex();

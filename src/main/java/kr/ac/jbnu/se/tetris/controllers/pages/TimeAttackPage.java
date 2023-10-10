@@ -53,7 +53,7 @@ public class TimeAttackPage extends PlayerPage {
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
         removedLine.setBounds(900,300,100, 100);
-        timeLimit.setBounds(900, 150, 150, 100);    //
+        timeLimit.setBounds(900, 150, 150, 100);
         //gameTimer.setBounds(900, 450, 150, 150);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
 

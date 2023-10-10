@@ -46,7 +46,7 @@ public class BoardController extends JPanel implements ActionListener {
 
         AdapterController adapterController = new AdapterController();
         addKeyListener(adapterController);
-        adapterController.addList(new KeyInputController(input, this));
+        adapterController.addList(new KeyInputController(input,this));
         setFocusable(true);
     }
 
