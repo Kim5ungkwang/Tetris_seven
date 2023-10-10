@@ -25,6 +25,9 @@ public class TetrisBoard extends JPanel implements ActionListener {
         boardcontroller = new BoardController(this);
 
         statusBar = parent.getStatusBar();
+
+
+
         addKeyListener(AdapterController.adapterController);
         AdapterController.adapterController.addList(new KeyInputController(input, boardcontroller));
     }

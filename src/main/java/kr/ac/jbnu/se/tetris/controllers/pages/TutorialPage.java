@@ -30,8 +30,6 @@ public class TutorialPage extends PlayerPage {
     ImageIcon imageIcon;
     TutorialBoardController tutorialBoardController;
 
-    MainPageController mainPageController;
-
 
     public TutorialPage(Member member, KeyInput p1Key){
         super();
@@ -41,23 +39,24 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setLayout(null);
 
         this.statusBar = new JLabel();
-        this.tutorialStep = new JLabel(TutorialModel.tutorialSteps[currentStepIndex]);
+        this.tutorialStep = new JLabel();
         this.skipButton = new JButton("튜토리얼 스킵");
         this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
         this.imageLabel = new JLabel(imageIcon);
 
-        tutorialStep.setFont(new Font("Serif", Font.BOLD, 35));
+        tutorialStep.setFont(new Font("Serif", Font.BOLD, 20));
         tutorialStep.setForeground(Color.white);
 
         tutorialBoardController = new TutorialBoardController(this, p1Key);
         this.board = tutorialBoardController;
         this.nextBlockPanelController = new NextBlockPanelController(this);
-        this.tutorialBoardController.startTutorial();
         board.setVisible(true);
+        tutorialBoardController.start();
+        tutorialBoardController.startTutorial();
 
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
         board.setBounds(515, 110, BOARD_SIZE_WIDTH,BOARD_SIZE_HEIGHT);
-        tutorialStep.setBounds(800, 150, 150, 100);
+        tutorialStep.setBounds(800, 150, 500, 300);
         nextBlockPanelController.setBounds(415,110, 110, 500);
         imageLabel.setBounds(93, 10, 256, 256);
 
@@ -77,10 +76,14 @@ public class TutorialPage extends PlayerPage {
         };
         backgroundPanel.setBounds(0, 0, 1280, 720);
         tutorialPageFrame.add(backgroundPanel);
+
         tutorialPageFrame.setVisible(true);
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
+
+        tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
+
     // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
     public void showImageLabel(){
         if(TutorialModel.getCurrentStepIndex() == 4){
@@ -91,12 +94,14 @@ public class TutorialPage extends PlayerPage {
     }
 
     public void buttonAction(){
-        skipButton.addActionListener(new ActionListener() {
+        /*skipButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tutorialPageFrame.setVisible(false);
                 mainPageController.mainPagePanelInit();
             }
         });
+
+         */
     }
 }

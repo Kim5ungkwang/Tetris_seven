@@ -94,7 +94,6 @@ public class SinglePlayPage extends JPanel {
         tutorialBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainPage.setVisible(false);
                 TutorialPage tutorialPage = new TutorialPage(new Member(), p1Key);
                 tutorialPage.setVisible(true);
             }
@@ -102,7 +101,6 @@ public class SinglePlayPage extends JPanel {
         sprintBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //mainPage.setVisible(false);
                 SprintPage sprintPage = new SprintPage(new Member(), p1Key);
                 sprintPage.setVisible(true);
             }
