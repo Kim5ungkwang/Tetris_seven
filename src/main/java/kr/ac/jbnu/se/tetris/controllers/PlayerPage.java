@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerPage extends JFrame{
+public class PlayerPage extends JPanel{
     static final protected int PLAYERPAGE_WIDTH = 400;
     static final protected int PLAYERPAGE_HEIGTH = 700;
     @Getter
@@ -39,7 +39,6 @@ public class PlayerPage extends JFrame{
         add(nextBlockPanelController, BorderLayout.WEST);
         setSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
 
-        setLocationRelativeTo(null);
         setVisible(true);
     }
 
