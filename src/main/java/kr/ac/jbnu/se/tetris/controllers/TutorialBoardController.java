@@ -37,8 +37,10 @@ public class TutorialBoardController extends BoardController {
             }
         });
 
-        addKeyListener(AdapterController.adapterController);
-        AdapterController.adapterController.addList(new KeyInputController(input, this));
+        AdapterController adapterController = new AdapterController();
+        addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(input, this));
+        setFocusable(true);
 
         this.tutorialModel = new TutorialModel();
         setFocusable(true);

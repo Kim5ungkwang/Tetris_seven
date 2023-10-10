@@ -6,13 +6,12 @@ import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
 public class SprintBoardController extends BoardController{
-    protected int sprintCount;
     protected final int gameClearPoint;
     protected final SprintPage sprintPage;
     public SprintBoardController(SprintPage sprintPage, KeyInput keyInput){
         super(sprintPage, keyInput);
         this.sprintPage = sprintPage;
-        this.sprintCount = 0;
+        playerPage = sprintPage;
         gameClearPoint = 40;
     }
 
@@ -43,11 +42,11 @@ public class SprintBoardController extends BoardController{
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
             //playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
-            sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved));
+            sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
-            if(numLinesRemoved > 0)
+            if(numLinesRemoved > gameClearPoint)
                 gameClear();
         }
     }
@@ -61,6 +60,12 @@ public class SprintBoardController extends BoardController{
         getBoardModel().setIsStarted(false);
         repaint();
         sprintPage.gameClear(gameTimerController.printGameTime());
+    }
+
+    @Override
+    public void start(){
+        super.start();
+        sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));
     }
 
 

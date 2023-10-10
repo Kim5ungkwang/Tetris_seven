@@ -1,8 +1,5 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.models.GameTimerModel;
-import lombok.Getter;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -13,10 +10,10 @@ import javax.swing.Timer;
  */
 public class GameTimerController implements ActionListener {
     final private Timer printTimer;
-    private static boolean isRunning;
-    private static int pasuedTime;
-    private static int oldTime;
-    private static String timerBuffer;
+    protected static boolean isRunning;
+    protected static int pasuedTime;
+    protected static int oldTime;
+    protected static String timerBuffer;
     private static BoardController boardController;
 
 
@@ -39,7 +36,7 @@ public class GameTimerController implements ActionListener {
     /**
      * 타이머 시작
      */
-    public void timerstart(){
+    public void timerStart(){
         if(!isRunning) {
             pasuedTime = (int) System.currentTimeMillis() / 1000 - oldTime;
             isRunning = true;
@@ -50,7 +47,7 @@ public class GameTimerController implements ActionListener {
     /**
      * 타이머 일시중지
      */
-    public void timerpause(){
+    public void timerPause(){
         if(isRunning) {
             oldTime = (int) System.currentTimeMillis() / 1000 - pasuedTime;
             isRunning = false;
@@ -63,7 +60,7 @@ public class GameTimerController implements ActionListener {
      * @param secs 초단위 시간
      * timerBuffer에 초단위 시간을 기록한다.
      */
-    private void secToMMSS(int secs){
+    protected void secToMMSS(int secs){
         int min, sec;
         sec = secs % 60;
         min = secs / 60 % 60;
@@ -75,7 +72,7 @@ public class GameTimerController implements ActionListener {
      * 진행된 시간을 반환하는 메서드
      * @return 진행된 시간을 초 단위로 반환
      */
-    public static int getCurrentTimeSec(){
+    public int getCurrentTimeSec(){
         if(isRunning)
             return (int) System.currentTimeMillis() / 1000 - pasuedTime;
         return oldTime;

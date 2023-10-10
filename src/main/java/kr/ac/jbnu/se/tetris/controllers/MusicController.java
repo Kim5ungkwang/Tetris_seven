@@ -22,8 +22,9 @@ public class MusicController {
     }
 
     public void mainManuPlay(){
-        if(mainManuClip != null && !mainManuClip.isRunning()){
+        if(mainManuClip != null){
             mainManuClip.setFramePosition(0);
+            mainManuClip.loop(Clip.LOOP_CONTINUOUSLY);
             mainManuClip.start();
         }
     }
