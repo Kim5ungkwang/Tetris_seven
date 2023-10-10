@@ -17,6 +17,7 @@ public class TutorialPieaceController extends PieceController {
         this.brickQueueManager = new TutorialQueue();
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
+        this.setNextBlockPanel();
     }
     public static int getRotateIndex(){
         return currentPiece.getRotateIndex();

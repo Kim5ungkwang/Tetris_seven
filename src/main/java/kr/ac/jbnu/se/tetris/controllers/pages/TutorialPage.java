@@ -9,6 +9,7 @@ import kr.ac.jbnu.se.tetris.models.TutorialModel;
 import lombok.Getter;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.currentStepIndex;
@@ -64,4 +65,3 @@ public class TutorialPage extends PlayerPage {
         }
     }
 }
-

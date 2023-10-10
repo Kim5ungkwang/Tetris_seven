@@ -167,6 +167,8 @@ public class BoardController extends JPanel implements ActionListener {
      * @param droppedPiece 앉은 상태의 piece
      */
     public void pieceDropped(Piece droppedPiece) {
+        System.out.println("PieceFixedCount: " + TutorialBoardController.getPieceFixedCount());
+        TutorialBoardController.pieceFixedCount++;
         for (int i = 0; i < 4; i++) {
             int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
             int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);

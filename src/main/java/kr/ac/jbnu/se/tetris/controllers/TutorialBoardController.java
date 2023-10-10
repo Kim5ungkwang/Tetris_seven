@@ -3,19 +3,23 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static kr.ac.jbnu.se.tetris.controllers.PieceController.currentPiece;
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialBoardController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
-    //TutorialPieaceController tutorialPieaceController = new TutorialPieaceController(BoardController);
     private Timer stepTimer;
+    @Getter
+    @Setter
     public static int pieceFixedCount = 0;
 
     public TutorialBoardController(PlayerPage parent, KeyInput input){
@@ -30,7 +34,7 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);
         this.gameTimerController = new GameTimerController(this);
-        stepTimer = new Timer(10000, new ActionListener() {
+        stepTimer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();
@@ -42,6 +46,7 @@ public class TutorialBoardController extends BoardController {
 
         this.tutorialModel = new TutorialModel();
         setFocusable(true);
+        super.pieceDropped(currentPiece);
     }
 
     public void startTutorial() {
@@ -68,12 +73,11 @@ public class TutorialBoardController extends BoardController {
         if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 4) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
-        } else if (tutorialModel.getCurrentStepIndex() == 4) {
-            drawBackgroundblock();
-            stepTimer.stop();
-            ((TutorialQueue) pieceController.getBrickQueueManager()).setBrickQueue();
         } else if(tutorialModel.getCurrentStepIndex() == 5){
-            showImagePanel();
+            pieceFixedCount = 0;
+            BoardController.clearBoard();
+            drawBackgroundblock();
+            ((TutorialQueue) pieceController.getBrickQueueManager()).setBrickQueue();
         }
         else {
             // 튜토리얼 마지막 단계 도달한 경우 로직 추가
@@ -90,23 +94,5 @@ public class TutorialBoardController extends BoardController {
                 getBoardModel().setboard(3 + 11 * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
             }
         }
-    }
-    // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
-    private void showImagePanel(){
-        JPanel imagePanel = new JPanel();
-        TetrisFrameController frameController = new TetrisFrameController();
-        ImageIcon imageIcon = new ImageIcon(""); // 이미지 파일 경로 설정
-        JLabel imageLabel = new JLabel(imageIcon);
-        imagePanel.add(imageLabel);
-        frameController.setContentPane(imagePanel);
-    }
-
-    @Override
-    public void pieceDropped(Piece droppedPiece){
-        pieceFixedCount++;
-        System.out.println(pieceFixedCount);
-        /*if(!tutorialPieaceController.getIsFallingFinished()){
-            tutorialPieaceController.newPiece();
-        }*/
     }
 }
