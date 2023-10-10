@@ -31,7 +31,6 @@ public class BoardController extends JPanel implements ActionListener {
     protected boolean isStarted = false;
     protected boolean isPaused = false;
 
-
     public BoardController(PlayerPage parent, KeyInput input){
         this.boardModel = new BoardModel();
         this.playerPage = parent;
