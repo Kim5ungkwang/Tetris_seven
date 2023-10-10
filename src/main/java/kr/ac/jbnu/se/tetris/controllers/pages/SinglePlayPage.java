@@ -110,7 +110,8 @@ public class SinglePlayPage extends JPanel {
         timeAttackBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //여기에 타임어택 보드를 삽입
+                TimeAttackPage timeAttackPage = new TimeAttackPage(new Member(), p1Key);
+                timeAttackPage.setVisible(true);
             }
         });
     }

@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 
 public class AdapterController extends KeyAdapter {
 
+
     Logger logger = Logger.getLogger(AdapterController.class.getName());
-    public static AdapterController adapterController= new AdapterController();
     ArrayList<KeyInputController> memberList= new ArrayList<>();
 
-    private AdapterController(){
+    public AdapterController(){
         logger.info("adaptController start");
     }
     @Override

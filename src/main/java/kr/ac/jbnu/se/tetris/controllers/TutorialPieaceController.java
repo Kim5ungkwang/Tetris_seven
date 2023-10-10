@@ -19,7 +19,7 @@ public class TutorialPieaceController extends PieceController {
         this.isFallingFinished = false;
         this.setNextBlockPanel();
     }
-    public static int getRotateIndex(){
+    public int getRotateIndex(){
         return currentPiece.getRotateIndex();
     }
     @Override

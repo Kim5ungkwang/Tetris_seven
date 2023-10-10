@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 public class BoardController extends JPanel implements ActionListener {
     protected JLabel statusBar;
     @Getter
-    protected static BoardModel boardModel;
+    protected BoardModel boardModel;
     @Getter
     protected PlayerPage playerPage;
     @Getter
@@ -39,13 +39,14 @@ public class BoardController extends JPanel implements ActionListener {
         this.statusBar = parent.getStatusBar();
         this.pieceController = new PieceController(this);
 
-        this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
+        this.boardModel.setLoopDelay(600);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);
 
-        addKeyListener(AdapterController.adapterController);
-        AdapterController.adapterController.addList(new KeyInputController(input, this));
+        AdapterController adapterController = new AdapterController();
+        addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(input, this));
         setFocusable(true);
     }
 
@@ -97,7 +98,7 @@ public class BoardController extends JPanel implements ActionListener {
         pieceController.setNextBlockPanel();
         pieceController.newPiece();
         timer.start();
-        gameTimerController.timerstart();
+        gameTimerController.timerStart();
     }
 
     /**
@@ -110,12 +111,12 @@ public class BoardController extends JPanel implements ActionListener {
 
         if (isPaused) {
             timer.stop();
-            gameTimerController.timerpause();
-            playerPage.getStatusBar().setText(("paused"));
+            gameTimerController.timerPause();
+            //playerPage.getStatusBar().setText(("paused"));
         } else {
             timer.start();
-            gameTimerController.timerstart();
-            playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
+            gameTimerController.timerStart();
+            //playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
         }
         repaint();
     }
@@ -123,7 +124,7 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * 보드의 영역을 NoShape으로 초기화
      */
-    public static void clearBoard() {
+    public void clearBoard() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             boardModel.setboard(i, ShapeData.Tetrominoes.NoShape);
     }
@@ -155,7 +156,7 @@ public class BoardController extends JPanel implements ActionListener {
 
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
-            playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
+            //playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
@@ -270,7 +271,7 @@ public class BoardController extends JPanel implements ActionListener {
     }
 
     public void setStatusText(String text) {
-        playerPage.getStatusBar().setText(text);
+        //playerPage.getStatusBar().setText(text);
     }
 }
 
