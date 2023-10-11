@@ -18,7 +18,8 @@ public class TutorialModel{
             "<html>Step 3: 블록 회전하기<br>블록을 회전하려면 Q, E 키를 누르세요</html>",
             "<html>Step 4: 행 제거하기<br>블록을 한 줄에 꽉 차도록 쌓으세요</html>",
             "<html>그림과 같이 블럭을 쌓아주세요<html>",
-            "<html>Step 5: SRS(Super Rotation System) 사용하기<br>블록의 빈 공간에 다다르면 회전하면서 홈 사이에 블록을 넣으세요<br>T모양 블럭을 이용해서 SRS를 수행하고 세 줄을 없애보세요</html>"
+            "<html>Step 5: SRS(Super Rotation System) 사용하기<br>블록의 빈 공간에 다다르면 회전하면서 홈 사이에 블록을 넣으세요<br>T모양 블럭을 이용해서 SRS를 수행하고 세 줄을 없애보세요</html>",
+            "<html>SRS를 성공하셨습니다. 메인화면으로 이동하시려면 스킵을 눌러주세요"
     };
     public TutorialModel(){
         currentBrickIndex = 0;

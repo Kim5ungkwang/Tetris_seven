@@ -5,17 +5,27 @@ import kr.ac.jbnu.se.tetris.controllers.pages.SprintPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
+/**
+ * 스프린트 게임 모드 보드 컨트롤러 클래스
+ */
 public class SprintBoardController extends BoardController{
-    protected final int gameClearPoint;
+    protected final int gameClearPoint = 40; //게임을 종료하는 조건 defualt 40을 넘기는 스프린트 모드
     protected final SprintPage sprintPage;
+
+    /**
+     * 보드 컨트롤러 생성자
+     * @param sprintPage 보드가 그려질 페이지
+     * @param keyInput 게임을 진행할 때 사용하는 키
+     */
     public SprintBoardController(SprintPage sprintPage, KeyInput keyInput){
         super(sprintPage, keyInput);
         this.sprintPage = sprintPage;
         playerPage = sprintPage;
-        gameClearPoint = 40;
-    }
+}
 
-
+    /**
+     * 줄을 지우는 메서드
+     */
     @Override
     protected void removeFullLines(){
         int numFullLines = 0;
@@ -48,12 +58,14 @@ public class SprintBoardController extends BoardController{
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
             if(numLinesRemoved >= gameClearPoint)
-                gameClear();
+                gameClear();    // 지정해둔 값보다 많은 점수를 얻으면 게임을 종료한다.
         }
     }
 
 
-
+    /**
+     * 게임이 종료될때 호출하는 메서드
+     */
     public void gameClear(){
         pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
         gameTimerController.stop();
@@ -63,11 +75,16 @@ public class SprintBoardController extends BoardController{
         sprintPage.gameClear(gameTimerController.printGameTime());
     }
 
+    /**
+     * 게임이 시작될때 불러오는 메서드
+     */
     @Override
     public void start(){
         super.start();
-        sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));
+        sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));  // 점수판 초기화
     }
+
+    // 게임 오버 로직, 메서드 구현 필요함
 
 
 }

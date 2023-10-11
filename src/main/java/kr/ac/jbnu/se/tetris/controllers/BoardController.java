@@ -31,6 +31,11 @@ public class BoardController extends JPanel implements ActionListener {
     protected boolean isStarted = false;
     protected boolean isPaused = false;
 
+    /**
+     * BoardController 생성자
+     * @param parent 해당 보드가 그려지는 PlayerPage
+     * @param input 키도브의 입력 프리셋
+     */
     public BoardController(PlayerPage parent, KeyInput input){
         this.boardModel = new BoardModel();
         this.playerPage = parent;
@@ -167,8 +172,6 @@ public class BoardController extends JPanel implements ActionListener {
      * @param droppedPiece 앉은 상태의 piece
      */
     public void pieceDropped(Piece droppedPiece) {
-        System.out.println("PieceFixedCount: " + TutorialBoardController.getPieceFixedCount());
-        TutorialBoardController.pieceFixedCount++;
         for (int i = 0; i < 4; i++) {
             int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
             int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
@@ -193,7 +196,13 @@ public class BoardController extends JPanel implements ActionListener {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-
+    /**
+     * 보드를 그리는 메서드
+     * 먼저 보드위에 어떤 블럭이 있는지 그리고난 후
+     * 사용자가 움직이는 피스의 고스트 피스를 그리고
+     * 그 위에 사용자가 움직이는 피스를 그립니다.
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @SneakyThrows
     public void paint(Graphics g){
         super.paint(g);
@@ -239,7 +248,8 @@ public class BoardController extends JPanel implements ActionListener {
     }
 
     /**
-     * 해당 좌표에 블럭을 그리는 메서드
+     * 해당 좌표에 텅빈 사각형을 그리는 메서드 입니다.
+     * 그리드를 표현하기 위해 사용합니다.
      * @param g Grahpics g
      * @param x x좌표
      * @param y y좌표
@@ -253,6 +263,15 @@ public class BoardController extends JPanel implements ActionListener {
         g.drawRect(x, y, squareWidth, squareHeight);
     }
 
+    /**
+     * 해당 좌표에 고스트 피스를 그리기 위해 사용합니다
+     * @param g
+     * @param x x좌표
+     * @param y y좌표
+     * @param squareWidth 사각형 하나의 크기
+     * @param squareHeight 사각형 하나의 크기
+     * @param shape 어떤 테트로미노를 그릴것인지
+     */
     public void drawGhostSquare(Graphics g, int x, int y, int squareWidth, int squareHeight, ShapeData.Tetrominoes shape){
         Color color = ShapeData.SHAPE_COLOR[shape.ordinal()];
         g.setColor(color.brighter());
@@ -264,11 +283,17 @@ public class BoardController extends JPanel implements ActionListener {
 
     /**
      * gameOver했을때 사용하는 메서드
+     * 사용 안함
      */
     public void gameOver() {
         setStatusText("game over");
     }
 
+    /**
+     * 스테이터스바의 텍스트를 지정해주는 메서드
+     * 사용안함
+     * @param text 어떤 문자열을 그리게 할 것인지
+     */
     public void setStatusText(String text) {
         //playerPage.getStatusBar().setText(text);
     }
