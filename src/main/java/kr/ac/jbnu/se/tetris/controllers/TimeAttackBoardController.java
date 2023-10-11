@@ -83,7 +83,7 @@ public class TimeAttackBoardController extends BoardController{
     }
 
     /**
-     * 게임을 종료할 때 호출하는 메서드 (이 모드에 게임 오버는 없음)
+     * 게임을 종료할 때 호출하는 메서드
      */
     public void gameClear(){
         pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);

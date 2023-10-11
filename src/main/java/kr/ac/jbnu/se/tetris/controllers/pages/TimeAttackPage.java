@@ -105,7 +105,7 @@ public class TimeAttackPage extends PlayerPage {
         JLabel clearScore = new JLabel();
         clearScore.setFont(new Font("Serif", Font.BOLD, 35));
 
-        clearScore.setBounds(100, 50, 300, 50);
+        clearScore.setBounds(150, 50, 300, 50);
         goBackButton.setBounds(100, 120, 300, 50);
 
         gameClearFrame.setLayout(null);
@@ -113,7 +113,7 @@ public class TimeAttackPage extends PlayerPage {
         gameClearFrame.add(goBackButton);
 
         gameClearFrame.setVisible(true);
-        clearScore.setText(score);
+        clearScore.setText("Score : " + score);
         buttonAction();
 
         gameClearFrame.setVisible(true);
@@ -129,6 +129,10 @@ public class TimeAttackPage extends PlayerPage {
                 gameClearFrame.dispose(); // 다른 프레임도 닫기
             }
         });
+    }
+    @Override
+    public void raiseGameOverFrame(){
+        gameClear(scoreLable.getText());
     }
 
 }

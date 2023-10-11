@@ -52,4 +52,8 @@ public class PlayerPage extends JPanel{
     public PlayerPage() {
         //상속용
     }
+
+    public void raiseGameOverFrame(){
+        // 구현해서 사용하시오
+    }
 }
