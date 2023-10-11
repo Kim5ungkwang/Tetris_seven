@@ -21,6 +21,11 @@ public class NextBlockPanelController extends JPanel {
     NextBlockBox next3Box;
     NextBlockBox holdBox;
 
+    /**
+     * 4개의 NextBlockBox를 가지고있습니다
+     * 각각의 상자는 hold 상자 1개와 next블럭을 보여주는 상자 3개로 입니다.
+     * @param parent 보드와 함께 그려질 PlayerPage
+     */
     public NextBlockPanelController(PlayerPage parent){
         this.playerPage = parent;
         next1Box = new NextBlockBox(this);
@@ -44,6 +49,11 @@ public class NextBlockPanelController extends JPanel {
         setBackground(new Color(255, 255, 255));
         setVisible(true);
     }
+
+    /**
+     * hold블럭과 next블럭이 바뀔 때마다 호출하여
+     * Box상태를 갱신하는 메서드 입니다.
+     */
     public void NextBlockPanelUpdate(){
         holdBox.holdUpdate();
         next1Box.next1Update();
@@ -52,7 +62,10 @@ public class NextBlockPanelController extends JPanel {
     }
 
 
-
+    /**
+     * 상자의 내용 그리고 상자를 담을 패널을 그리는 함수입니다.
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     public void paint(Graphics g){
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());

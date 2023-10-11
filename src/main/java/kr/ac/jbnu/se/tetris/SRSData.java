@@ -1,5 +1,8 @@
 package kr.ac.jbnu.se.tetris;
 
+/**
+ * 블럭의 SRS데이터를 정의한 모델
+ */
 public class SRSData {
     static public final int[][][] srsKick = new int[][][]{    //증가는 right로테이션 감소는 left로테이션, x, y순서임
         {{0,0}, {-1, 0}, {-1, 1}, {0, -2}, {-1, -2}},   //0>>1

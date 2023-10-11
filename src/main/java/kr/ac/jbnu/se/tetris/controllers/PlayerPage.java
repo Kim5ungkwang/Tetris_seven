@@ -24,6 +24,11 @@ public class PlayerPage extends JPanel{
     @Getter
     protected JLabel gameTimer;
 
+    /**
+     * 게임이 이루어지는 화면을 구성하는 패널을 관리하는 클래스
+     * @param member 어떤 플레이어가 게임하는지
+     * @param keyInput 키 입력을 어떻게 하는지
+     */
     public PlayerPage(Member member, KeyInput keyInput){
         this.statusBar = new JLabel("0");   //사용안할예정
         this.gameTimer = new JLabel("00 : 00");

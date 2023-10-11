@@ -9,18 +9,18 @@ import lombok.Getter;
  * 움직이는 piece를 관리하는 클래스
  */
 public class PieceController {
-    protected BoardController boardController;
+    protected BoardController boardController;  //게임이 이루어지는 보드
     @Getter
-    protected Piece currentPiece;
+    protected Piece currentPiece;   //지금 움직이고 있는 피스객체
     @Getter
-    protected Piece holdPiece;
+    protected Piece holdPiece;  //hold 상태인 피스를 저장하는 피스객체
     @Getter
-    protected GhostPiece ghostPiece;
+    protected GhostPiece ghostPiece;    //사용자가 움직이고 있는 피스의 고스트 객체
     @Getter
-    protected BrickQueueManager brickQueueManager;
-    private NextBlockPanelController nextBlockPanelController;
-    static boolean isFallingFinished = false;
-    protected boolean isHolding = false;
+    protected BrickQueueManager brickQueueManager;  //새로운 블럭을 생성할때 쓰는 brickQueueManager
+    private NextBlockPanelController nextBlockPanelController;  //다음 피스와 hold중인 피스를 그리는 NextBlockPanelController
+    static boolean isFallingFinished = false;   //떨어지는 상태인지 확인
+    protected boolean isHolding = false;    //hold중인 상태인지 확인 -> hold를 반복하는 것을 방지
     private boolean isInfinity; //인피니티 체크 인피니티는 블록이 바닥에 닿아도 일정시간 움직일 수 있는 기능이다.
 
     /**
@@ -43,7 +43,7 @@ public class PieceController {
 
     public void init(){
         setNextBlockPanel();
-    }
+    }   //pieceControlelr와 nextBlockBox를 연결하기 위함
 
     public BoardController getBoardController(){
         return boardController;
