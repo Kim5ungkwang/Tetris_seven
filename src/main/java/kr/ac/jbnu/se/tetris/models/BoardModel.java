@@ -9,7 +9,7 @@ import lombok.Getter;
 public class BoardModel {
     static private final int BOARD_WIDTH = 10;  //board의 너비
     static private final int BOARD_HEIGHT = 22; //board의 높이
-    private ShapeData.Tetrominoes[] board;
+    ShapeData.Tetrominoes[] board;
 
     @Getter
     private int loopDelay;  //board에서 블럭이 떨어지는 시간

@@ -14,13 +14,14 @@ import java.awt.event.ActionListener;
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialBoardController extends BoardController {
+    TutorialPieaceController tutorialPieaceController;
     @Getter
     final private TutorialModel tutorialModel;
     TutorialPage tutorialPage;
     private Timer stepTimer;
     @Getter
     @Setter
-    public static int pieceFixedCount = 0;
+    public int pieceFixedCount = 0;
     public static int numLinesRemoved = 0;
     public TutorialBoardController(TutorialPage parent, KeyInput input){
         super(parent, input);
@@ -29,8 +30,8 @@ public class TutorialBoardController extends BoardController {
         playerPage = tutorialPage;
 
         this.statusBar = parent.getStatusBar();
-        this.pieceController = new TutorialPieaceController(this);
-
+        this.tutorialPieaceController = new TutorialPieaceController(this);
+        this.pieceController = tutorialPieaceController;
 
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
@@ -130,5 +131,9 @@ public class TutorialBoardController extends BoardController {
             repaint();
         }
     }
+    @Override
+    public void pieceDropped(Piece droppedPiece){
+        getPieceFixedCount();
 
+    }
 }

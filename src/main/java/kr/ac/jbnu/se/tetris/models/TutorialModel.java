@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.awt.*;
 
-public class TutorialModel{
+public class TutorialModel extends BoardModel{
 
     @Getter
     public static int currentStepIndex = 0; //현재 튜토리얼 스텝
