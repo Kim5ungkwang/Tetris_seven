@@ -150,7 +150,7 @@ public class PieceController {
     /**
      * currentPiece를 board에 고정하는 메서드
      */
-    private void pieceDropped()
+    public void pieceDropped()
     {
         boardController.pieceDropped(currentPiece);
     }

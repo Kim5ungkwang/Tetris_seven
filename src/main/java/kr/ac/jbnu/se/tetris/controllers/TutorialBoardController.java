@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.swing.*;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +21,7 @@ public class TutorialBoardController extends BoardController {
     @Getter
     @Setter
     public static int pieceFixedCount = 0;
-
+    public static int numLinesRemoved = 0;
     public TutorialBoardController(TutorialPage parent, KeyInput input){
         super(parent, input);
         this.boardModel = new BoardModel();
@@ -38,7 +37,7 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(5000, new ActionListener() {
+        stepTimer = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();
@@ -86,10 +85,8 @@ public class TutorialBoardController extends BoardController {
             pause();
             drawBackgroundblock();
             stepTimer.stop();
-        }
-        else {
-            // 튜토리얼 마지막 단계 도달한 경우 로직 추가
-            start();
+        } else if (numLinesRemoved == 3) {
+            tutorialModel.plusCurrnetStepIndex();
         }
     }
 
@@ -103,4 +100,35 @@ public class TutorialBoardController extends BoardController {
             }
         }
     }
+    @Override
+    protected void removeFullLines(){
+        int numFullLines = 0;
+
+        for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
+            boolean lineIsFull = true;
+
+            for (int j = 0; j < BoardModel.getBoardWidth(); ++j) {
+                if (shapeAt(j, i) == ShapeData.Tetrominoes.NoShape) {
+                    lineIsFull = false;
+                    break;
+                }
+            }
+
+            if (lineIsFull) {
+                ++numFullLines;
+                for (int k = i; k < BoardModel.getBoardHeight() - 1; ++k) {
+                    for (int j = 0; j < BoardModel.getBoardWidth(); ++j)
+                        boardModel.setboard((k * BoardModel.getBoardWidth()) + j, shapeAt(j, k + 1));
+                }
+            }
+        }
+
+        if (numFullLines > 0) {
+            numLinesRemoved += numFullLines;
+            pieceController.setIsFallingFinished(true);
+            pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
+            repaint();
+        }
+    }
+
 }

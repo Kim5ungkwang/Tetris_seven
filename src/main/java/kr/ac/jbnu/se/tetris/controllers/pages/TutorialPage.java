@@ -47,6 +47,9 @@ public class TutorialPage extends PlayerPage {
         tutorialStep.setFont(new Font("Serif", Font.BOLD, 25));
         tutorialStep.setForeground(Color.white);
 
+        this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
+        this.imageLabel = new JLabel(imageIcon); // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
+        imageLabel.setPreferredSize(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconWidth()));
 
         this.board = new TutorialBoardController(this, p1Key);
         this.nextBlockPanelController = new NextBlockPanelController(this);
@@ -55,13 +58,15 @@ public class TutorialPage extends PlayerPage {
 
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
-        tutorialStep.setBounds(900, 150, 350, 100);
-        skipButton.setBounds(900, 400,150, 50);
+        tutorialStep.setBounds(900, 150, 350, 300);
+        skipButton.setBounds(900, 500,150, 50);
+        imageLabel.setBounds(100, 300, 300, 300);
 
         tutorialPageFrame.add(board);
         tutorialPageFrame.add(nextBlockPanelController);
         tutorialPageFrame.add(tutorialStep);
         tutorialPageFrame.add(skipButton);
+        tutorialPageFrame.add(imageLabel);
         skipbuttonAction();
 
 
@@ -80,29 +85,11 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
 
-        /*if(TutorialModel.getCurrentStepIndex() == 4){
-            showImageLabel();
-        }
         if(TutorialModel.getCurrentStepIndex() == 6){
             tutorialFinished();
-        }*/
+        }
 
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    }
-
-    // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
-    // 언제 보여줄지 좀 더 연구하기: 처음부터 or JOptionPanel로 보여줄지 결정
-    public void showImageLabel(){
-        this.tutorialSRSFrame = new JFrame();
-        tutorialSRSFrame.setSize(1280, 720);
-        tutorialSRSFrame.setLayout(null);
-
-        this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
-        this.imageLabel = new JLabel(imageIcon);
-
-        tutorialSRSFrame.setVisible(true);
-        tutorialSRSFrame.add(imageLabel);
-
     }
 
     public void skipbuttonAction(){
