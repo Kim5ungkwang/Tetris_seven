@@ -60,7 +60,7 @@ public class TutorialPage extends PlayerPage {
         nextBlockPanelController.setBounds(415, 110, 100, 500);
         tutorialStep.setBounds(900, 150, 350, 300);
         skipButton.setBounds(900, 500,150, 50);
-        imageLabel.setBounds(100, 300, 150, 300);
+        imageLabel.setBounds(100, 300, 300, 300);
 
         tutorialPageFrame.add(board);
         tutorialPageFrame.add(nextBlockPanelController);
