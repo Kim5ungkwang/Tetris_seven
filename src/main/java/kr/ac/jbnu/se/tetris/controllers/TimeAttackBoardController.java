@@ -14,6 +14,7 @@ public class TimeAttackBoardController extends BoardController{
     private ReverseCountTimer reverseCountTimer;    //거꾸로 초를 세는 타이머
     @Getter
     private TimeAttackPage timeAttackPage;
+    private int gameLevel = 1;  //게임 진행 레벨, 시작 레벨은 1로
 
     /**
      * 타임어택 모드 보드 컨트롤러 생성자
@@ -73,9 +74,10 @@ public class TimeAttackBoardController extends BoardController{
             new SoundEffectPlayer().start();        // 블럭사라짐 효과음
             reverseCountTimer.addTimeLimit(numFullLines);   //기존 코드와 차이점 -> 줄을 지운만큼 타이머 시간을 더한다.
             numLinesRemoved += numFullLines;
-            timeAttackPage.getRemovedLine().setText(String.valueOf(numLinesRemoved));
+            timeAttackPage.getScoreLable().setText(String.valueOf(numLinesRemoved));
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
+            upLevel();
             repaint();
         }
     }
@@ -91,6 +93,7 @@ public class TimeAttackBoardController extends BoardController{
         repaint();
         timeAttackPage.gameClear(String.valueOf(numLinesRemoved));
     }
+
     @Override
     public void pause() {
         if (!isStarted) return;
@@ -105,5 +108,79 @@ public class TimeAttackBoardController extends BoardController{
             reverseCountTimer.timerStart();
         }
         repaint();
+    }
+
+    /**
+     * 삭제한 줄의 수에 따라 레벨을 변화시키는 메서드
+     */
+    public void upLevel(){
+        switch (this.gameLevel){
+            case 1:
+                if(numLinesRemoved >= 10){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+            case 2:
+                if(numLinesRemoved >= 20){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+            case 3:
+                if(numLinesRemoved >= 30){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+            case 4:
+                if(numLinesRemoved >= 40){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+            case 5:
+                if(numLinesRemoved >= 50){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+            case 6:
+                if(numLinesRemoved >= 60){
+                    gameLevel++;
+                    updateGameLevelState();
+                }
+                break;
+
+            default:
+                break;  //게임은 레벨은 7레벨까지 있습니다.
+        }
+    }
+
+    /**
+     * 게임의 레벨을 보여주는 Label과
+     * 게임의 레벨에 따라 변화하는 딜레이를 업데이트하는 메서드
+     */
+    public void updateGameLevelState(){
+        timeAttackPage.getGameLevelLabel().setText("Lv " + String.valueOf(gameLevel));
+        switch (this.gameLevel){
+            case 2:
+                timer.setDelay(400);
+                break;
+            case 3:
+                timer.setDelay(270);
+                break;
+            case 4:
+                timer.setDelay(160);
+                break;
+            case 5:
+                timer.setDelay(70);
+                break;
+            case 6:
+                timer.setDelay(40);
+                break;
+            default:
+                break;  //게임은 레벨은 7레벨까지 있습니다.
+        }
     }
 }
