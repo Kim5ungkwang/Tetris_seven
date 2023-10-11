@@ -286,7 +286,7 @@ public class BoardController extends JPanel implements ActionListener {
      * 사용 안함
      */
     public void gameOver() {
-        setStatusText("game over");
+        playerPage.raiseGameOverFrame();
     }
 
     /**

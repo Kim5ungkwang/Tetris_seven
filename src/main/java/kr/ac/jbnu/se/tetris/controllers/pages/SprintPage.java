@@ -16,8 +16,10 @@ public class SprintPage extends PlayerPage {
     @Getter
     JLabel removedLine;
     JFrame gameClearFrame;
+    JFrame gameOverFrame;
     JFrame sprintPageFrame;
-    JButton goBackButton;
+    JButton goBackButton1;
+    JButton goBackButton2;
     public SprintPage(Member member, KeyInput keyInput){
         super();
         sprintPageFrame = new JFrame();
@@ -26,7 +28,8 @@ public class SprintPage extends PlayerPage {
 
         this.removedLine = new JLabel("0");
         this.gameTimer = new JLabel("00 : 00");
-        this.goBackButton = new JButton("돌아가기");
+        this.goBackButton1 = new JButton("돌아가기");
+        this.goBackButton2 = new JButton("돌아가기");
 
         removedLine.setFont(new Font("Serif", Font.BOLD, 35));
         removedLine.setForeground(Color.white);
@@ -75,11 +78,11 @@ public class SprintPage extends PlayerPage {
         clearScore.setFont(new Font("Serif", Font.BOLD, 35));
 
         clearScore.setBounds(100, 50, 300, 50);
-        goBackButton.setBounds(100, 120, 300, 50);
+        goBackButton1.setBounds(100, 120, 300, 50);
 
         gameClearFrame.setLayout(null);
         gameClearFrame.add(clearScore);
-        gameClearFrame.add(goBackButton);
+        gameClearFrame.add(goBackButton1);
 
         gameClearFrame.setVisible(true);
         clearScore.setText("Clear Time  " + score);
@@ -88,14 +91,46 @@ public class SprintPage extends PlayerPage {
         gameClearFrame.setVisible(true);
         gameClearFrame.setLocationRelativeTo(null);
     }
+
+    @Override
+    public void raiseGameOverFrame(){
+       gameOverFrame = new JFrame();
+        gameOverFrame.setSize(500,250);
+
+        JLabel gameOverLabel = new JLabel();
+        gameOverLabel.setFont(new Font("Serif", Font.BOLD, 35));
+
+        gameOverLabel.setBounds(150, 50, 300, 50);
+        goBackButton2.setBounds(100, 120, 300, 50);
+
+        gameOverFrame.setLayout(null);
+        gameOverFrame.add(gameOverLabel);
+        gameOverFrame.add(goBackButton2);
+
+        gameOverFrame.setVisible(true);
+        gameOverLabel.setText("Game Over");
+        buttonAction();
+
+        gameOverFrame.setVisible(true);
+        gameOverFrame.setLocationRelativeTo(null);
+    }
+
     public void buttonAction(){
-        goBackButton.addActionListener(new ActionListener() {
+        goBackButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sprintPageFrame.dispose();
                 gameClearFrame.dispose();
             }
         });
+        goBackButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sprintPageFrame.dispose();
+                gameOverFrame.dispose();
+            }
+        });
     }
+
 
 }
