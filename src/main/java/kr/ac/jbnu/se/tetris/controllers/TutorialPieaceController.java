@@ -32,5 +32,11 @@ public class TutorialPieaceController extends PieceController {
     public boolean getIsFallingFinished() {
         return TutorialPieaceController.isFallingFinished;
     }
+    @Override
+    public void pieceDropped(){
+        tutorialBoardController.pieceDropped(currentPiece);
+        tutorialBoardController.pieceFixedCount++;
+        System.out.println("PieceFixedCount: " + TutorialBoardController.getPieceFixedCount());
+    }
 }
 

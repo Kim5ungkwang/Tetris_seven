@@ -17,47 +17,62 @@ public class TutorialQueue extends BrickQueueManager {
     @Override
     public ShapeData.Tetrominoes getNewShape(){
         this.brickQueueIndex %= brickQueueSize;
-        /*if(TutorialModel.getCurrentStepIndex() == 4){
-            brickQueueIndex = 0;
+        if(TutorialBoardController.getPieceFixedCount() == 0){
             return brickQueue[0];
-        }*/
+        }
         if(TutorialBoardController.getPieceFixedCount() == 1){
             return brickQueue[1];
-        }else if(TutorialBoardController.getPieceFixedCount() < 1){
+        } else if(TutorialBoardController.getPieceFixedCount() < 1){
             controller.getBoardController().clearBoard();
             controller.getTutorialBoardController().startTutorial();
             brickQueueIndex = 0;
             return brickQueue[0];
         }
-
-        if(brickQueueIndex == 1){
-            if(TutorialBoardController.getPieceFixedCount() == 2){
-                return brickQueue[2];
-            }
+        if(TutorialBoardController.getPieceFixedCount() == 2){
+            return brickQueue[2];
+        } else if(TutorialBoardController.getPieceFixedCount() < 2){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
-        if(brickQueueIndex == 2){
-            if(TutorialBoardController.getPieceFixedCount() == 3)
+        if(TutorialBoardController.getPieceFixedCount() == 3){
             return brickQueue[3];
+        } else if(TutorialBoardController.getPieceFixedCount() < 3){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
-        if(brickQueueIndex == 3){
-            if(TutorialBoardController.getPieceFixedCount() == 4){
-                return brickQueue[4];
-            }
+        if(TutorialBoardController.getPieceFixedCount() == 4){
+            return brickQueue[4];
+        } else if(TutorialBoardController.getPieceFixedCount() < 4){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
-        if(brickQueueIndex == 4){
-            if(TutorialBoardController.getPieceFixedCount() == 5){
-                return brickQueue[5];
-            }
+        if(TutorialBoardController.getPieceFixedCount() == 5){
+            return brickQueue[5];
+        } else if(TutorialBoardController.getPieceFixedCount() < 5){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
-        if(brickQueueIndex == 5){
-            if(TutorialBoardController.getPieceFixedCount() == 6){
-                return brickQueue[6];
-            }
+        if(TutorialBoardController.getPieceFixedCount() == 6){
+            return brickQueue[6];
+        } else if(TutorialBoardController.getPieceFixedCount() < 6){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
-        if(brickQueueIndex == 6){
-            if(TutorialBoardController.getPieceFixedCount() == 7){
-                return brickQueue[3];
-            }
+        if((TutorialBoardController.getPieceFixedCount() == 7) && (TutorialBoardController.numLinesRemoved != 3)){
+            controller.getBoardController().clearBoard();
+            controller.getTutorialBoardController().startTutorial();
+            brickQueueIndex = 0;
+            return brickQueue[0];
         }
         return brickQueue[brickQueueIndex++];
     }
