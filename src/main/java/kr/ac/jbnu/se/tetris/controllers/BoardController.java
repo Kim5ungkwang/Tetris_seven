@@ -43,7 +43,7 @@ public class BoardController extends JPanel implements ActionListener {
         this.statusBar = parent.getStatusBar();
         this.pieceController = new PieceController(this);
 
-        this.boardModel.setLoopDelay(600);  //루프 딜레이 설정 400
+        this.boardModel.setLoopDelay(700);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);

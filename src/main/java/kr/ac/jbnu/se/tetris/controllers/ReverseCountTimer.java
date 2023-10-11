@@ -14,7 +14,7 @@ import java.util.concurrent.Delayed;
 public class ReverseCountTimer extends GameTimerController{
     private int timeLimit;  //제한 시간을 저장하는 변수
     private int addNum = 5; //블럭을 지웠을 때 얼마만큼 시간을 더해줄 것인지
-    private final int INITIAL_TIME_LIMIT = 10;  // 초기시간
+    private final int INITIAL_TIME_LIMIT = 30;  // 초기시간
     TimeAttackBoardController board;
 
     /**

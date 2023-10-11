@@ -17,32 +17,37 @@ import java.awt.event.WindowEvent;
 
 
 public class TimeAttackPage extends PlayerPage {
-    JPanel backgroundPanel;
+    private JPanel backgroundPanel;
     @Getter
-    JLabel removedLine;
+    private JLabel scoreLable;
     @Getter
-    JLabel timeLimit;
-    JFrame gameClearFrame;
-    JFrame timeAttackPageFrame;
-    JButton goBackButton;
-    TimeAttackBoardController timeAttackBoardController;
+    private JLabel timeLimit;
+    private JFrame gameClearFrame;
+    private JFrame timeAttackPageFrame;
+    private JButton goBackButton;
+    @Getter
+    private JLabel gameLevelLabel;
+    private TimeAttackBoardController timeAttackBoardController;
     public TimeAttackPage(Member member, KeyInput keyInput){
         super();
         timeAttackPageFrame = new JFrame();
         timeAttackPageFrame.setSize(1280, 720);
         timeAttackPageFrame.setLayout(null);
 
-        this.removedLine = new JLabel("0");
+        this.scoreLable = new JLabel("0");
         this.gameTimer = new JLabel("00 : 00"); //안씀
         this.goBackButton = new JButton("돌아가기");
         this.timeLimit = new JLabel("00 : 00");
+        this.gameLevelLabel = new JLabel("Lv 1");
 
-        removedLine.setFont(new Font("Serif", Font.BOLD, 35));
-        removedLine.setForeground(Color.white);
+        scoreLable.setFont(new Font("Serif", Font.BOLD, 35));
+        scoreLable.setForeground(Color.white);
         //gameTimer.setFont(new Font("Serif", Font.BOLD, 25));    //
         //gameTimer.setForeground(Color.white);
         timeLimit.setFont(new Font("Serif", Font.BOLD, 35));    //
         timeLimit.setForeground(Color.white);   //
+        gameLevelLabel.setFont(new Font("Serif", Font.BOLD, 40));
+        gameLevelLabel.setForeground(Color.white);
 
         this.timeAttackBoardController = new TimeAttackBoardController(this, keyInput);
         board = timeAttackBoardController;
@@ -52,16 +57,18 @@ public class TimeAttackPage extends PlayerPage {
 
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
-        removedLine.setBounds(900,300,100, 100);
-        timeLimit.setBounds(900, 150, 150, 100);
+        scoreLable.setBounds(800,400,300, 100);
+        timeLimit.setBounds(800, 300, 150, 100);
         //gameTimer.setBounds(900, 450, 150, 150);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
+        gameLevelLabel.setBounds(700, 10, 100, 100);
 
-        timeAttackPageFrame.add(removedLine);
-        timeAttackPageFrame.add(timeLimit); //
+        timeAttackPageFrame.add(scoreLable);
+        timeAttackPageFrame.add(timeLimit);
         //timeAttackPageFrame.add(gameTimer);
         timeAttackPageFrame.add(board);
         timeAttackPageFrame.add(nextBlockPanelController);
+        timeAttackPageFrame.add(gameLevelLabel);
         setSize(new Dimension(1280, 720));
 
         backgroundPanel = new JPanel(){ //배경 패널 설정
@@ -106,7 +113,7 @@ public class TimeAttackPage extends PlayerPage {
         gameClearFrame.add(goBackButton);
 
         gameClearFrame.setVisible(true);
-        clearScore.setText("Clear Point  " + score);
+        clearScore.setText(score);
         buttonAction();
 
         gameClearFrame.setVisible(true);

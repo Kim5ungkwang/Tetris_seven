@@ -33,6 +33,7 @@ public class TutorialBoardController extends BoardController {
         this.tutorialPieaceController = new TutorialPieaceController(this);
         this.pieceController = tutorialPieaceController;
 
+
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
