@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 블럭의 모양을 정의한 클래스
+ */
 public class ShapeData {
     static final public int TETROMINOES_SIZE = 7;
 

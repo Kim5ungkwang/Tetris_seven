@@ -4,6 +4,9 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 블럭이 삭제될떄 나는 효과음을 관리하는 메서드
+ */
 public class SoundEffectPlayer extends Thread {
     private String soundFilePath;
     private boolean isPlaying;

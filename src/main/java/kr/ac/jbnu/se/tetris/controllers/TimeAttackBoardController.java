@@ -6,11 +6,20 @@ import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import lombok.Getter;
 
+/**
+ * 타임어택 모드 보드 컨트롤러
+ */
 public class TimeAttackBoardController extends BoardController{
     @Getter
-    private ReverseCountTimer reverseCountTimer;
+    private ReverseCountTimer reverseCountTimer;    //거꾸로 초를 세는 타이머
     @Getter
     private TimeAttackPage timeAttackPage;
+
+    /**
+     * 타임어택 모드 보드 컨트롤러 생성자
+     * @param parent 게임이 그려질 페이지
+     * @param input 게임을 진행할 때 사용하는 키
+     */
     public TimeAttackBoardController(TimeAttackPage parent, KeyInput input){
         super(parent, input);
         timeAttackPage = parent;
@@ -18,6 +27,9 @@ public class TimeAttackBoardController extends BoardController{
         reverseCountTimer = new ReverseCountTimer(this);
     }
 
+    /**
+     * 게임을 시작할 때 호출하는 메서드
+     */
     @Override
     public void start(){
         if (isPaused()) return; // 일시정지 상태에선 게임을 시작할 수 없다.
@@ -28,9 +40,12 @@ public class TimeAttackBoardController extends BoardController{
         pieceController.setNextBlockPanel();
         pieceController.newPiece();
         timer.start();
-        reverseCountTimer.timerStart();
+        reverseCountTimer.timerStart(); //기존 코드와 차이점 일반 타이머를 리버스 타이머로 변경
     }
 
+    /**
+     * 블럭이 차있을 때 한줄을 지우는 메서드
+     */
     @Override
     protected void removeFullLines() {
         int numFullLines = 0;
@@ -56,7 +71,7 @@ public class TimeAttackBoardController extends BoardController{
 
         if (numFullLines > 0) {
             new SoundEffectPlayer().start();        // 블럭사라짐 효과음
-            reverseCountTimer.addTimeLimit(numFullLines);
+            reverseCountTimer.addTimeLimit(numFullLines);   //기존 코드와 차이점 -> 줄을 지운만큼 타이머 시간을 더한다.
             numLinesRemoved += numFullLines;
             timeAttackPage.getRemovedLine().setText(String.valueOf(numLinesRemoved));
             pieceController.setIsFallingFinished(true);
@@ -65,6 +80,9 @@ public class TimeAttackBoardController extends BoardController{
         }
     }
 
+    /**
+     * 게임을 종료할 때 호출하는 메서드 (이 모드에 게임 오버는 없음)
+     */
     public void gameClear(){
         pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
         reverseCountTimer.stop();
