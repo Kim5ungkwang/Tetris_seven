@@ -10,8 +10,8 @@ java:S2209"5Change this instance-reference to a static reference.(¤ï»Ê8Š‹‚Ç±1
 X
 java:S2696!"6Make the enclosing method "static" or remove this set.(ÄäÛãþÿÿÿÿ8Š‹‚Ç±1
 X
-java:S1128";Remove this unused import 'kr.ac.jbnu.se.tetris.ShapeData'.(ï½”›8Õ¶ò»±1
+java:S1128";Remove this unused import 'kr.ac.jbnu.se.tetris.ShapeData'.(ï½”›8Ü ¨ú±1
 G
-java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµ8Õ¶ò»±1
+java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµ8Ü ¨ú±1
 B
-java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8Õ¶ò»±1
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8Ü ¨ú±1

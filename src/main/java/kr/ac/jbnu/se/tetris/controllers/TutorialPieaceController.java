@@ -35,22 +35,10 @@ public class TutorialPieaceController extends PieceController {
     @Override
     public void pieceDropped(){
         tutorialBoardController.pieceDropped(currentPiece);
-        //tutorialBoardController.pieceFixedCount++;
-        //System.out.println("PieceFixedCount: " + TutorialBoardController.getPieceFixedCount());
+        tutorialBoardController.pieceFixedCount++;
+        System.out.println("PieceFixedCount: " + tutorialBoardController.getPieceFixedCount());
     }
-    @Override
-    public void oneLineDown(){
-        if(getIsInfinity() && !tryMove(currentPiece, currentPiece.getCurrentX(), currentPiece.getCurrentY() - 1)) {
-            pieceDropped();
-        }
-        else if (!tryMove(currentPiece, currentPiece.getCurrentX(), currentPiece.getCurrentY() - 1)) {
-            setIsInfinity(true);  //바닥에 붙은 상태에서 한번 더 기회를 준다.
-            return;
-        }
-
-        setIsInfinity(true); //한칸 아래로 내려갈 수 있다면 인피니티는 초기화 -> 한번 더 가능
-    }
-    @Override
+    /*@Override
     public void dropDown(){
         if(getIsInfinity())
             return;
@@ -61,6 +49,6 @@ public class TutorialPieaceController extends PieceController {
             --newY;
         }
         pieceDropped();
-    }
+    }*/
 }
 

@@ -1,7 +1,7 @@
 
 X
-java:S2696S"6Make the enclosing method "static" or remove this set.(şİıÿÿÿÿ8²ÓÉ™±1
+java:S2696S"6Make the enclosing method "static" or remove this set.(şİıÿÿÿÿ8Ë¸îî±1
 W
-java:S2209S"5Change this instance-reference to a static reference.(şİıÿÿÿÿ8²ÓÉ™±1
-H	java:S106Ê"+Replace this use of System.out by a logger.(ğª‚‡8¿ÓÉ™±1
-H	java:S106Ò"+Replace this use of System.out by a logger.(ğª‚‡8ÀÓÉ™±1
+java:S2209S"5Change this instance-reference to a static reference.(şİıÿÿÿÿ8Ë¸îî±1
+H	java:S106Ê"+Replace this use of System.out by a logger.(ğª‚‡8Ø¸îî±1
+H	java:S106Ò"+Replace this use of System.out by a logger.(ğª‚‡8Ø¸îî±1

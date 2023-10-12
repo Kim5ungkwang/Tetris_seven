@@ -5,14 +5,11 @@ S
 java:S1948"1Make "pieceController" transient or serializable.(Õ•®Ñüÿÿÿÿ8µÉªÅ±1
 R
 java:S1948"5Make "gameTimerController" transient or serializable.(—Âê´8µÉªÅ±1
-X	java:S125s"<This block of commented-out lines of code should be removed.(‘žÑ‘8¿ÉªÅ±1
-X	java:S125w"<This block of commented-out lines of code should be removed.(é£¢»8ÀÉªÅ±1
+X	java:S125w"<This block of commented-out lines of code should be removed.(‘žÑ‘8¯ßã÷±1
+X	java:S125{"<This block of commented-out lines of code should be removed.(é£¢»8¯ßã÷±1
 o
-java:S3776‡"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ˆ…Â8ÀÉªÅ±1
-Y	java:S125Ÿ"<This block of commented-out lines of code should be removed.(é£¢»8ÂÉªÅ±1
-M	java:S106«"+Replace this use of System.out by a logger.(ŽÅ«ûÿÿÿÿ8ÃÉªÅ±1
-T
-java:S2696¬"6Make the enclosing method "static" or remove this set.(ƒ¯ÃÑ8ÃÉªÅ±1
+java:S3776‹"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ˆ…Â8±ßã÷±1
+Y	java:S125£"<This block of commented-out lines of code should be removed.(é£¢»8¶ßã÷±1
 X
-java:S1161Ç":Add the "@Override" annotation above this method signature(¶øÂÁ8ÅÉªÅ±1
-Y	java:S125’"<This block of commented-out lines of code should be removed.(û¹Ù­8ËÉªÅ±1
+java:S1161Ï":Add the "@Override" annotation above this method signature(¶øÂÁ8ºßã÷±1
+Y	java:S125ª"<This block of commented-out lines of code should be removed.(û¹Ù­8ËÉªÅ±1
