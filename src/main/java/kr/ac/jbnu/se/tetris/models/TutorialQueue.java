@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris.models;
 import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
 import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
+import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
 
 public class TutorialQueue extends BrickQueueManager {
     TutorialPieaceController controller;
