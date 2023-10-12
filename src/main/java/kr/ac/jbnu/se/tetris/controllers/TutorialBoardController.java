@@ -17,6 +17,7 @@ public class TutorialBoardController extends BoardController {
     TutorialPieaceController tutorialPieaceController;
     @Getter
     final private TutorialModel tutorialModel;
+
     TutorialPage tutorialPage;
     private Timer stepTimer;
     @Getter
@@ -30,16 +31,13 @@ public class TutorialBoardController extends BoardController {
         playerPage = tutorialPage;
 
         this.statusBar = parent.getStatusBar();
-        this.tutorialPieaceController = new TutorialPieaceController(this);
-        this.pieceController = tutorialPieaceController;
-
-
+        this.pieceController = new TutorialPieaceController(this);
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(3000, new ActionListener() {
+        stepTimer = new Timer(1, new ActionListener() {  //3000
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();
@@ -134,7 +132,19 @@ public class TutorialBoardController extends BoardController {
     }
     @Override
     public void pieceDropped(Piece droppedPiece){
-        getPieceFixedCount();
+        System.out.println("PieceFixedCount: " + getPieceFixedCount());
+        pieceFixedCount++;
+        //getPieceFixedCount();
+        for (int i = 0; i < 4; i++) {
+            int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
+            int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
+            boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape());
+        }
+
+        removeFullLines();  //고정한 이후 지울 수 있는 줄이 있는지 확인
+
+        if (!pieceController.getIsFallingFinished())
+            pieceController.newPiece();
 
     }
 }

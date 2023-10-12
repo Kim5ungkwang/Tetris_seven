@@ -34,9 +34,8 @@ public class TutorialPieaceController extends PieceController {
     }
     @Override
     public void pieceDropped(){
+        //BREAK
         tutorialBoardController.pieceDropped(currentPiece);
-        //tutorialBoardController.pieceFixedCount++;
-        //System.out.println("PieceFixedCount: " + TutorialBoardController.getPieceFixedCount());
     }
     @Override
     public void oneLineDown(){

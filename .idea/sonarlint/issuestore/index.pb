@@ -45,8 +45,6 @@ i
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 y
 Isrc/main/java/kr/ac/jbnu/se/tetris/controllers/TetrisFrameController.java,e\6\e65678cea5f82976bdffb7661cc097dfaecec0ac
-m
-=src/main/java/kr/ac/jbnu/se/tetris/models/GameTimerModel.java,d\9\d967f61a1a7bdb558b9802802d6ea818fbe7e6fe
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
@@ -79,8 +77,6 @@ FTetris_seven/src/main/java/kr/ac/jbnu/se/tetris/views/TetrisBoard.java,7\c\7cd
 Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/MainPageController.java,0\e\0e049ec58332946d36bee36f00ea6766783fbf2f
 x
 Hsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/TimeAttackPage.java,6\7\67fb6e51e95c2ec6744fba3e34d5735b1e6d4efc
-x
-Hsrc/main/java/kr/ac/jbnu/se/tetris/controllers/TimeAttackController.java,5\6\56a883b1f7e50d7eb136aa57beed98c5e15f3625
 y
 Isrc/main/java/kr/ac/jbnu/se/tetris/controllers/SprintBoardController.java,1\5\15b70d00e28d1facf2b674b9b150becb4db8284e
 }
