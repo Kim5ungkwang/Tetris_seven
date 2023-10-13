@@ -152,5 +152,4 @@ public class TutorialBoardController extends BoardController {
         TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
         tutorialPieaceController.resetBrickQueue();
     }
-    }*/
 }
