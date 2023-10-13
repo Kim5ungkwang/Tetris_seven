@@ -17,10 +17,9 @@ public class SprintBoardController extends BoardController{
     /**
      * 보드 컨트롤러 생성자
      * @param sprintPage 보드가 그려질 페이지
-     * @param keyInput 게임을 진행할 때 사용하는 키
      */
-    public SprintBoardController(SprintPage sprintPage, KeyInput keyInput, Random rand){
-        super(sprintPage, keyInput, rand);
+    public SprintBoardController(SprintPage sprintPage, Random rand){
+        super(sprintPage, rand);
         this.sprintPage = sprintPage;
         playerPage = sprintPage;
 }

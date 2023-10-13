@@ -1,11 +1,14 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
+import kr.ac.jbnu.se.tetris.models.KeyInput;
+import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
  * mainPage에서 멀티플레이버튼을 눌렀을 때 나오는 페이지를 관리하는 메서드
@@ -22,6 +25,10 @@ public class MutliPlayPage extends JPanel{
     static ImageIcon localPlayImg, onlineImg, undoImg;
     @Getter
     JButton localPlayBt, onlineBt, undoBt;
+    KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");
+    KeyInput p2Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player2key.json");
+    Random p1Rand;
+    Random p2Rand;
 
     public MutliPlayPage(MainPageController parent){
         this.mainPage = parent;
@@ -32,6 +39,14 @@ public class MutliPlayPage extends JPanel{
         buttonPanelInit();
         setBackground(new Color(0,0,0, 153));
         setVisible(false);
+
+        double x= Math.random()*10000;
+        p1Rand= new Random((long) x);
+        p1Rand.nextInt();
+
+        double y= Math.random()*10000;
+        p2Rand= new Random((long) y);
+        p2Rand.nextInt();
     }
 
     /**
@@ -98,7 +113,8 @@ public class MutliPlayPage extends JPanel{
         localPlayBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 로컬 2인 모드
+                LocalTwoPlayPage localTwoPlayPage = new LocalTwoPlayPage(new Member(), p1Key, p1Rand, new Member(), p2Key, p2Rand);
+                localTwoPlayPage.setVisible(true);
             }
         });
     }

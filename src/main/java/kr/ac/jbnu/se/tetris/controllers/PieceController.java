@@ -157,7 +157,6 @@ public class PieceController {
 
     /**
      * 블럭 hold 메서드
-     * @throws CloneNotSupportedException
      */
     public void holdingPiece() throws CloneNotSupportedException {
         if (!isHolding) {
