@@ -143,6 +143,7 @@ public class TutorialBoardController extends BoardController {
             pieceController.newPiece();
 
     }
+        */
 
     /**
      * 튜토리얼 리셋 메서드

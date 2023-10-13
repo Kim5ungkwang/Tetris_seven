@@ -43,9 +43,9 @@ public class KeyInputController {
                 pieceController.rotateRight();
             } else if (keycode == input.getDropDown()) {
                 pieceController.dropDown();
-            }/*else if (keycode==input.getOneLineDown()){
+            }else if (keycode==input.getOneLineDown()){
                 pieceController.oneLineDown();
-            }*/
+            }
         }
     }
 }

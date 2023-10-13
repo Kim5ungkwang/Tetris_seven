@@ -48,5 +48,6 @@ public class TutorialPieaceController extends PieceController {
         }
         pieceDropped();
     }*/
+
 }
 
