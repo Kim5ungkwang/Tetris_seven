@@ -1,10 +1,6 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
-import lombok.Setter;
-
-import java.awt.*;
 
 public class TutorialModel extends BoardModel{
 

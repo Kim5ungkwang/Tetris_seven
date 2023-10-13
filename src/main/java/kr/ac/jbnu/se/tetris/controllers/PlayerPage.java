@@ -1,12 +1,10 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.controllers.pages.LocalTwoPlayPage;
-import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
+import kr.ac.jbnu.se.tetris.views.pages.LocalTwoPlayPage;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
 import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;

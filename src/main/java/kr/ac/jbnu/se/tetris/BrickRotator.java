@@ -1,10 +1,8 @@
 package kr.ac.jbnu.se.tetris;
 
-import kr.ac.jbnu.se.tetris.controllers.BoardController;
 import kr.ac.jbnu.se.tetris.controllers.PieceController;
-import kr.ac.jbnu.se.tetris.models.Coordinates;
-
-import java.awt.*;
+import kr.ac.jbnu.se.tetris.models.SRSData;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
 
 /**
  *블록의 회전을 담당하는 유틸리티 클래스

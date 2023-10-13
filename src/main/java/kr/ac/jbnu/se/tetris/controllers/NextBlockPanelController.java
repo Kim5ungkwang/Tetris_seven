@@ -1,11 +1,9 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * 홀드 블록과 다음 블록을 보여주는 박스를 관리하는 클래스

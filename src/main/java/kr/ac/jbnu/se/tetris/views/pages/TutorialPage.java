@@ -1,6 +1,5 @@
-package kr.ac.jbnu.se.tetris.controllers.pages;
+package kr.ac.jbnu.se.tetris.views.pages;
 
-import com.sun.tools.javac.Main;
 import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
@@ -13,9 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
-import static kr.ac.jbnu.se.tetris.models.TutorialModel.currentStepIndex;
 
 public class TutorialPage extends PlayerPage {
     JPanel backgroundPanel;

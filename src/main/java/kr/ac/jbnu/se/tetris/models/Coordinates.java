@@ -1,7 +1,5 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
-
 /**
  * 피스를 구성하는 1x1블록을 4개를 관리하는 클래스
  */

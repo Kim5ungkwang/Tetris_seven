@@ -1,9 +1,8 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
-import kr.ac.jbnu.se.tetris.controllers.pages.TimeAttackPage;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
+import kr.ac.jbnu.se.tetris.views.pages.TimeAttackPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
-import kr.ac.jbnu.se.tetris.models.KeyInput;
 import lombok.Getter;
 
 import java.util.Random;

@@ -1,8 +1,7 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
-import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Piece;
 import lombok.Getter;
 import lombok.SneakyThrows;

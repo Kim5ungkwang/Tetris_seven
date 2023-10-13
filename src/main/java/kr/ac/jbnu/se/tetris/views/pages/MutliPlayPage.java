@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.tetris.controllers.pages;
+package kr.ac.jbnu.se.tetris.views.pages;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Member;
