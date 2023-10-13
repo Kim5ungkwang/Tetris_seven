@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class PlayerPage extends JPanel{
     static final protected int PLAYERPAGE_WIDTH = 400;
@@ -23,6 +24,7 @@ public class PlayerPage extends JPanel{
     protected NextBlockPanelController nextBlockPanelController;
     @Getter
     protected JLabel gameTimer;
+    Random rand = new Random(1);
 
     /**
      * 게임이 이루어지는 화면을 구성하는 패널을 관리하는 클래스
@@ -34,7 +36,7 @@ public class PlayerPage extends JPanel{
         this.gameTimer = new JLabel("00 : 00");
         this.statusBar = new JLabel(" 0");
 
-        this.board = new BoardController( this, keyInput);
+        this.board = new BoardController( this, keyInput, rand);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
@@ -47,6 +49,11 @@ public class PlayerPage extends JPanel{
         setSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
 
         setVisible(true);
+
+        //AdapterController adapterController = new AdapterController();
+        //addKeyListener(adapterController);
+        //adapterController.addList(new KeyInputController(keyInput,board));
+        //setFocusable(true);
     }
 
     public PlayerPage() {

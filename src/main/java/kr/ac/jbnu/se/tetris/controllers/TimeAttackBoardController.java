@@ -6,6 +6,8 @@ import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import lombok.Getter;
 
+import java.util.Random;
+
 /**
  * 타임어택 모드 보드 컨트롤러
  */
@@ -21,8 +23,9 @@ public class TimeAttackBoardController extends BoardController{
      * @param parent 게임이 그려질 페이지
      * @param input 게임을 진행할 때 사용하는 키
      */
-    public TimeAttackBoardController(TimeAttackPage parent, KeyInput input){
-        super(parent, input);
+    public TimeAttackBoardController(TimeAttackPage parent, KeyInput input, Random rand){
+        super(parent, input, rand);
+        this.rand = rand;
         timeAttackPage = parent;
         playerPage = parent;
         reverseCountTimer = new ReverseCountTimer(this);

@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class SprintPage extends PlayerPage {
     JPanel backgroundPanel;
@@ -20,7 +21,7 @@ public class SprintPage extends PlayerPage {
     JFrame sprintPageFrame;
     JButton goBackButton1;
     JButton goBackButton2;
-    public SprintPage(Member member, KeyInput keyInput){
+    public SprintPage(Member member, KeyInput keyInput, Random rand){
         super();
         sprintPageFrame = new JFrame();
         sprintPageFrame.setSize(1280, 720);
@@ -36,10 +37,11 @@ public class SprintPage extends PlayerPage {
         gameTimer.setFont(new Font("Serif", Font.BOLD, 35));
         gameTimer.setForeground(Color.white);
 
-        this.board = new SprintBoardController(this, keyInput);
+        this.board = new SprintBoardController(this, keyInput, rand);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
+
 
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
@@ -68,6 +70,11 @@ public class SprintPage extends PlayerPage {
         sprintPageFrame.setLocationRelativeTo(null);
 
         sprintPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        AdapterController adapterController = new AdapterController();
+        sprintPageFrame.setFocusable(true);
+        sprintPageFrame.addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(keyInput,board));
     }
 
     public void gameClear(String score){

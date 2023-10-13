@@ -1,8 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
-import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
-import kr.ac.jbnu.se.tetris.controllers.PlayerPage;
-import kr.ac.jbnu.se.tetris.controllers.TimeAttackBoardController;
+import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
@@ -14,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Random;
 
 
 public class TimeAttackPage extends PlayerPage {
@@ -28,8 +27,9 @@ public class TimeAttackPage extends PlayerPage {
     @Getter
     private JLabel gameLevelLabel;
     private TimeAttackBoardController timeAttackBoardController;
-    public TimeAttackPage(Member member, KeyInput keyInput){
+    public TimeAttackPage(Member member, KeyInput keyInput, Random rand){
         super();
+
         timeAttackPageFrame = new JFrame();
         timeAttackPageFrame.setSize(1280, 720);
         timeAttackPageFrame.setLayout(null);
@@ -49,7 +49,7 @@ public class TimeAttackPage extends PlayerPage {
         gameLevelLabel.setFont(new Font("Serif", Font.BOLD, 40));
         gameLevelLabel.setForeground(Color.white);
 
-        this.timeAttackBoardController = new TimeAttackBoardController(this, keyInput);
+        this.timeAttackBoardController = new TimeAttackBoardController(this, keyInput, rand);
         board = timeAttackBoardController;
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
@@ -96,6 +96,11 @@ public class TimeAttackPage extends PlayerPage {
                 timeAttackPageFrame.dispose(); // 창 닫기
             }
         });
+
+        AdapterController adapterController = new AdapterController();
+        timeAttackPageFrame.setFocusable(true);
+        timeAttackPageFrame.addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(keyInput,board));
 
     }
     public void gameClear(String score){

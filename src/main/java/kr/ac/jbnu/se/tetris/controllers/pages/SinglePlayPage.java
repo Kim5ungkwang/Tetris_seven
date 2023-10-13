@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
  * mainPage에서 싱글플레이 버튼을 눌렀을 때 나오는 패널을 관리하는 클래스
@@ -25,15 +26,16 @@ public class SinglePlayPage extends JPanel {
     static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg;
     @Getter
     JButton sprintBt, tutorialBt, timeAttackBt, undoBt;
-
-
+    Random rand;
     KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");   //임시
 
     public SinglePlayPage(MainPageController parent){
         this.mainPage = parent;
         setLayout(null);
         setSize(1280, 720);
-
+        double x= Math.random()*10000;
+        rand= new Random((long) x);
+        rand.nextInt();
 
         buttonPanel = new JPanel();
         buttonInit();
@@ -101,14 +103,14 @@ public class SinglePlayPage extends JPanel {
         sprintBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SprintPage sprintPage = new SprintPage(new Member(), p1Key);
+                SprintPage sprintPage = new SprintPage(new Member(), p1Key, rand);
                 sprintPage.setVisible(true);
             }
         });
         timeAttackBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TimeAttackPage timeAttackPage = new TimeAttackPage(new Member(), p1Key);
+                TimeAttackPage timeAttackPage = new TimeAttackPage(new Member(), p1Key, rand);
                 timeAttackPage.setVisible(true);
             }
         });

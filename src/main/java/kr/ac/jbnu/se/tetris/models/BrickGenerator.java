@@ -18,7 +18,7 @@ public class BrickGenerator {
     private boolean[] visitedTetrominoes = new boolean[8];  //테트로미노가 등장했는지 확인하는 변수
     private int brickQueueIndex;    //블록 배열을 만들때 사용하는 인덱스
     @Setter
-    private int seed;   //배열을 만들때 사용되는 시드 값
+    private int seed;   //배열을 만들때 사용되는 시드 값, ThreadLocalRandom -> 동시 접근 문제 서버를 사용하는 우리는 사용할 수 있을듯
 
     /**
      *visitedTetrominoes를 false로 초기화한다
@@ -32,9 +32,9 @@ public class BrickGenerator {
     /**
      *새로운 블록 배열을 받기 위해 초기화하는 메서드이다.
      */
-    public void initializeBrickGenerator(){
+    public void initializeBrickGenerator(int seed){
         Arrays.fill(visitedTetrominoes, false);
-        this.seed = 1;  //네트웍에서 받아와야할 부분
+        this.seed = seed;  //네트웍에서 받아와야할 부분
         brickQueueIndex = 0;
         makeNewBrickArray(this.seed);
     }

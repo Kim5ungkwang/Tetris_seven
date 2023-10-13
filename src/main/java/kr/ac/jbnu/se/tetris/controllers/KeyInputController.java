@@ -18,6 +18,7 @@ public class KeyInputController {
         this.input = input;
         this.controller=controller;
         this.pieceController = controller.getPieceController();
+
         moveSound = new Music("source/sound/movesound.wav",false);
     }
 

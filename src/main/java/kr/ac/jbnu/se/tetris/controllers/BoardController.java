@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
  *게임이 이루어지는 보드를 관리하는 클래스
@@ -30,13 +31,15 @@ public class BoardController extends JPanel implements ActionListener {
 
     protected boolean isStarted = false;
     protected boolean isPaused = false;
-
+    @Getter
+    protected Random rand;
     /**
      * BoardController 생성자
      * @param parent 해당 보드가 그려지는 PlayerPage
      * @param input 키도브의 입력 프리셋
      */
-    public BoardController(PlayerPage parent, KeyInput input){
+    public BoardController(PlayerPage parent, KeyInput input, Random rand){
+        this.rand = rand;
         this.boardModel = new BoardModel();
         this.playerPage = parent;
 
@@ -48,10 +51,10 @@ public class BoardController extends JPanel implements ActionListener {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
         this.gameTimerController = new GameTimerController(this);
 
-        AdapterController adapterController = new AdapterController();
-        addKeyListener(adapterController);
-        adapterController.addList(new KeyInputController(input,this));
-        setFocusable(true);
+        //AdapterController adapterController = new AdapterController();
+        //addKeyListener(adapterController);
+        //adapterController.addList(new KeyInputController(input,this));
+        //setFocusable(true);
     }
 
     public BoardController() {
@@ -63,7 +66,7 @@ public class BoardController extends JPanel implements ActionListener {
 
 
 
-//////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Timer Delay마다 실행되는 메서드
