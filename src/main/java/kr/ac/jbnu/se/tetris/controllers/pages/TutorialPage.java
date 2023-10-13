@@ -43,7 +43,7 @@ public class TutorialPage extends PlayerPage {
         this.gameTimer = new JLabel();
         this.tutorialStep = new JLabel();
         this.skipButton = new JButton("튜토리얼 스킵");
-        skipButton.setForeground(Color.white);
+        skipButton.setForeground(Color.black);
         this.resetButton = new JButton("다시하기");
 
         tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
