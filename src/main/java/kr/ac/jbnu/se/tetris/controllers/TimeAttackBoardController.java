@@ -93,7 +93,7 @@ public class TimeAttackBoardController extends BoardController{
         timer.stop();
         getBoardModel().setIsStarted(false);
         repaint();
-        timeAttackPage.gameClear(String.valueOf(numLinesRemoved));
+        timeAttackPage.gameClear(numLinesRemoved);
     }
 
     @Override
@@ -185,4 +185,5 @@ public class TimeAttackBoardController extends BoardController{
                 break;  //게임은 레벨은 7레벨까지 있습니다.
         }
     }
+
 }

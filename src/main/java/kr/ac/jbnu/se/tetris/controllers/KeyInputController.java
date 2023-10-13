@@ -11,7 +11,6 @@ public class KeyInputController {
     private final KeyInput input;
     private final BoardController controller;
     private final PieceController pieceController;
-    private Music moveSound;
 
     public KeyInputController(KeyInput input, BoardController controller) {
         logger.info("keyInputController start");
@@ -19,7 +18,6 @@ public class KeyInputController {
         this.controller=controller;
         this.pieceController = controller.getPieceController();
 
-        moveSound = new Music("source/sound/movesound.wav",false);
     }
 
     public void action(int keycode) throws CloneNotSupportedException {
@@ -32,7 +30,6 @@ public class KeyInputController {
 
             if (keycode == input.getMoveLeft()) {
                 pieceController.moveLeft();
-                //moveSound.start();
             } else if (keycode == input.getMoveRight()) {
                 pieceController.moveRight();
             } else if (keycode == input.getBlockHold()) {

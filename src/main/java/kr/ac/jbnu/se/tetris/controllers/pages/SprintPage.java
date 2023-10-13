@@ -5,11 +5,16 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
 import lombok.Getter;
+import lombok.SneakyThrows;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Random;
 
 public class SprintPage extends PlayerPage {
@@ -21,12 +26,16 @@ public class SprintPage extends PlayerPage {
     JFrame sprintPageFrame;
     JButton goBackButton1;
     JButton goBackButton2;
+    JLabel highScoreLabel;
+    int highScore;
+    @SneakyThrows
     public SprintPage(Member member, KeyInput keyInput, Random rand){
         super();
         sprintPageFrame = new JFrame();
         sprintPageFrame.setSize(1280, 720);
         sprintPageFrame.setLayout(null);
 
+        this.highScoreLabel = new JLabel("High Score : " + getHighScore());
         this.removedLine = new JLabel("0");
         this.gameTimer = new JLabel("00 : 00");
         this.goBackButton1 = new JButton("돌아가기");
@@ -36,6 +45,8 @@ public class SprintPage extends PlayerPage {
         removedLine.setForeground(Color.white);
         gameTimer.setFont(new Font("Serif", Font.BOLD, 35));
         gameTimer.setForeground(Color.white);
+        highScoreLabel.setFont(new Font("Serif", Font.BOLD, 35));
+        highScoreLabel.setForeground(Color.white);
 
         this.board = new SprintBoardController(this, rand);
         this.nextBlockPanelController = new NextBlockPanelController(this);
@@ -48,12 +59,13 @@ public class SprintPage extends PlayerPage {
         removedLine.setBounds(900,300,100, 100);
         gameTimer.setBounds(900, 150, 150, 100);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
+        highScoreLabel.setBounds(100, 0, 300, 100);
 
         sprintPageFrame.add(removedLine);
         sprintPageFrame.add(gameTimer);
         sprintPageFrame.add(board);
         sprintPageFrame.add(nextBlockPanelController);
-        //setSize(new Dimension(1280, 720));
+        sprintPageFrame.add(highScoreLabel);
 
         backgroundPanel = new JPanel(){ //배경 패널 설정
             public void paintComponent(Graphics g){
@@ -79,6 +91,12 @@ public class SprintPage extends PlayerPage {
     }
 
     public void gameClear(String score){
+        SprintBoardController sprintBoardController = (SprintBoardController) board;
+        int newScore = sprintBoardController.getGameTimeSec();
+
+        if(highScore > newScore) {
+            replaceHighScore(newScore);
+        }
         gameClearFrame = new JFrame();
         gameClearFrame.setSize(500,250);
 
@@ -138,6 +156,48 @@ public class SprintPage extends PlayerPage {
                 gameOverFrame.dispose();
             }
         });
+    }
+
+    public String getHighScore() throws FileNotFoundException {
+        try {
+            Reader reader= new FileReader("src/main/java/kr/ac/jbnu/se/tetris/data/highScore.json");
+            JSONParser parser=new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            String highScoreData = jsonObject.get("sprintHighScore").toString();
+            this.highScore = Integer.parseInt(highScoreData);
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        if(highScore == 999999) return "NA";
+
+        return secToMMSS(highScore);
+    }
+
+    public void replaceHighScore(int newHighScore) {
+        try {
+            Reader reader = new FileReader("src/main/java/kr/ac/jbnu/se/tetris/data/highScore.json");
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            jsonObject.replace("sprintHighScore", newHighScore);
+
+            // 파일에 데이터를 다시 쓰기
+            try (FileWriter fileWriter = new FileWriter("src/main/java/kr/ac/jbnu/se/tetris/data/highScore.json")) {
+                fileWriter.write(jsonObject.toJSONString());
+            }
+        } catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public String secToMMSS(int secs){
+        int min, sec;
+        sec = secs % 60;
+        min = secs / 60 % 60;
+
+        return String.format("%02d : %02d", min, sec);
     }
 
 
