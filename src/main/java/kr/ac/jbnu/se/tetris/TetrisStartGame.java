@@ -1,7 +1,7 @@
 package kr.ac.jbnu.se.tetris;
 
 
-import kr.ac.jbnu.se.tetris.controllers.pages.MainPageController;
+import kr.ac.jbnu.se.tetris.views.pages.MainPageController;
 
 import java.io.IOException;
 

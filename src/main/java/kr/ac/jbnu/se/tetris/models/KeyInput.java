@@ -27,7 +27,7 @@ public class KeyInput {
     private Long pause;
     private Long blockHold;
     private Long oneLineDown;
-// onelineDown 추가해주세요 *성광
+
 public KeyInput(String filePath)  {
     try {
         Reader reader= new FileReader(filePath);

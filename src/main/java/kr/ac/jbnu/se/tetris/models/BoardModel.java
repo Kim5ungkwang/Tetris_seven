@@ -1,6 +1,5 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
 
 /**

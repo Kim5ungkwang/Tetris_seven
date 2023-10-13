@@ -1,9 +1,8 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
-import kr.ac.jbnu.se.tetris.controllers.pages.TimeAttackPage;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
+import kr.ac.jbnu.se.tetris.views.pages.TimeAttackPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
-import kr.ac.jbnu.se.tetris.models.KeyInput;
 import lombok.Getter;
 
 import java.util.Random;
@@ -93,7 +92,7 @@ public class TimeAttackBoardController extends BoardController{
         timer.stop();
         getBoardModel().setIsStarted(false);
         repaint();
-        timeAttackPage.gameClear(String.valueOf(numLinesRemoved));
+        timeAttackPage.gameClear(numLinesRemoved);
     }
 
     @Override
@@ -185,4 +184,5 @@ public class TimeAttackBoardController extends BoardController{
                 break;  //게임은 레벨은 7레벨까지 있습니다.
         }
     }
+
 }

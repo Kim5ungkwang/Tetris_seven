@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.tetris;
+package kr.ac.jbnu.se.tetris.models;
 
 /**
  * 블럭의 SRS데이터를 정의한 모델

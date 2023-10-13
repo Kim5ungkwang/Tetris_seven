@@ -1,10 +1,8 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
-import kr.ac.jbnu.se.tetris.controllers.pages.SprintPage;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
+import kr.ac.jbnu.se.tetris.views.pages.SprintPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
-import kr.ac.jbnu.se.tetris.models.KeyInput;
-import lombok.Getter;
 
 import java.util.Random;
 
@@ -12,7 +10,7 @@ import java.util.Random;
  * 스프린트 게임 모드 보드 컨트롤러 클래스
  */
 public class SprintBoardController extends BoardController{
-    protected final int gameClearPoint = 40; //게임을 종료하는 조건 defualt 40을 넘기는 스프린트 모드
+    protected final int gameClearPoint = 1; //게임을 종료하는 조건 defualt 40을 넘기는 스프린트 모드
     protected final SprintPage sprintPage;
     /**
      * 보드 컨트롤러 생성자
@@ -53,7 +51,6 @@ public class SprintBoardController extends BoardController{
         if (numFullLines > 0) {
             new SoundEffectPlayer().start();        //블럭 사라짐 효과음
             numLinesRemoved += numFullLines;
-            //playerPage.getStatusBar().setText(String.valueOf(numLinesRemoved));
             sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
@@ -85,7 +82,9 @@ public class SprintBoardController extends BoardController{
         sprintPage.getRemovedLine().setText(String.valueOf(numLinesRemoved) + " / " + String.valueOf(gameClearPoint));  // 점수판 초기화
     }
 
-    // 게임 오버 로직, 메서드 구현 필요함
+    public int getGameTimeSec(){
+        return gameTimerController.getCurrentTimeSec();
+    }
 
 
 

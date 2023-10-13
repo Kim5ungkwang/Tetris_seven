@@ -1,7 +1,7 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.BrickRotator;
-import kr.ac.jbnu.se.tetris.ShapeData;
+import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
 

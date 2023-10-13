@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.tetris;
+package kr.ac.jbnu.se.tetris.models;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,9 +1,5 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.ShapeData;
-
-import java.awt.*;
-
 /**
  * 피스를 관리하는 클래스
  */
