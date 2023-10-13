@@ -74,6 +74,7 @@ public class TutorialPage extends PlayerPage {
 
         skipbuttonAction();
         resetbuttonAction();
+        resetButton.setFocusable(false); // 버튼 선택 시 생기는 테두리 활성화
 
 
         backgroundPanel = new JPanel(){
@@ -124,6 +125,7 @@ public class TutorialPage extends PlayerPage {
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
                 tutorialBoardController.resetTutorial();
             }
         });
@@ -144,14 +146,18 @@ public class TutorialPage extends PlayerPage {
 
         tutorialEndFrame.setVisible(true);
         tutorialEndFrame.add(finishButton);
-        finishbuttonAction();
         tutorialEndFrame.add(finishLabel);
+        finishbuttonAction();
+
     }
     public boolean isTutorialEndFrame(){
         return tutorialEndFrame.isVisible();
     }
     public boolean isTutorialPageFrame(){
         return tutorialPageFrame.isVisible();
+    }
+    public void removeTutorialPageFrame(){
+        tutorialPageFrame.dispose();
     }
 
 }
