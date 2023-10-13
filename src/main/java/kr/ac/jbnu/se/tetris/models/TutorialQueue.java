@@ -16,7 +16,7 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueueSize = 11;
         setBrickQueue();
     }
-
+/*
     @Override
     public ShapeData.Tetrominoes getNewShape(){
         this.brickQueueIndex %= brickQueueSize;
@@ -79,6 +79,12 @@ public class TutorialQueue extends BrickQueueManager {
         }
         return brickQueue[brickQueueIndex++];
     }
+*/
+    @Override
+    public ShapeData.Tetrominoes getNewShape(){
+        this.brickQueueIndex %= brickQueueSize;
+        return brickQueue[brickQueueIndex++];
+    }
 
     public void setBrickQueue(){
         brickQueueIndex = 0;
@@ -93,5 +99,9 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueue[8] = ShapeData.Tetrominoes.TShape;
         brickQueue[9] = ShapeData.Tetrominoes.TShape;
         brickQueue[10] = ShapeData.Tetrominoes.TShape;
+    }
+
+    public void resetBrickQueueIndex(){
+        brickQueueIndex = 0;
     }
 }

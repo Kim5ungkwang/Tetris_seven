@@ -15,7 +15,6 @@ import java.util.Random;
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
 public class TutorialBoardController extends BoardController {
-    TutorialPieaceController tutorialPieaceController;
     @Getter
     final private TutorialModel tutorialModel;
 
@@ -128,7 +127,6 @@ public class TutorialBoardController extends BoardController {
             repaint();
         }
     }
-    @Override
     public void pieceDropped(Piece droppedPiece){
         System.out.println("PieceFixedCount: " + getPieceFixedCount());
         pieceFixedCount++;
@@ -144,5 +142,14 @@ public class TutorialBoardController extends BoardController {
         if (!pieceController.getIsFallingFinished())
             pieceController.newPiece();
 
+    }
+
+    /**
+     * 튜토리얼 리셋 메서드
+     */
+    public void resetTutorial(){
+        clearBoard();
+        TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
+        tutorialPieaceController.resetBrickQueue();
     }
 }

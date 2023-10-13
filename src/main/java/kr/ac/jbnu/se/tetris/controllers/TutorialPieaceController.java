@@ -22,44 +22,19 @@ public class TutorialPieaceController extends PieceController {
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
         this.setNextBlockPanel();
-
-
     }
     public int getRotateIndex(){
         return currentPiece.getRotateIndex();
-    }
-    @Override
-    public boolean getIsFallingFinished() {
-        return TutorialPieaceController.isFallingFinished;
     }
     @Override
     public void pieceDropped(){
         //BREAK
         tutorialBoardController.pieceDropped(currentPiece);
     }
-    @Override
-    public void oneLineDown(){
-        if(getIsInfinity() && !tryMove(currentPiece, currentPiece.getCurrentX(), currentPiece.getCurrentY() - 1)) {
-            pieceDropped();
-        }
-        else if (!tryMove(currentPiece, currentPiece.getCurrentX(), currentPiece.getCurrentY() - 1)) {
-            setIsInfinity(true);  //바닥에 붙은 상태에서 한번 더 기회를 준다.
-            return;
-        }
 
-        setIsInfinity(true); //한칸 아래로 내려갈 수 있다면 인피니티는 초기화 -> 한번 더 가능
-    }
-    @Override
-    public void dropDown(){
-        if(getIsInfinity())
-            return;
-        int newY = currentPiece.getCurrentY();
-        while (newY > 0){
-            if (!tryMove(currentPiece, currentPiece.getCurrentX(), newY - 1))
-                break;
-            --newY;
-        }
-        pieceDropped();
+    public void resetBrickQueue(){
+        TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
+        tutorialQueue.resetBrickQueueIndex();
     }
 }
 
