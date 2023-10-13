@@ -22,21 +22,19 @@ public class TutorialPieaceController extends PieceController {
         this.holdPiece = new Piece();
         this.isFallingFinished = false;
         this.setNextBlockPanel();
-
-
     }
     public int getRotateIndex(){
         return currentPiece.getRotateIndex();
     }
     @Override
-    public boolean getIsFallingFinished() {
-        return TutorialPieaceController.isFallingFinished;
-    }
-    @Override
     public void pieceDropped(){
+        //BREAK
         tutorialBoardController.pieceDropped(currentPiece);
-        tutorialBoardController.pieceFixedCount++;
-        System.out.println("PieceFixedCount: " + tutorialBoardController.getPieceFixedCount());
+    }
+
+    public void resetBrickQueue(){
+        TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
+        tutorialQueue.resetBrickQueueIndex();
     }
     /*@Override
     public void dropDown(){
@@ -50,5 +48,6 @@ public class TutorialPieaceController extends PieceController {
         }
         pieceDropped();
     }*/
+
 }
 
