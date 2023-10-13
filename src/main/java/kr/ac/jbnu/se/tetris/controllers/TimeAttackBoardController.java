@@ -21,10 +21,9 @@ public class TimeAttackBoardController extends BoardController{
     /**
      * 타임어택 모드 보드 컨트롤러 생성자
      * @param parent 게임이 그려질 페이지
-     * @param input 게임을 진행할 때 사용하는 키
      */
-    public TimeAttackBoardController(TimeAttackPage parent, KeyInput input, Random rand){
-        super(parent, input, rand);
+    public TimeAttackBoardController(TimeAttackPage parent, Random rand){
+        super(parent, rand);
         this.rand = rand;
         timeAttackPage = parent;
         playerPage = parent;

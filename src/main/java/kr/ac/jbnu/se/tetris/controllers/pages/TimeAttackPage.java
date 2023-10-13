@@ -49,7 +49,7 @@ public class TimeAttackPage extends PlayerPage {
         gameLevelLabel.setFont(new Font("Serif", Font.BOLD, 40));
         gameLevelLabel.setForeground(Color.white);
 
-        this.timeAttackBoardController = new TimeAttackBoardController(this, keyInput, rand);
+        this.timeAttackBoardController = new TimeAttackBoardController(this, rand);
         board = timeAttackBoardController;
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
@@ -97,6 +97,7 @@ public class TimeAttackPage extends PlayerPage {
             }
         });
 
+        //키 입력 관련
         AdapterController adapterController = new AdapterController();
         timeAttackPageFrame.setFocusable(true);
         timeAttackPageFrame.addKeyListener(adapterController);

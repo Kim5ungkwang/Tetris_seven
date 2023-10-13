@@ -36,9 +36,8 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * BoardController 생성자
      * @param parent 해당 보드가 그려지는 PlayerPage
-     * @param input 키도브의 입력 프리셋
      */
-    public BoardController(PlayerPage parent, KeyInput input, Random rand){
+    public BoardController(PlayerPage parent, Random rand){
         this.rand = rand;
         this.boardModel = new BoardModel();
         this.playerPage = parent;
@@ -299,6 +298,10 @@ public class BoardController extends JPanel implements ActionListener {
      */
     public void setStatusText(String text) {
         //playerPage.getStatusBar().setText(text);
+    }
+
+    public void printTimer(String currentTimer){
+        playerPage.getGameTimer().setText(currentTimer);
     }
 }
 

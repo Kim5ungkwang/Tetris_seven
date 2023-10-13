@@ -93,21 +93,21 @@ public class SinglePlayPage extends JPanel {
                 mainPage.getMainPagePanel().setVisible(true);
             }
         });
-        tutorialBt.addActionListener(new ActionListener() {
+        tutorialBt.addActionListener(new ActionListener() { //튜토리얼 버튼을 누를 때 발생하는 이벤트
             @Override
             public void actionPerformed(ActionEvent e) {
                 TutorialPage tutorialPage = new TutorialPage(new Member(), p1Key);
                 tutorialPage.setVisible(true);
             }
         });
-        sprintBt.addActionListener(new ActionListener() {
+        sprintBt.addActionListener(new ActionListener() {   //스프린트 버튼을 누를 때 발생하는 이벤트
             @Override
             public void actionPerformed(ActionEvent e) {
                 SprintPage sprintPage = new SprintPage(new Member(), p1Key, rand);
                 sprintPage.setVisible(true);
             }
         });
-        timeAttackBt.addActionListener(new ActionListener() {
+        timeAttackBt.addActionListener(new ActionListener() {   //타임어택 버튼을 누를 때 발생하는 이벤트
             @Override
             public void actionPerformed(ActionEvent e) {
                 TimeAttackPage timeAttackPage = new TimeAttackPage(new Member(), p1Key, rand);

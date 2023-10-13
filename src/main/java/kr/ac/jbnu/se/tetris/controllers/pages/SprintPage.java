@@ -37,7 +37,7 @@ public class SprintPage extends PlayerPage {
         gameTimer.setFont(new Font("Serif", Font.BOLD, 35));
         gameTimer.setForeground(Color.white);
 
-        this.board = new SprintBoardController(this, keyInput, rand);
+        this.board = new SprintBoardController(this, rand);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
@@ -71,6 +71,7 @@ public class SprintPage extends PlayerPage {
 
         sprintPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
+        //키 입력 관련
         AdapterController adapterController = new AdapterController();
         sprintPageFrame.setFocusable(true);
         sprintPageFrame.addKeyListener(adapterController);

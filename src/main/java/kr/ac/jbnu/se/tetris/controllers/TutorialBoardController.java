@@ -33,12 +33,12 @@ public class TutorialBoardController extends BoardController {
 
         this.statusBar = parent.getStatusBar();
         this.pieceController = new TutorialPieaceController(this);
-        this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
+        this.boardModel.setLoopDelay(600);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(300, new ActionListener() {  //3000
+        stepTimer = new Timer(10000, new ActionListener() {  //3000
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();

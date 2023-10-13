@@ -34,9 +34,9 @@ public class PlayerPage extends JPanel{
     public PlayerPage(Member member, KeyInput keyInput){
         this.statusBar = new JLabel("0");   //사용안할예정
         this.gameTimer = new JLabel("00 : 00");
-        this.statusBar = new JLabel(" 0");
 
-        this.board = new BoardController( this, keyInput, rand);
+        Random rand = new Random(1);
+        this.board = new BoardController( this, rand);
         this.nextBlockPanelController = new NextBlockPanelController(this);
         this.board.start();
         board.setVisible(true);
@@ -56,7 +56,30 @@ public class PlayerPage extends JPanel{
         //setFocusable(true);
     }
 
-    public PlayerPage() {
+    public PlayerPage(Member member, KeyInput keyInput, Random rand) {
+        this.statusBar = new JLabel("0");   //사용안할예정
+        this.gameTimer = new JLabel("00 : 00");
+
+        this.board = new BoardController( this, rand);
+        this.nextBlockPanelController = new NextBlockPanelController(this);
+        this.board.start();
+        board.setVisible(true);
+
+        board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
+        setLayout(new BorderLayout());
+        add(board, BorderLayout.CENTER);
+        add(nextBlockPanelController, BorderLayout.WEST);
+        setSize(new Dimension(PLAYERPAGE_WIDTH, PLAYERPAGE_HEIGTH));
+
+        setVisible(true);
+
+        //AdapterController adapterController = new AdapterController();
+        //addKeyListener(adapterController);
+        //adapterController.addList(new KeyInputController(keyInput,board));
+        //setFocusable(true);
+    }
+
+    public PlayerPage(){
         //상속용
     }
 

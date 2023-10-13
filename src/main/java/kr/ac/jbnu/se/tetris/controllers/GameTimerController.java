@@ -83,7 +83,7 @@ public class GameTimerController implements ActionListener {
      */
     public String printGameTime(){
         secToMMSS(getCurrentTimeSec());
-        boardController.getPlayerPage().getGameTimer().setText(timerBuffer);
+        boardController.printTimer(timerBuffer);
         return timerBuffer;
     }
 
