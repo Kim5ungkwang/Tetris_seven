@@ -21,6 +21,7 @@ public class TutorialPage extends PlayerPage {
     JPanel backgroundPanel;
     @Getter
     JLabel tutorialStep;
+    JPanel tutorialStepPanel;
     JFrame tutorialSRSFrame; //SRS 블럭 쌓는 모양 알려주는 프레임
     JFrame tutorialPageFrame;
     JFrame tutorialEndFrame;
@@ -28,6 +29,7 @@ public class TutorialPage extends PlayerPage {
     JLabel imageLabel;
     JLabel finishLabel;
     ImageIcon imageIcon;
+    JProgressBar progressBar;
     TutorialBoardController tutorialBoardController;
 
 
@@ -41,8 +43,10 @@ public class TutorialPage extends PlayerPage {
         this.gameTimer = new JLabel();
         this.tutorialStep = new JLabel();
         this.skipButton = new JButton("튜토리얼 스킵");
+        skipButton.setForeground(Color.RED);
 
-        tutorialStep.setFont(new Font("Serif", Font.BOLD, 25));
+
+        tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
         tutorialStep.setForeground(Color.white);
 
         this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
@@ -57,7 +61,7 @@ public class TutorialPage extends PlayerPage {
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
         tutorialStep.setBounds(900, 150, 350, 300);
-        skipButton.setBounds(900, 500,150, 50);
+        skipButton.setBounds(900, 500,120, 50);
         imageLabel.setBounds(100, 300, 300, 300);
 
         tutorialPageFrame.add(board);
@@ -65,6 +69,7 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.add(tutorialStep);
         tutorialPageFrame.add(skipButton);
         tutorialPageFrame.add(imageLabel);
+
         skipbuttonAction();
 
 
@@ -83,7 +88,7 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
 
-        if(TutorialModel.getCurrentStepIndex() == 6){
+        if(TutorialModel.getCurrentStepIndex() == 6 ){
             tutorialFinished();
         }
 

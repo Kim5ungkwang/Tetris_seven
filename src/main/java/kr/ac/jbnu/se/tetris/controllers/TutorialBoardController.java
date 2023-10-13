@@ -21,7 +21,6 @@ public class TutorialBoardController extends BoardController {
     TutorialPage tutorialPage;
     private Timer stepTimer;
     @Getter
-    @Setter
     public int pieceFixedCount = 0;
     public static int numLinesRemoved = 0;
     Random random = new Random();
@@ -39,7 +38,7 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(1, new ActionListener() {  //3000
+        stepTimer = new Timer(300, new ActionListener() {  //3000
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();
@@ -63,7 +62,6 @@ public class TutorialBoardController extends BoardController {
         startTutorial();
         //drawBackgroundblock();
     }
-
 
     private void displayCurrentStep() {
         if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
@@ -127,8 +125,10 @@ public class TutorialBoardController extends BoardController {
             repaint();
         }
     }
+    /*@Override
     public void pieceDropped(Piece droppedPiece){
-        System.out.println("PieceFixedCount: " + getPieceFixedCount());
+        getPieceFixedCount();
+        /*System.out.println("PieceFixedCount: " + getPieceFixedCount());
         pieceFixedCount++;
         //getPieceFixedCount();
         for (int i = 0; i < 4; i++) {
@@ -152,4 +152,5 @@ public class TutorialBoardController extends BoardController {
         TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
         tutorialPieaceController.resetBrickQueue();
     }
+    }*/
 }

@@ -36,5 +36,17 @@ public class TutorialPieaceController extends PieceController {
         TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
         tutorialQueue.resetBrickQueueIndex();
     }
+    /*@Override
+    public void dropDown(){
+        if(getIsInfinity())
+            return;
+        int newY = currentPiece.getCurrentY();
+        while (newY > 0){
+            if (!tryMove(currentPiece, currentPiece.getCurrentX(), newY - 1))
+                break;
+            --newY;
+        }
+        pieceDropped();
+    }*/
 }
 
