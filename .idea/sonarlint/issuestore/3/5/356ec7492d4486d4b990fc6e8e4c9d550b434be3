@@ -1,6 +1,10 @@
 
 N
 java:S1948",Make "boardModel" transient or serializable.(ÝŒ•Âüÿÿÿÿ8Â™æµ²1
+S
+java:S1948"1Make "pieceController" transient or serializable.(Õ•®Ñüÿÿÿÿ8°«‘¾²1
+R
+java:S1948"5Make "gameTimerController" transient or serializable.(—Âê´8²«‘¾²1
 ]	java:S1256"<This block of commented-out lines of code should be removed.(÷ŽÌðþÿÿÿÿ8Ð™æµ²1
 X	java:S125z"<This block of commented-out lines of code should be removed.(‘žÑ‘8ÕòÃ˜²1
 X	java:S125~"<This block of commented-out lines of code should be removed.(é£¢»8ÕòÃ˜²1
