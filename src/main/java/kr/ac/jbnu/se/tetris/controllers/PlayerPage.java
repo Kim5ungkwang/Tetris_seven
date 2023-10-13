@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import kr.ac.jbnu.se.tetris.controllers.pages.LocalTwoPlayPage;
 import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
@@ -24,6 +25,9 @@ public class PlayerPage extends JPanel{
     protected NextBlockPanelController nextBlockPanelController;
     @Getter
     protected JLabel gameTimer;
+    private LocalTwoPlayPage localTwoPlayPage;
+
+
     Random rand = new Random(1);
 
     /**
@@ -56,13 +60,14 @@ public class PlayerPage extends JPanel{
         //setFocusable(true);
     }
 
-    public PlayerPage(Member member, KeyInput keyInput, Random rand) {
+    public PlayerPage(LocalTwoPlayPage parent, Member member, KeyInput keyInput, Random rand, int playerNum) {
+        localTwoPlayPage = parent;
         this.statusBar = new JLabel("0");   //사용안할예정
         this.gameTimer = new JLabel("00 : 00");
 
-        this.board = new BoardController( this, rand);
+        this.board = new TwoPlayerBoardController( this, rand, playerNum);
         this.nextBlockPanelController = new NextBlockPanelController(this);
-        this.board.start();
+        board.start();
         board.setVisible(true);
 
         board.setPreferredSize(new Dimension(BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT));
@@ -85,5 +90,24 @@ public class PlayerPage extends JPanel{
 
     public void raiseGameOverFrame(){
         // 구현해서 사용하시오
+    }
+
+    public void printTimer(){
+    }
+
+    public void reducePlayer2GameDelay(int reduceAmount){
+        localTwoPlayPage.reducePlayer2GameDelay(reduceAmount);
+    }
+
+    public void reducePlayer1GameDelay(int reduceAmount){
+        localTwoPlayPage.reducePlayer1GameDelay(reduceAmount);;
+    }
+
+    public void updatePlayer2NumLinesRemovedCount(int player2numLineRemovedCount){
+        localTwoPlayPage.updatePlayer2NumLinesRemovedCount(String.valueOf(player2numLineRemovedCount));
+    }
+
+    public void updatePlayer1NumLinesRemovedCount(int player1numLineRemovedCount){
+        localTwoPlayPage.updatePlayer1NumLinesRemovedCount(String.valueOf(player1numLineRemovedCount));
     }
 }
