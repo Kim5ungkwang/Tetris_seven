@@ -4,6 +4,8 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Random;
+
 /**
 *다음에 등장할 블록의 배열을 관리하는 클래스이다.
 */
@@ -14,6 +16,8 @@ public class BrickQueueManager {
     protected int brickQueueIndex;    //brickQueue에 사용되는 인덱스
     protected BrickGenerator brickGenerator;  //블록 배열을 만들기 위한 객체
     protected int brickQueueSize = ShapeData.TETROMINOES_SIZE * 2;    //블록 배열의 크기
+    private Random rand;
+
 
     /**
      *길이가 (테트로미노의 개수 * 2)인 블록 배열을 생성한다.
@@ -21,12 +25,19 @@ public class BrickQueueManager {
      * 첫번째 블록 배열의 인덱스는 0으로
      * 해당 인덱스부터 블록 배열은 BrickGenerator을 통해 새로운 블록들을 전달받는다.
      */
-    public BrickQueueManager(){
+    public BrickQueueManager(Random rand){
         brickQueue = new ShapeData.Tetrominoes[brickQueueSize];
         brickGenerator = new BrickGenerator();
-
+        this.rand = rand;
         brickQueueIndex = 0;
-        setBrickQueue(brickQueueIndex);
+        updateBrickQueue(brickQueueIndex, createUnsignedRandomNum(rand));
+    }
+
+    public int createUnsignedRandomNum(Random rand){
+        int randomNum = rand.nextInt();
+        if(randomNum < 0)
+            return -randomNum;
+        return randomNum;
     }
 
     /**
@@ -35,10 +46,10 @@ public class BrickQueueManager {
     public ShapeData.Tetrominoes getNewShape(){
         this.brickQueueIndex %= brickQueueSize;
         if(brickQueueIndex == 0){
-            setBrickQueue(brickQueueSize / 2);  //인덱스가 0이되면 배열의 절반 부터 배열의 끝가지 업데이트 한다.
+            updateBrickQueue(brickQueueSize / 2, createUnsignedRandomNum(rand));  //인덱스가 0이되면 배열의 절반 부터 배열의 끝가지 업데이트 한다.
         }
         else if(brickQueueIndex == brickQueueSize / 2){
-            setBrickQueue(0);   //인덱스가 배열의 절반을 넘기면 배열의 처음부터 배열의 절반까지 업데이트 한다.
+            updateBrickQueue(0, createUnsignedRandomNum(rand));   //인덱스가 배열의 절반을 넘기면 배열의 처음부터 배열의 절반까지 업데이트 한다.
         }
         return brickQueue[brickQueueIndex++];
     }
@@ -47,8 +58,8 @@ public class BrickQueueManager {
      *setBrickQueue는 brckQueue의 절반을 기준으로
      *이미 사용된 테트로미노 값들을 업데이트하는 메서드이다.
      */
-    public void setBrickQueue(int index) {
-        brickGenerator.initializeBrickGenerator();
+    public void updateBrickQueue(int index, int seed) {
+        brickGenerator.initializeBrickGenerator(seed);
         for(int i = 0; i < brickQueueSize / 2; i++){
             brickQueue[index + i] = brickGenerator.getBrickQueue()[i];
         }

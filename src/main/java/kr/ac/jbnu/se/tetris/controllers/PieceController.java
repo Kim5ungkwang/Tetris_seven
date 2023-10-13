@@ -31,7 +31,7 @@ public class PieceController {
         this.boardController = boardController;
         this.currentPiece = new Piece();
         this.ghostPiece = new GhostPiece(this);
-        this.brickQueueManager = new BrickQueueManager();
+        this.brickQueueManager = new BrickQueueManager(boardController.getRand());
         this.holdPiece = new Piece();
     }
 

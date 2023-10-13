@@ -1,9 +1,7 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
 import com.sun.tools.javac.Main;
-import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
-import kr.ac.jbnu.se.tetris.controllers.PlayerPage;
-import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
+import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
@@ -90,6 +88,11 @@ public class TutorialPage extends PlayerPage {
         }
 
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        AdapterController adapterController = new AdapterController();
+        tutorialPageFrame.setFocusable(true);
+        tutorialPageFrame.addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(p1Key,board));
     }
 
     public void skipbuttonAction(){

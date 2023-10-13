@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
 
@@ -24,11 +25,13 @@ public class TutorialBoardController extends BoardController {
     @Setter
     public int pieceFixedCount = 0;
     public static int numLinesRemoved = 0;
+    Random random = new Random();
     public TutorialBoardController(TutorialPage parent, KeyInput input){
-        super(parent, input);
+        super();
         this.boardModel = new BoardModel();
         this.tutorialPage = parent;
         playerPage = tutorialPage;
+        gameTimerController = new GameTimerController(this);
 
         this.statusBar = parent.getStatusBar();
         this.pieceController = new TutorialPieaceController(this);
@@ -46,11 +49,6 @@ public class TutorialBoardController extends BoardController {
 
 
         this.tutorialModel = new TutorialModel();
-
-        AdapterController adapterController = new AdapterController();
-        adapterController.addList(new KeyInputController(input,this));
-        addKeyListener(adapterController);
-        setFocusable(true);
 
     }
 

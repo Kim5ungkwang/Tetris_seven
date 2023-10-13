@@ -4,6 +4,9 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.controllers.pages.SprintPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
+import lombok.Getter;
+
+import java.util.Random;
 
 /**
  * 스프린트 게임 모드 보드 컨트롤러 클래스
@@ -11,14 +14,13 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 public class SprintBoardController extends BoardController{
     protected final int gameClearPoint = 40; //게임을 종료하는 조건 defualt 40을 넘기는 스프린트 모드
     protected final SprintPage sprintPage;
-
     /**
      * 보드 컨트롤러 생성자
      * @param sprintPage 보드가 그려질 페이지
      * @param keyInput 게임을 진행할 때 사용하는 키
      */
-    public SprintBoardController(SprintPage sprintPage, KeyInput keyInput){
-        super(sprintPage, keyInput);
+    public SprintBoardController(SprintPage sprintPage, KeyInput keyInput, Random rand){
+        super(sprintPage, keyInput, rand);
         this.sprintPage = sprintPage;
         playerPage = sprintPage;
 }

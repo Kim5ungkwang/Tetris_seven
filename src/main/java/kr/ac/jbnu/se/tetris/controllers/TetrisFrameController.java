@@ -29,6 +29,11 @@ public class TetrisFrameController extends JFrame {
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
+
+        AdapterController adapterController = new AdapterController();
+        addKeyListener(adapterController);
+        adapterController.addList(new KeyInputController(p1Key,playerPage.board));
+        setFocusable(true);
     }
 
 }

@@ -4,9 +4,12 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
 import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
 
+import java.util.Random;
+
 public class TutorialQueue extends BrickQueueManager {
     TutorialPieaceController controller;
     public TutorialQueue(TutorialPieaceController tutorialPieaceController) {
+        super(new Random(1));
         controller = tutorialPieaceController;
         brickQueue = new ShapeData.Tetrominoes[11];
         brickQueueIndex = 0;
