@@ -7,7 +7,3 @@ java:S1604a"(Make this anonymous inner class a lambda(Ã¼‹—
 java:S3252"AUse static access with "javax.swing.SwingConstants" for "CENTER".(íœª¡ùÿÿÿÿ
 d
 java:S3252J"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öşÿÿÿÿ
-W
-java:S1128"ARemove this unused import 'kr.ac.jbnu.se.tetris.models.KeyInput'.(Âßµ
-J
-java:S1128	"4Remove this unused import 'java.awt.event.KeyEvent'.(¬ğİÍ

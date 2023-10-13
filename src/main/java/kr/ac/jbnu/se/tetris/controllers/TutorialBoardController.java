@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-import static kr.ac.jbnu.se.tetris.models.TutorialModel.tutorialSteps;
+import static kr.ac.jbnu.se.tetris.models.TutorialModel.*;
 
 public class TutorialBoardController extends BoardController {
     @Getter
@@ -22,7 +22,8 @@ public class TutorialBoardController extends BoardController {
     private Timer stepTimer;
     @Getter
     public int pieceFixedCount = 0;
-    public static int numLinesRemoved = 0;
+    @Getter
+    public boolean tutorialFinishedCalled = false;
     Random random = new Random();
     public TutorialBoardController(TutorialPage parent, KeyInput input){
         super();
@@ -45,7 +46,6 @@ public class TutorialBoardController extends BoardController {
             }
         });
 
-
         this.tutorialModel = new TutorialModel();
 
     }
@@ -54,6 +54,7 @@ public class TutorialBoardController extends BoardController {
         tutorialModel.resetCurrentStepIndex();
         displayCurrentStep();
         stepTimer.start();
+        numLinesRemoved = 0;
     }
     @Override
     public void start(){
@@ -61,39 +62,6 @@ public class TutorialBoardController extends BoardController {
         pause();
         startTutorial();
         //drawBackgroundblock();
-    }
-
-    private void displayCurrentStep() {
-        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
-            String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
-            tutorialPage.getTutorialStep().setText(currentStepText);
-        }
-    }
-
-    public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
-            tutorialModel.plusCurrnetStepIndex();
-            displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
-        } else if (tutorialModel.getCurrentStepIndex() == 4) {
-        } else if(tutorialModel.getCurrentStepIndex() == 5){
-            pieceFixedCount = 0;
-            pause();
-            drawBackgroundblock();
-            stepTimer.stop();
-        } else if (numLinesRemoved == 3) {
-            tutorialModel.plusCurrnetStepIndex();
-        }
-    }
-
-    private void drawBackgroundblock() {
-        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
-            getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
-        for (int x = 3; x < BoardModel.getBoardWidth(); x++) {
-            for (int y = 0; y < 12; y++) {
-                getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
-                getBoardModel().setboard(3 + 11 * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
-            }
-        }
     }
     @Override
     protected void removeFullLines(){
@@ -124,7 +92,45 @@ public class TutorialBoardController extends BoardController {
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
         }
+        if (numLinesRemoved == 3) {
+            do{
+                tutorialPage.tutorialFinished();
+            }while (tutorialPage.isTutorialEndFrame() == false && tutorialPage.isTutorialPageFrame() == true);
+        }
     }
+
+    private void displayCurrentStep() {
+        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
+            String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
+            tutorialPage.getTutorialStep().setText(currentStepText);
+        }
+    }
+
+    public void moveToNextStep() {
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
+            tutorialModel.plusCurrnetStepIndex();
+            displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
+        }
+        if(tutorialModel.getCurrentStepIndex() == 4){
+            pieceFixedCount = 0;
+            pause();
+            drawBackgroundblock();
+            stepTimer.stop();
+        }
+
+    }
+
+    private void drawBackgroundblock() {
+        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
+            getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
+        for (int x = 3; x < BoardModel.getBoardWidth(); x++) {
+            for (int y = 0; y < 12; y++) {
+                getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
+                getBoardModel().setboard(3 + 11 * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.NoShape);
+            }
+        }
+    }
+
     /*@Override
     public void pieceDropped(Piece droppedPiece){
         getPieceFixedCount();

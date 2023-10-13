@@ -21,11 +21,11 @@ public class TutorialPage extends PlayerPage {
     JPanel backgroundPanel;
     @Getter
     JLabel tutorialStep;
-    JPanel tutorialStepPanel;
-    JFrame tutorialSRSFrame; //SRS 블럭 쌓는 모양 알려주는 프레임
     JFrame tutorialPageFrame;
     JFrame tutorialEndFrame;
     JButton skipButton; // 튜토리얼 건너뛰는 버튼
+    JButton finishButton;
+    JButton resetButton;
     JLabel imageLabel;
     JLabel finishLabel;
     ImageIcon imageIcon;
@@ -44,7 +44,7 @@ public class TutorialPage extends PlayerPage {
         this.tutorialStep = new JLabel();
         this.skipButton = new JButton("튜토리얼 스킵");
         skipButton.setForeground(Color.RED);
-
+        this.resetButton = new JButton("다시하기");
 
         tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
         tutorialStep.setForeground(Color.white);
@@ -63,14 +63,17 @@ public class TutorialPage extends PlayerPage {
         tutorialStep.setBounds(900, 150, 350, 300);
         skipButton.setBounds(900, 500,120, 50);
         imageLabel.setBounds(100, 300, 300, 300);
+        resetButton.setBounds(900, 560, 120, 50);
 
         tutorialPageFrame.add(board);
         tutorialPageFrame.add(nextBlockPanelController);
         tutorialPageFrame.add(tutorialStep);
         tutorialPageFrame.add(skipButton);
         tutorialPageFrame.add(imageLabel);
+        tutorialPageFrame.add(resetButton);
 
         skipbuttonAction();
+        resetbuttonAction();
 
 
         backgroundPanel = new JPanel(){
@@ -88,9 +91,9 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
 
-        if(TutorialModel.getCurrentStepIndex() == 6 ){
+        /*if(TutorialModel.getCurrentStepIndex() == 6 ){
             tutorialFinished();
-        }
+        }*/
 
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,6 +101,7 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setFocusable(true);
         tutorialPageFrame.addKeyListener(adapterController);
         adapterController.addList(new KeyInputController(p1Key,board));
+
     }
 
     public void skipbuttonAction(){
@@ -108,18 +112,46 @@ public class TutorialPage extends PlayerPage {
             }
         });
     }
+    public void finishbuttonAction(){
+        finishButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tutorialEndFrame.dispose();
+            }
+        });
+    }
+    public void resetbuttonAction(){
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tutorialBoardController.resetTutorial();
+            }
+        });
+    }
     public void tutorialFinished(){
         this.tutorialEndFrame = new JFrame();
-        tutorialEndFrame.setSize(500, 250);
+        tutorialEndFrame.setSize(650, 300);
         tutorialEndFrame.setLayout(null);
+        tutorialPageFrame.setLocationRelativeTo(null);
 
-        this.finishLabel = new JLabel("축하합니다! 튜토리얼 과정을 수료하셨습니다!");
-        finishLabel.setFont(new Font("serif", Font.BOLD, 25));
-        finishLabel.setBounds(100, 120, 300, 50);
+        this.finishButton = new JButton("확인");
+        finishButton.setBounds(250, 200,100, 50);
+
+        this.finishLabel = new JLabel("축하합니다!\n 튜토리얼 과정을 수료하셨습니다!");
+        finishLabel.setFont(new Font("SensSerif", Font.BOLD, 20));
+        finishLabel.setBounds(80, 10, 450, 200);
+        tutorialPageFrame.dispose();
 
         tutorialEndFrame.setVisible(true);
-        tutorialEndFrame.add(skipButton);
-        skipbuttonAction();
+        tutorialEndFrame.add(finishButton);
+        finishbuttonAction();
         tutorialEndFrame.add(finishLabel);
     }
+    public boolean isTutorialEndFrame(){
+        return tutorialEndFrame.isVisible();
+    }
+    public boolean isTutorialPageFrame(){
+        return tutorialPageFrame.isVisible();
+    }
+
 }
