@@ -2,7 +2,7 @@ package kr.ac.jbnu.se.tetris.views;
 
 import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.service.WebSocketService;
-import kr.ac.jbnu.se.tetris.views.pages.MainPageController;
+import kr.ac.jbnu.se.tetris.views.pages.MainPage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -110,9 +110,9 @@ public class LoginScreen extends JFrame {
                 boolean logIn=WebSocketService.getInstance().logIn(myId,myPwd);
                 if(logIn){
                     Member.myId=myId;
-                    MainPageController mainPage = null;
+                    MainPage mainPage = null;
                     try {
-                        mainPage = new MainPageController();
+                        mainPage = new MainPage();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

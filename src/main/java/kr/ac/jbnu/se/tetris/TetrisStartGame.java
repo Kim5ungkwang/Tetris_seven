@@ -1,8 +1,7 @@
 package kr.ac.jbnu.se.tetris;
 
 
-import kr.ac.jbnu.se.tetris.views.LoginScreen;
-import kr.ac.jbnu.se.tetris.views.pages.MainPageController;
+import kr.ac.jbnu.se.tetris.views.pages.MainPage;
 
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ public class TetrisStartGame {
         //game.init();
         //LoginScreen loginScreen=new LoginScreen();
 
-        MainPageController mainPage = new MainPageController();
+        MainPage mainPage = new MainPage();
         mainPage.setLocationRelativeTo(null);
         //new Page();
     }
