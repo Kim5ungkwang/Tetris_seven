@@ -90,4 +90,9 @@ public class TwoPlayerBoardController extends  BoardController{
         }
         playerPage.updatePlayer2NumLinesRemovedCount(NumLinesRemovedCount);
     }
+
+    @Override
+    public void gameOver() {
+        playerPage.getLocalTwoPlayPage().endGame(playerNum);
+    }
 }

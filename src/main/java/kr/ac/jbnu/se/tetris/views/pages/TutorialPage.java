@@ -114,6 +114,7 @@ public class TutorialPage extends PlayerPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tutorialEndFrame.dispose();
+                tutorialPageFrame.dispose();
             }
         });
     }
