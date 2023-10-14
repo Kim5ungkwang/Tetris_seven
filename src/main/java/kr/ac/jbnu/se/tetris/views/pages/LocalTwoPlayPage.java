@@ -7,6 +7,8 @@ import kr.ac.jbnu.se.tetris.models.Member;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class LocalTwoPlayPage extends TetrisFrameController {
@@ -21,11 +23,14 @@ public class LocalTwoPlayPage extends TetrisFrameController {
     private int player2Speed = 1;
     private JLabel player1NumLinesRemovedCount;
     private JLabel player2NumLinesRemovedCount;
-
+    private JFrame gameEndFrame;
     private Member player1;
     private Member player2;
+    private JLabel player1Lable;
+    private JLabel player2Lable;
     KeyInput p1Key;
     KeyInput p2Key;
+    private JButton goBackButton;
 
     public LocalTwoPlayPage(Member player1, KeyInput p1Key, Random p1Rand, Member player2, KeyInput p2Key, Random p2Rand) {
 
@@ -35,12 +40,19 @@ public class LocalTwoPlayPage extends TetrisFrameController {
         //플레이어1은 왼쪽으로, 플레이어2는 오른쪽에 배치
         playerPage1=new PlayerPage(this, p1,p1Key,p1Rand, 1);
         playerPage2=new PlayerPage(this, p2,p2Key,p2Rand, 2);
+        player1Lable = new JLabel("Player 1");
+        player2Lable = new JLabel("Player 2");
         player1SpeedLabel = new JLabel("lv 1");
         player2SpeedLable = new JLabel("lv 1");
         player1SpeedLabel.setFont(new Font("Serif", Font.BOLD, 25));
         player2SpeedLable.setFont(new Font("Serif", Font.BOLD, 25));
+        player1Lable.setFont(new Font("Serif", Font.BOLD, 25));
+        player2Lable.setFont(new Font("Serif", Font.BOLD, 25));
         player1SpeedLabel.setForeground(Color.white);
         player2SpeedLable.setForeground(Color.white);
+        player1Lable.setForeground(Color.white);
+        player2Lable.setForeground(Color.white);
+        this.goBackButton = new JButton("돌아가기");
 
         player1NumLinesRemovedCount = new JLabel("10");
         player2NumLinesRemovedCount = new JLabel("10");
@@ -57,6 +69,8 @@ public class LocalTwoPlayPage extends TetrisFrameController {
         player2SpeedLable.setBounds(845, 0, 300, 100);
         player1NumLinesRemovedCount.setBounds(285, 0, 300, 100);
         player2NumLinesRemovedCount.setBounds(945, 0, 300, 100);
+        player1Lable.setBounds(185, 40, 300, 100);
+        player2Lable.setBounds(845, 40, 300, 100);
 
         add(playerPage1);
         add(playerPage2);
@@ -64,6 +78,8 @@ public class LocalTwoPlayPage extends TetrisFrameController {
         add(player2SpeedLable);
         add(player1NumLinesRemovedCount);
         add(player2NumLinesRemovedCount);
+        add(player1Lable);
+        add(player2Lable);
         //각 창의 타이틀에 각 플레이어의 이름을 배치
         //playerPage1.init();
         //playerPage2.init();
@@ -114,5 +130,47 @@ public class LocalTwoPlayPage extends TetrisFrameController {
 
     public void updatePlayer2NumLinesRemovedCount(String numLinesCount){
         player2NumLinesRemovedCount.setText(numLinesCount);
+    }
+
+    public void endGame(int loserNum){
+        playerPage1.getBoard().pause();
+        playerPage2.getBoard().pause();
+        gameClear(loserNum);
+    }
+
+    public void gameClear(int loserNum){
+        gameEndFrame = new JFrame();
+        gameEndFrame.setSize(500,250);
+
+        JLabel clearScore = new JLabel();
+        clearScore.setFont(new Font("Serif", Font.BOLD, 35));
+
+        clearScore.setBounds(100, 50, 500, 50);
+        goBackButton.setBounds(100, 120, 300, 50);
+
+        gameEndFrame.setLayout(null);
+        gameEndFrame.add(clearScore);
+        gameEndFrame.add(goBackButton);
+
+        gameEndFrame.setVisible(true);
+        if(loserNum == 1){
+            clearScore.setText("winner is player 2");
+        }else{
+            clearScore.setText("winner is player 1");
+        }
+        buttonAction();
+
+        gameEndFrame.setVisible(true);
+        gameEndFrame.setLocationRelativeTo(null);
+    }
+
+    public void buttonAction(){
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameEndFrame.dispose(); // 다른 프레임도 닫기
+                dispose(); // 현재 프레임 닫기
+            }
+        });
     }
 }

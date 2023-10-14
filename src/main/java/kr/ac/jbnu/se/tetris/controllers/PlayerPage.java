@@ -23,6 +23,7 @@ public class PlayerPage extends JPanel{
     protected NextBlockPanelController nextBlockPanelController;
     @Getter
     protected JLabel gameTimer;
+    @Getter
     private LocalTwoPlayPage localTwoPlayPage;
 
 

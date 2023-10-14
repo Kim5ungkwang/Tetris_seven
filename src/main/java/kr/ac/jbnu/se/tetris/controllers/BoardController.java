@@ -284,7 +284,6 @@ public class BoardController extends JPanel implements ActionListener {
 
     /**
      * gameOver했을때 사용하는 메서드
-     * 사용 안함
      */
     public void gameOver() {
         playerPage.raiseGameOverFrame();

@@ -91,10 +91,12 @@ public class TutorialBoardController extends BoardController {
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
         }
-        if (numLinesRemoved == 3) {
-            do{
-                tutorialPage.tutorialFinished();
-            }while (tutorialPage.isTutorialEndFrame() == false && tutorialPage.isTutorialPageFrame() == true);
+        if (numLinesRemoved == 9) {
+            //do{
+            //    tutorialPage.tutorialFinished();
+            //}while (tutorialPage.isTutorialEndFrame() == false && tutorialPage.isTutorialPageFrame() == true);
+            timer.stop();
+            tutorialPage.tutorialFinished();
         }
     }
 
@@ -157,6 +159,7 @@ public class TutorialBoardController extends BoardController {
         clearBoard();
         TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
         tutorialPieaceController.resetBrickQueue();
-        start();
+        drawBackgroundblock();
+        pieceController.newPiece();
     }
 }
