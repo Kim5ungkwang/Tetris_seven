@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
 
 import javax.swing.*;

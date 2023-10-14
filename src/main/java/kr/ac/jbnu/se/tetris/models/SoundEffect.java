@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.tetris.controllers;
+package kr.ac.jbnu.se.tetris.models;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -7,11 +7,11 @@ import java.io.IOException;
 /**
  * 블럭이 삭제될떄 나는 효과음을 관리하는 메서드
  */
-public class SoundEffectPlayer extends Thread {
+public class SoundEffect extends Thread {
     private String soundFilePath;
     private boolean isPlaying;
 
-    public SoundEffectPlayer() {
+    public SoundEffect() {
         this.soundFilePath = "source/sound/finger_snap.wav";
         this.isPlaying = false;
     }

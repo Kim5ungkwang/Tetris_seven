@@ -1,5 +1,8 @@
-package kr.ac.jbnu.se.tetris.controllers;
+package kr.ac.jbnu.se.tetris.views;
 
+import kr.ac.jbnu.se.tetris.controllers.BoardController;
+import kr.ac.jbnu.se.tetris.controllers.NextBlockPanelController;
+import kr.ac.jbnu.se.tetris.controllers.TwoPlayerBoardController;
 import kr.ac.jbnu.se.tetris.views.pages.LocalTwoPlayPage;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
