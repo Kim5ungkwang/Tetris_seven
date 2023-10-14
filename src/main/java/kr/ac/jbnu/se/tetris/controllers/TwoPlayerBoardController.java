@@ -8,7 +8,7 @@ import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import java.util.Random;
 
 public class TwoPlayerBoardController extends BoardController {
-    int playerNum;
+    private int playerNum;
     public TwoPlayerBoardController(PlayerPage parent, Random rand, int playerNum){
         super(parent, rand);
         this.playerNum = playerNum;

@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class LocalTwoPlayPage extends TetrisFrame {
+public class LocalTwoPlayPage extends JFrame {
 
     private PlayerPage playerPage1;
     private PlayerPage playerPage2;

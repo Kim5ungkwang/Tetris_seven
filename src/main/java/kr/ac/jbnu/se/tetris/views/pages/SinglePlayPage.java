@@ -20,15 +20,15 @@ public class SinglePlayPage extends JPanel {
     static public final int BUTTON_Y = 290;
     @Getter
     private JPanel buttonPanel;
-    private final MainPageController mainPage;  //메인페이지(parent)
+    private final MainPage mainPage;  //메인페이지(parent)
     @Getter
     static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg;
     @Getter
     JButton sprintBt, tutorialBt, timeAttackBt, undoBt;
-    Random rand;
+    private Random rand;
     KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");   //임시
 
-    public SinglePlayPage(MainPageController parent){
+    public SinglePlayPage(MainPage parent){
         this.mainPage = parent;
         setLayout(null);
         setSize(1280, 720);
