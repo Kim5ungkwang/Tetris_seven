@@ -1,5 +1,9 @@
 package kr.ac.jbnu.se.tetris.views;
 
+import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
+import kr.ac.jbnu.se.tetris.views.pages.MainPageController;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -7,6 +11,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 // 더미 페이지. 불필요함.
@@ -14,7 +19,7 @@ public class LoginScreen extends JFrame {
 
     public LoginScreen() {
 
-        setTitle("제품관리 시스템");
+        setTitle("로그인 페이지");
 
         JPanel title = new JPanel();
 
@@ -102,9 +107,22 @@ public class LoginScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String myId = jtf1.getText();
                 String myPwd = new String(jtf2.getPassword());
+                boolean logIn=WebSocketService.getInstance().logIn(myId,myPwd);
+                if(logIn){
+                    Member.myId=myId;
+                    MainPageController mainPage = null;
+                    try {
+                        mainPage = new MainPageController();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    mainPage.setLocationRelativeTo(null);
+                }
+                else{
+                    JOptionPane.showMessageDialog
+                            (null, "log in fail");
+                }
 
-                JOptionPane.showMessageDialog
-                        (null, "아이디 : "+myId+", 비밀번호 : "+myPwd);
             }
         });
 

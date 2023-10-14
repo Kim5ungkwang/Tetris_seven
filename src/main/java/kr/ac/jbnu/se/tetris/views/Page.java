@@ -1,6 +1,7 @@
 package kr.ac.jbnu.se.tetris.views;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import static kr.ac.jbnu.se.tetris.service.HttpService.httpService;
 
 //일반적인 메뉴를 포함한, 게임 페이즐 제외한 페이지
 public class Page extends JFrame {
@@ -16,7 +16,7 @@ public class Page extends JFrame {
 
     public Page() {
 
-        setTitle("회원관리 화면");
+        setTitle("회원 가입");
 
         // 1. 컴포넌트들을 만들어 보자.
         JLabel title =
@@ -84,9 +84,8 @@ public class Page extends JFrame {
 
                 String myId = id.getText();
                 String myPwd = new String(pwd.getPassword());
-                httpService.memberJoin(myId,myPwd);
-                httpService.roomList();
 
+                WebSocketService.getInstance().join(myId,myPwd);
                 JOptionPane.showMessageDialog
                         (null, "아이디 : "+myId+", 비밀번호 : "+myPwd);
             }

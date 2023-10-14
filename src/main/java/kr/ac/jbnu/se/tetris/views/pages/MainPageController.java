@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.tetris.views.pages;
 
 import kr.ac.jbnu.se.tetris.controllers.MusicController;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -25,7 +26,10 @@ public class MainPageController extends JFrame {
     @Getter
     JPanel multiPlayPagePanel; //뒷 배경을 그린 패널, 메인 패널, 싱글 플레이 패널, 멀티플레이 패널
     JButton multiPlayBt, settingBt, singlePlayBt;
+
     public MainPageController() throws IOException {
+
+
         setSize(new Dimension(MAINPAGE_SIZE_WIDTH, MAINPAGE_SIZE_HEIGHT));
         setLayout(null);
         mainPageModel = new MainPageModel();

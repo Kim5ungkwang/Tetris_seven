@@ -1,9 +1,13 @@
 package kr.ac.jbnu.se.tetris.views.pages;
 
+
+
 import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.service.MyWebSocketClient;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class LocalTwoPlayPage extends TetrisFrameController {
+public class MultiTwoPlayPage extends LocalTwoPlayPage {
 
     private PlayerPage playerPage1;
     private PlayerPage playerPage2;
@@ -31,15 +35,27 @@ public class LocalTwoPlayPage extends TetrisFrameController {
     KeyInput p1Key;
     KeyInput p2Key;
     private JButton goBackButton;
+    private String roomId;
 
-    public LocalTwoPlayPage(Member player1, KeyInput p1Key, Random p1Rand, Member player2, KeyInput p2Key, Random p2Rand) {
+    public MultiTwoPlayPage( KeyInput p1Key,  KeyInput p2Key) {
+        super();
+        player1= new Member();
+        player2= new Member();
 
-        Member p1= new Member();
-        Member p2=new Member();
+        WebSocketService.getInstance().startGame();
+        MyWebSocketClient client= WebSocketService.getInstance().getClient();
+        roomId=client.getRoomId();
+
+        player1.setSessionId(client.getSender1());
+        player2.setSessionId(client.getSender2());
+        Random rand1=new Random((long) client.getSeed1());
+        Random rand2=new Random((long) client.getSeed2());
+
         setLayout(null);
         //플레이어1은 왼쪽으로, 플레이어2는 오른쪽에 배치
-        playerPage1=new PlayerPage(this, p1,p1Key,p1Rand, 1);
-        playerPage2=new PlayerPage(this, p2,p2Key,p2Rand, 2);
+        playerPage1=new PlayerPage(this, player1,p1Key,rand1, 1);
+        playerPage2=new PlayerPage(this, player2,p2Key,rand2, 2);
+
         player1Lable = new JLabel("Player 1");
         player2Lable = new JLabel("Player 2");
         player1SpeedLabel = new JLabel("lv 1");
@@ -106,14 +122,15 @@ public class LocalTwoPlayPage extends TetrisFrameController {
         setFocusable(true);
         addKeyListener(adapterController);
         adapterController.addList(new KeyInputController(p1Key,playerPage1.getBoard()));
-        adapterController.addList(new KeyInputController(p2Key, playerPage2.getBoard()));
+        client.setController1(new MultiActionController(playerPage1.getBoard()));
+        client.setController2(new MultiActionController(playerPage2.getBoard()));
+        //adapterController.addList(new KeyInputController(p2Key, playerPage2.getBoard()));
 
+    }
+    public void init(){
 
     }
 
-    public LocalTwoPlayPage() {
-
-    }
 
     public void reducePlayer2GameDelay(int reduceAmount){
         TwoPlayerBoardController rivalBoard = (TwoPlayerBoardController) playerPage2.getBoard();

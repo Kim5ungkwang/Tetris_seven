@@ -1,23 +1,22 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
-
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 
 import java.util.logging.Logger;
 
+public class MultiInputController {
 
-public class KeyInputController {
     Logger logger= Logger.getLogger(KeyInputController.class.getName());
     private final KeyInput input;
     private final BoardController controller;
-    private final PieceController pieceController;
 
-    public KeyInputController(KeyInput input, BoardController controller) {
-        logger.info("keyInputController start");
+
+    public MultiInputController(KeyInput input, BoardController controller) {
+        logger.info("MultiInputController start");
         this.input = input;
         this.controller=controller;
-        this.pieceController = controller.getPieceController();
-
+        
     }
 
     public void action(int keycode) throws CloneNotSupportedException {
@@ -29,24 +28,24 @@ public class KeyInputController {
         if (!controller.isPaused()) {
 
             if (keycode == input.getMoveLeft()) {
-                pieceController.moveLeft();
+                WebSocketService.getInstance().sendMessage("left");
             } else if (keycode == input.getMoveRight()) {
-                pieceController.moveRight();
+                WebSocketService.getInstance().sendMessage("right");
+                //pieceController.moveRight();
             } else if (keycode == input.getBlockHold()) {
-                pieceController.holdingPiece();
+                WebSocketService.getInstance().sendMessage("hold");
             } else if (keycode == input.getRotateLeft()) {
-                pieceController.rotateLeft();
+                WebSocketService.getInstance().sendMessage("rotateLeft");
             } else if (keycode == input.getRotateRight()) {
-                pieceController.rotateRight();
+                WebSocketService.getInstance().sendMessage("rotateRight");
             } else if (keycode == input.getDropDown()) {
-                pieceController.dropDown();
+                WebSocketService.getInstance().sendMessage("dropDown");
             }else if (keycode==input.getOneLineDown()){
-                pieceController.oneLineDown();
+                WebSocketService.getInstance().sendMessage("oneLineDown");
             }
         }
     }
 }
-
 
 
 

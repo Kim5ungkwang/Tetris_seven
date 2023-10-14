@@ -2,12 +2,16 @@ package kr.ac.jbnu.se.tetris.views.pages;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.models.Rank;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,9 +26,9 @@ public class MutliPlayPage extends JPanel{
     private JPanel buttonPanel;
     private final MainPageController mainPage;
     @Getter
-    static ImageIcon localPlayImg, onlineImg, undoImg;
+    static ImageIcon localPlayImg, onlineImg, undoImg,rankingImg;
     @Getter
-    JButton localPlayBt, onlineBt, undoBt;
+    JButton localPlayBt, onlineBt, undoBt,rankingBt;
     KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");
     KeyInput p2Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player2key.json");
     Random p1Rand;
@@ -67,10 +71,12 @@ public class MutliPlayPage extends JPanel{
     public void buttonInit(){
         localPlayImg = new ImageIcon("source/image/button/localplay.png");
         onlineImg = new ImageIcon("source/image/button/onlineplay.png");
+        rankingImg= new ImageIcon("source/image/button/rankingImg.png");
         undoImg = new ImageIcon("source/image/button/undo.png");
 
         localPlayBt = new JButton(localPlayImg);
         onlineBt = new JButton(onlineImg);
+        rankingBt= new JButton(rankingImg);
         undoBt = new JButton(undoImg);
 
         settingButton(localPlayBt);
@@ -78,10 +84,12 @@ public class MutliPlayPage extends JPanel{
 
         localPlayBt.setBounds(BUTTON_X, BUTTON_Y, BUTTON_WIDTH,BUTTON_HEIGHT);
         onlineBt.setBounds(BUTTON_X, BUTTON_Y + BUTTON_HEIGHT + 30, BUTTON_WIDTH, BUTTON_HEIGHT);
+        rankingBt.setBounds(BUTTON_X,BUTTON_Y+ BUTTON_HEIGHT+130,BUTTON_WIDTH,BUTTON_HEIGHT);
         undoBt.setBounds(0, 120, BUTTON_WIDTH,BUTTON_HEIGHT);
 
         add(localPlayBt);
         add(onlineBt);
+        add(rankingBt);
         add(undoBt);
 
         buttonAction();
@@ -107,7 +115,25 @@ public class MutliPlayPage extends JPanel{
         onlineBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                WebSocketService.getInstance().startMatching();
+                while(true){
+                    if(WebSocketService.getInstance().getClient().getSessionId()!=null){
+                        MultiTwoPlayPage multiTwoPlayPage=new MultiTwoPlayPage(p1Key,p2Key);
+                        multiTwoPlayPage.setVisible(true);
+                        break;
+                    }
+                    else{
+                        int val= JOptionPane.showConfirmDialog
+                                (null, "waiting","waiting",
+                                        JOptionPane.DEFAULT_OPTION);
+                        if(val==-1||val==JOptionPane.YES_OPTION)
+                            break;
+                    }
+
+                }
+
                 // 온라인 모드
+
             }
         });
         localPlayBt.addActionListener(new ActionListener() {
@@ -117,5 +143,23 @@ public class MutliPlayPage extends JPanel{
                 localTwoPlayPage.setVisible(true);
             }
         });
+
+        rankingBt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Rank> list = WebSocketService.getInstance().ranking();
+                String rank="               <<ranking>>   \n";
+                for(int i=0;i<list.size();i++){
+                    rank=rank+"   "+ list.get(i).getId()+"    |    "+list.get(i).getRank()+"    |    "+list.get(i).getScore()+"\n";
+                    if(i==9){
+                        i=list.size();
+                    }
+                }
+                JOptionPane.showMessageDialog
+                        (null, rank);
+            }
+        });
+
+
     }
 }

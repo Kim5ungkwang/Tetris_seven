@@ -30,6 +30,7 @@ public class AdapterController extends KeyAdapter {
             }
         }
     }
+
     public void addList(KeyInputController controller){
         memberList.add(controller);
     }

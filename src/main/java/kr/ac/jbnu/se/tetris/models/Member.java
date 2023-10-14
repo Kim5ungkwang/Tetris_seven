@@ -6,11 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Member {
-    private String id;
-//    private String password;
-//    private int win;
-//    private int lose;
-//    private int bestScore;
+    public static String myId;
+    private String password;
+    private String sessionId;
 
 
 
