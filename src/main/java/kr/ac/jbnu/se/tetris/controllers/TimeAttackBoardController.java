@@ -1,6 +1,7 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.ShapeData;
+import kr.ac.jbnu.se.tetris.models.SoundEffect;
 import kr.ac.jbnu.se.tetris.views.pages.TimeAttackPage;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import lombok.Getter;
@@ -72,7 +73,7 @@ public class TimeAttackBoardController extends BoardController{
         }
 
         if (numFullLines > 0) {
-            new SoundEffectPlayer().start();        // 블럭사라짐 효과음
+            new SoundEffect().start();        // 블럭사라짐 효과음
             reverseCountTimer.addTimeLimit(numFullLines);   //기존 코드와 차이점 -> 줄을 지운만큼 타이머 시간을 더한다.
             numLinesRemoved += numFullLines;
             timeAttackPage.getScoreLable().setText(String.valueOf(numLinesRemoved));

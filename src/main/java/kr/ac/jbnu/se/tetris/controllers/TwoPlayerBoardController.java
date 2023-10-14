@@ -1,11 +1,13 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import kr.ac.jbnu.se.tetris.controllers.BoardController;
 import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
 
 import java.util.Random;
 
-public class TwoPlayerBoardController extends  BoardController{
+public class TwoPlayerBoardController extends BoardController {
     int playerNum;
     public TwoPlayerBoardController(PlayerPage parent, Random rand, int playerNum){
         super(parent, rand);

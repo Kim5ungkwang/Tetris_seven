@@ -8,6 +8,8 @@ import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.service.MyWebSocketClient;
 import kr.ac.jbnu.se.tetris.service.WebSocketService;
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
+import kr.ac.jbnu.se.tetris.controllers.TwoPlayerBoardController;
 
 import javax.swing.*;
 import java.awt.*;

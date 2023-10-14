@@ -11,10 +11,10 @@ public class TetrisStartGame {
         //TetrisFrameController game = new TetrisFrameForTwo();
         //game.setLocationRelativeTo(null);
         //game.init();
-        LoginScreen loginScreen=new LoginScreen();
+        //LoginScreen loginScreen=new LoginScreen();
 
-        //MainPageController mainPage = new MainPageController();
-        //mainPage.setLocationRelativeTo(null);
+        MainPageController mainPage = new MainPageController();
+        mainPage.setLocationRelativeTo(null);
         //new Page();
     }
 }

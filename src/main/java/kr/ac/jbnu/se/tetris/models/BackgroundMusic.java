@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.tetris.controllers;
+package kr.ac.jbnu.se.tetris.models;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -8,13 +8,13 @@ import java.io.IOException;
  * 배경음악을 관리하는 클래스
  * 한번 재생이 끝나면 루프를 돌아 끊임 없이 오디오가 나오게 합니다
  */
-public class MusicController {
+public class BackgroundMusic {
     private Clip mainManuClip;
 
     /**
      * 음악을 초기화하고 볼륨을 설정하는 생성자
      */
-    public MusicController(){
+    public BackgroundMusic(){
         mainManuMusicInit();
         setMainManuVolume(-10f);    //-80.0f ~ 6.0206f 값
     }
