@@ -117,6 +117,7 @@ public class LoginScreen extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     mainPage.setLocationRelativeTo(null);
+                    setVisible(false);
                 }
                 else{
                     JOptionPane.showMessageDialog

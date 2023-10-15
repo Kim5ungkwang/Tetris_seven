@@ -35,7 +35,7 @@ public class MultiActionController {
                 pieceController.rotateLeft();
             } else if (message.equals("rotateRight")) {
                 pieceController.rotateRight();
-            } else if (message.equals("down")) {
+            } else if (message.equals("dropDown")) {
                 pieceController.dropDown();
             } else if (message.equals("oneLineDown")) {
                 pieceController.oneLineDown();
