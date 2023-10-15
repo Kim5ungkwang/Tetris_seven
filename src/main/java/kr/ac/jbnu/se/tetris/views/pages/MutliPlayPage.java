@@ -125,11 +125,16 @@ public class MutliPlayPage extends JPanel{
                 if(i==1){
                     WebSocketService.getInstance().startMatching();
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
                     WebSocketService.getInstance().startGame();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     MultiTwoPlayPage multiTwoPlayPage=new MultiTwoPlayPage(p1Key,p2Key);
                     multiTwoPlayPage.setVisible(true);
                     System.out.println("match success");

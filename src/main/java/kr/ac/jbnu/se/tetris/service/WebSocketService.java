@@ -27,6 +27,8 @@ public class WebSocketService {
     }
     private String serverUri="http://52.79.64.157:8080/";
     private String socketUri="ws://52.79.64.157:8080/ws/chat";
+    //private String serverUri="http://localhost:8080/";
+    //private String socketUri="ws://localhost:8080/ws/chat";
     private HttpClient httpClient = HttpClients.createDefault();
     private MyWebSocketClient client;
     protected WebSocketService() {
@@ -70,10 +72,12 @@ public class WebSocketService {
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
         if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
-            System.out.println("connected");
+            System.out.println("send message connected");
         }
     }
     public void sendMessage(String message){
+        if(!client.getConnection().isOpen())
+            System.out.println("not connected");
         JSONObject jsonObject= new JSONObject();
         jsonObject.put("type","GAME");
         jsonObject.put("roomId",client.getRoomId());
@@ -81,7 +85,7 @@ public class WebSocketService {
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
         if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
-            System.out.println("connected");
+            System.out.println("send message 2 connected");
         }
     }
 

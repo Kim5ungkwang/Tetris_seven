@@ -49,6 +49,7 @@ public class MyWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
+        System.out.println("message in");
         JSONObject obj;
         JSONParser jsonParser= new JSONParser();
         try {
@@ -56,24 +57,27 @@ public class MyWebSocketClient extends WebSocketClient {
             //막 들어갔을때, 받기
 
             //start
-            if(obj.get("type").equals( MessageType.START)){
+            if(obj.get("type").equals("START")){
                 if(obj.get("sender").equals("roomId")){
                     roomId=obj.get("message").toString();
+                    System.out.println("roomID" +roomId);
                 }
                 else if(obj.get("sender").equals("sessionId")){
                     sessionId=obj.get("message").toString();
+                    System.out.println("sessionID"+sessionId);
 
                 }
             }
             //enter
-            else if(obj.get("type").equals(MessageType.ENTER)){
+            else if(obj.get("type").equals("ENTER")){
+                System.out.println("Client enter");
                 if(obj.get("sender").equals("player1")){
                     sender1=obj.get("message").toString();
-                    System.out.println(sender1);
+                    System.out.println("sender1" +sender1);
                 }
                 else if(obj.get("sender").equals("player2")){
                     sender2=obj.get("message").toString();
-                    System.out.println(sender2);
+                    System.out.println("sender2" +sender2);
                 }
                 else if(obj.get("sender").equals("seed")){
                     String splitStrArr[] = obj.get("message").toString().split(",");
@@ -83,15 +87,16 @@ public class MyWebSocketClient extends WebSocketClient {
                 }
             }
             //game
-            else if(obj.get("type").equals(MessageType.GAME)){
+            else if(obj.get("type").equals("GAME")){
                 String sessionId=obj.get("sender").toString();
+                System.out.print(sessionId);
                 try {
-                    if(sessionId.equals("플레이어1")){
+                    if(sessionId.equals(sender1)){
                         action=obj.get(message).toString();
                         controller1.action(action);
                         System.out.println("action : "+action);
                         //작동 호출
-                    }else if(sessionId.equals("플레이어2")){
+                    }else if(sessionId.equals(sender2)){
                         action=obj.get(message).toString();
                         controller2.action(action);
                         System.out.println("action : "+action);
@@ -104,7 +109,7 @@ public class MyWebSocketClient extends WebSocketClient {
 
             }
             //end
-            else if(obj.get("type").equals(MessageType.END)){
+            else if(obj.get("type").equals("END")){
                 System.out.println("end game");
                 //게임 종료
             }

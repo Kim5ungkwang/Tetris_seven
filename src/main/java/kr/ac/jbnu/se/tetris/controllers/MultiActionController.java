@@ -11,7 +11,7 @@ public class MultiActionController {
     private final PieceController pieceController;
 
     public MultiActionController( BoardController controller) {
-        logger.info("keyInputController start");
+        logger.info("MultiActionController start");
 
         this.controller = controller;
         this.pieceController = controller.getPieceController();

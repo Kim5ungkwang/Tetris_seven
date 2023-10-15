@@ -50,6 +50,7 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
 
         player1.setSessionId(client.getSender1());
         player2.setSessionId(client.getSender2());
+        System.out.println("seed1: "+client.getSeed1()+ "seed2 : " +client.getSeed2());
         Random rand1=new Random((long) client.getSeed1());
         Random rand2=new Random((long) client.getSeed2());
 
@@ -120,10 +121,10 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
         backgroundPanel.setBounds(0,0,1280,720);
         add(backgroundPanel);
 
-        AdapterController adapterController = new AdapterController();
+        MultiAdapterController adapterController = new MultiAdapterController();
         setFocusable(true);
         addKeyListener(adapterController);
-        adapterController.addList(new KeyInputController(p1Key,playerPage1.getBoard()));
+        adapterController.addList(new MultiInputController(p1Key,playerPage1.getBoard()));
         client.setController1(new MultiActionController(playerPage1.getBoard()));
         client.setController2(new MultiActionController(playerPage2.getBoard()));
         //adapterController.addList(new KeyInputController(p2Key, playerPage2.getBoard()));

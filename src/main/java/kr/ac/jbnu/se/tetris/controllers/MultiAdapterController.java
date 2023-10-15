@@ -1,20 +1,19 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class AdapterController extends KeyAdapter {
+public class MultiAdapterController extends KeyAdapter {
 
 
     Logger logger = Logger.getLogger(AdapterController.class.getName());
-    ArrayList<KeyInputController> memberList= new ArrayList<>();
+
     MultiInputController multiInputController;
 
-    public AdapterController(){
-        logger.info("adaptController start");
+    public MultiAdapterController(){
+        logger.info("MultiadaptController start");
     }
     @Override
     public void keyPressed(KeyEvent e){
@@ -23,17 +22,18 @@ public class AdapterController extends KeyAdapter {
         in= Character.toLowerCase(in);
         logger.info("pressed : "+in);
 
-        for(int i=0;i<memberList.size();i++){
+
             try {
-                memberList.get(i).action(in);
+                multiInputController.action(in);
             } catch (CloneNotSupportedException ex) {
                 throw new RuntimeException(ex);
             }
         }
-    }
 
-    public void addList(KeyInputController controller){
-        memberList.add(controller);
+
+    public void addList(MultiInputController controller){
+        this.multiInputController=controller;
+
     }
 
 }
