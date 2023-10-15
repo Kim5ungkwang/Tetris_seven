@@ -5,7 +5,6 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.views.PlayerPage;
-import kr.ac.jbnu.se.tetris.views.TetrisFrame;
 import kr.ac.jbnu.se.tetris.controllers.TwoPlayerBoardController;
 
 import javax.swing.*;
@@ -15,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class LocalTwoPlayPage extends JFrame {
-
     private PlayerPage playerPage1;
     private PlayerPage playerPage2;
     private int sizeX=1280;

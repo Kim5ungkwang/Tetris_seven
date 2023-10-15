@@ -7,22 +7,18 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class AdapterController extends KeyAdapter {
-
-
     Logger logger = Logger.getLogger(AdapterController.class.getName());
     ArrayList<KeyInputController> memberList= new ArrayList<>();
-    MultiInputController multiInputController;
+
 
     public AdapterController(){
         logger.info("adaptController start");
     }
     @Override
     public void keyPressed(KeyEvent e){
-
         int in= e.getKeyCode();
         in= Character.toLowerCase(in);
         logger.info("pressed : "+in);
-
         for(int i=0;i<memberList.size();i++){
             try {
                 memberList.get(i).action(in);

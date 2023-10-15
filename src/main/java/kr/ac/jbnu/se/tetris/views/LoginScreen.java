@@ -119,10 +119,8 @@ public class LoginScreen extends JFrame {
                     mainPage.setLocationRelativeTo(null);
                     setVisible(false);
                 }
-                else{
-                    JOptionPane.showMessageDialog
-                            (null, "log in fail");
-                }
+                else{JOptionPane.showMessageDialog
+                            (null, "log in fail");}
 
             }
         });
