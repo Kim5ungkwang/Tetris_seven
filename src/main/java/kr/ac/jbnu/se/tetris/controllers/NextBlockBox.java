@@ -15,8 +15,8 @@ public class NextBlockBox extends JPanel {
     private static final int BOX_WIDTH = 100;   //상자의 크기 pixel단위
     private static final int BOX_HEIGHT = 100;  //상자의 크기 pixel단위
     private ShapeData.Tetrominoes showBox;  //상자에 들어갈 테트로미노의 종류
-    NextBlockPanelController nextBlockPanelController;
-    PieceController pieceController;    //상자에 들어갈 테트로미노를 받기위하여 pieceController와 연결
+    private NextBlockPanelController nextBlockPanelController;
+    private PieceController pieceController;    //상자에 들어갈 테트로미노를 받기위하여 pieceController와 연결
 
 
     /**
