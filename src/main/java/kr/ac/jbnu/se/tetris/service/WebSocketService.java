@@ -36,6 +36,7 @@ public class WebSocketService {
     }
     public void startMatching(){
         client=new MyWebSocketClient(URI.create(socketUri));
+        System.out.println("startMatching");
         client.connect();
     }
     public MyWebSocketClient getClient(){
@@ -51,6 +52,7 @@ public class WebSocketService {
 
     }
     public void startGame(){
+        System.out.println("start game");
         sendMessage(MessageType.ENTER,client.getRoomId(), client.getSessionId(),"room enter");
     }
     public void sendMessage(MessageType type, String roomId, String sender, String message){
@@ -148,6 +150,39 @@ public class WebSocketService {
             throw new RuntimeException(e);
         }
         return list;
+    }
+    public boolean connectTwo(){
+        String uri=serverUri+"/loading";
+        try {
+            HttpGet request = new HttpGet(uri);
+            HttpResponse response = httpClient.execute(request);
+            String responseString = EntityUtils.toString(response.getEntity());
+
+            System.out.println(responseString);
+            if(responseString.equals("two man in"))
+                return true;
+            else if(responseString.equals("not yet"))
+                return false;
+            else return false;
+
+        } catch (ClientProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    public void notIn(){
+        String uri=serverUri+"/notIn";
+        try {
+            HttpGet request = new HttpGet(uri);
+            httpClient.execute(request);
+        } catch (ClientProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

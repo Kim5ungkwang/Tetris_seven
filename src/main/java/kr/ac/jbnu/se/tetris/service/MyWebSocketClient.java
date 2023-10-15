@@ -123,7 +123,7 @@ public class MyWebSocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println("close");
+        System.out.println("connection close");
     }
 
     @Override

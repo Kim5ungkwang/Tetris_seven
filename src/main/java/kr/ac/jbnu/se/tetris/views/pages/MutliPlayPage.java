@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -113,24 +112,30 @@ public class MutliPlayPage extends JPanel{
             }
         });
         onlineBt.addActionListener(new ActionListener() {
+            int i=0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                WebSocketService.getInstance().startMatching();
                 while(true){
-                    if(WebSocketService.getInstance().getClient().getSessionId()!=null){
-                        MultiTwoPlayPage multiTwoPlayPage=new MultiTwoPlayPage(p1Key,p2Key);
-                        multiTwoPlayPage.setVisible(true);
+                    if(WebSocketService.getInstance().connectTwo()){
+                        i=1;
                         break;
                     }
-                    else{
-                        int val= JOptionPane.showConfirmDialog
-                                (null, "waiting","waiting",
-                                        JOptionPane.DEFAULT_OPTION);
-                        if(val==-1||val==JOptionPane.YES_OPTION)
-                            break;
+                    int val = JOptionPane.showConfirmDialog(null, "waiting", "waiting", JOptionPane.DEFAULT_OPTION);
+                    if (val == -1 || val == JOptionPane.YES_OPTION){
+                        WebSocketService.getInstance().notIn();
+                        break;
                     }
 
+
                 }
+                if(i==1){
+                    WebSocketService.getInstance().startMatching();
+
+                    MultiTwoPlayPage multiTwoPlayPage=new MultiTwoPlayPage(p1Key,p2Key);
+                    multiTwoPlayPage.setVisible(true);
+                    System.out.println("match success");
+                }
+
 
                 // 온라인 모드
 
@@ -163,3 +168,8 @@ public class MutliPlayPage extends JPanel{
 
     }
 }
+
+
+
+
+
