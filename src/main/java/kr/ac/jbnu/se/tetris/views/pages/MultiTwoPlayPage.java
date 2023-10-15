@@ -181,8 +181,10 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
         gameEndFrame.setVisible(true);
         if(loserNum == 1){
             clearScore.setText("winner is player 2");
+            WebSocketService.getInstance().gameEnd(2);
         }else{
             clearScore.setText("winner is player 1");
+            WebSocketService.getInstance().gameEnd(1);
         }
         buttonAction();
 

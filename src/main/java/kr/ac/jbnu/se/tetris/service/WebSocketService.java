@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.tetris.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.models.Rank;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -60,8 +61,20 @@ public class WebSocketService {
         client.close();
     }
 
-    public void gameEnd(){
-
+    public void gameEnd(int win){
+        MessageType t= MessageType.END;
+        String sender= Member.myId;
+        String message=new String();
+        if(win==1){
+            if(client.getSender1().equals(client.getSessionId()))
+                message="win";
+            else message="lose";
+        } else if (win==2) {
+            if(client.getSender2().equals(client.getSessionId()))
+                message="win";
+            else message="lose";
+        }
+        sendMessage(t, client.getRoomId(), sender,message);
     }
 
     public void sendMessage(MessageType type, String roomId, String sender, String message){
