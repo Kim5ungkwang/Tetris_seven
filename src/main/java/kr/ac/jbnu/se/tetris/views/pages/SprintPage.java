@@ -4,6 +4,7 @@ import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.json.simple.JSONObject;
@@ -18,16 +19,16 @@ import java.io.*;
 import java.util.Random;
 
 public class SprintPage extends PlayerPage {
-    JPanel backgroundPanel;
+    private JPanel backgroundPanel;
     @Getter
-    JLabel removedLine;
-    JFrame gameClearFrame;
-    JFrame gameOverFrame;
-    JFrame sprintPageFrame;
-    JButton goBackButton1;
-    JButton goBackButton2;
-    JLabel highScoreLabel;
-    int highScore;
+    private JLabel removedLine;
+    private JFrame gameClearFrame;
+    private JFrame gameOverFrame;
+    private JFrame sprintPageFrame;
+    private JButton goBackButton1;
+    private JButton goBackButton2;
+    private JLabel highScoreLabel;
+    private int highScore;
     @SneakyThrows
     public SprintPage(Member member, KeyInput keyInput, Random rand){
         super();

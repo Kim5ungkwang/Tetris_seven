@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -13,11 +14,11 @@ public class NextBlockPanelController extends JPanel {
     static public int NEXT_BLOCK_PANEL_SIZE_HEIGHT = 600;
 
     @Getter
-    PlayerPage playerPage;
-    NextBlockBox next1Box;
-    NextBlockBox next2Box;
-    NextBlockBox next3Box;
-    NextBlockBox holdBox;
+    private PlayerPage playerPage;
+    private NextBlockBox next1Box;
+    private NextBlockBox next2Box;
+    private NextBlockBox next3Box;
+    private NextBlockBox holdBox;
 
     /**
      * 4개의 NextBlockBox를 가지고있습니다
@@ -52,7 +53,7 @@ public class NextBlockPanelController extends JPanel {
      * hold블럭과 next블럭이 바뀔 때마다 호출하여
      * Box상태를 갱신하는 메서드 입니다.
      */
-    public void NextBlockPanelUpdate(){
+    public void nextBlockPanelUpdate(){
         holdBox.holdUpdate();
         next1Box.next1Update();
         next2Box.next2Update();
@@ -68,7 +69,7 @@ public class NextBlockPanelController extends JPanel {
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        NextBlockPanelUpdate();
+        nextBlockPanelUpdate();
         super.paint(g);
     }
 

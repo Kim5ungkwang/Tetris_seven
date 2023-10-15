@@ -23,7 +23,7 @@ public class MutliPlayPage extends JPanel{
     static public final int BUTTON_Y = 290;
     @Getter
     private JPanel buttonPanel;
-    private final MainPageController mainPage;
+    private final MainPage mainPage;
     @Getter
     static ImageIcon localPlayImg, onlineImg, undoImg,rankingImg;
     @Getter
@@ -33,7 +33,7 @@ public class MutliPlayPage extends JPanel{
     Random p1Rand;
     Random p2Rand;
 
-    public MutliPlayPage(MainPageController parent){
+    public MutliPlayPage(MainPage parent){
         this.mainPage = parent;
         setLayout(null);
         setSize(1280, 720);

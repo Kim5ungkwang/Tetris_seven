@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.models.BoardModel;
 import kr.ac.jbnu.se.tetris.models.Piece;
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
 import lombok.SneakyThrows;
 

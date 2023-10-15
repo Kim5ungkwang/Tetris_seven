@@ -4,6 +4,9 @@ import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.views.PlayerPage;
+import kr.ac.jbnu.se.tetris.views.TetrisFrame;
+import kr.ac.jbnu.se.tetris.controllers.TwoPlayerBoardController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class LocalTwoPlayPage extends TetrisFrameController {
+public class LocalTwoPlayPage extends JFrame {
 
     private PlayerPage playerPage1;
     private PlayerPage playerPage2;
@@ -174,7 +177,7 @@ public class LocalTwoPlayPage extends TetrisFrameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameEndFrame.dispose(); // 다른 프레임도 닫기
-                dispose(); // 현재 프레임 닫기
+                dispose();
             }
         });
     }

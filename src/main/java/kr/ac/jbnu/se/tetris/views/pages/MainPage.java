@@ -1,8 +1,7 @@
 package kr.ac.jbnu.se.tetris.views.pages;
 
-import kr.ac.jbnu.se.tetris.controllers.MusicController;
+import kr.ac.jbnu.se.tetris.models.BackgroundMusic;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
-import kr.ac.jbnu.se.tetris.service.WebSocketService;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -11,12 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class MainPageController extends JFrame {
-    JPanel background;
+public class MainPage extends JFrame {
     static private final int MAINPAGE_SIZE_WIDTH = 1280;
     static private final int MAINPAGE_SIZE_HEIGHT = 720;
     MainPageModel mainPageModel;
-    MusicController sound;
+    BackgroundMusic sound;
     @Getter
     JPanel backgroundPanel;
     @Getter
@@ -27,7 +25,7 @@ public class MainPageController extends JFrame {
     JPanel multiPlayPagePanel; //뒷 배경을 그린 패널, 메인 패널, 싱글 플레이 패널, 멀티플레이 패널
     JButton multiPlayBt, settingBt, singlePlayBt;
 
-    public MainPageController() throws IOException {
+    public MainPage() throws IOException {
 
 
         setSize(new Dimension(MAINPAGE_SIZE_WIDTH, MAINPAGE_SIZE_HEIGHT));
@@ -49,7 +47,7 @@ public class MainPageController extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-        sound = new MusicController();
+        sound = new BackgroundMusic();
         sound.mainManuPlay();
     }
 

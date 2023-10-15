@@ -174,7 +174,7 @@ public class PieceController {
             }
             isHolding = true;
             ghostPiece.updateGhostPiece();
-            nextBlockPanelController.NextBlockPanelUpdate();
+            nextBlockPanelController.nextBlockPanelUpdate();
             nextBlockPanelController.repaint();
         }
     }
@@ -267,7 +267,7 @@ public class PieceController {
         isHolding = false;
         currentPiece = new Piece();
         currentPiece.setPieceShape(brickQueueManager.getNewShape());
-        nextBlockPanelController.NextBlockPanelUpdate();    //brickQueueManager에서 새로운 블럭을 받아온 후 다음 블럭들을 패널에 갱신
+        nextBlockPanelController.nextBlockPanelUpdate();    //brickQueueManager에서 새로운 블럭을 받아온 후 다음 블럭들을 패널에 갱신
         nextBlockPanelController.repaint();
         currentPiece.setCurrentX(BoardModel.getBoardWidth() / 2 + 1);
         currentPiece.setCurrentY(BoardModel.getBoardHeight() - 1 + currentPiece.getCoordinates().minY());
