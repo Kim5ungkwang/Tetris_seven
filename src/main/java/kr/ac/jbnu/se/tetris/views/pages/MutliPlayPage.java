@@ -124,7 +124,6 @@ public class MutliPlayPage extends JPanel{
                 }
                 if(i==1){
                     WebSocketService.getInstance().startMatching();
-
                     MultiTwoPlayPage multiTwoPlayPage=new MultiTwoPlayPage(p1Key,p2Key);
                     multiTwoPlayPage.setVisible(true);
                     System.out.println("match success");
