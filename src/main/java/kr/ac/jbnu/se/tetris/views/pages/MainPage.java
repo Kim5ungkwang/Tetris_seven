@@ -23,7 +23,7 @@ public class MainPage extends JFrame {
     JPanel singlePagePanel;
     @Getter
     JPanel multiPlayPagePanel; //뒷 배경을 그린 패널, 메인 패널, 싱글 플레이 패널, 멀티플레이 패널
-    JButton multiPlayBt, settingBt, singlePlayBt;
+    JButton multiPlayBt, closeBt, singlePlayBt;
 
     public MainPage() throws IOException {
 
@@ -74,15 +74,15 @@ public class MainPage extends JFrame {
 
         singlePlayBt = mainPageModel.getSinglePlayBt();
         multiPlayBt = mainPageModel.getMultiPlayBt();
-        settingBt = mainPageModel.getSettingBt();
+        closeBt = mainPageModel.getCloseBt();
 
         singlePlayBt.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
         multiPlayBt.setBounds(buttonX, buttonY + buttonHeight + 30, buttonWidth, buttonHeight);
-        settingBt.setBounds(buttonX, buttonY +  buttonHeight*2 + 60, buttonWidth, buttonHeight);
+        closeBt.setBounds(buttonX, buttonY +  buttonHeight*2 + 60, buttonWidth, buttonHeight);
 
         mainPagePanel.add(singlePlayBt);
         mainPagePanel.add(multiPlayBt);
-        mainPagePanel.add(settingBt);
+        mainPagePanel.add(closeBt);
         buttonAction();
     }
     /**
@@ -103,10 +103,10 @@ public class MainPage extends JFrame {
                 multiPlayPagePanel.setVisible(true);
             }
         });
-        settingBt.addActionListener(new ActionListener() {
+        closeBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //설정 창 삽입
+                dispose();
             }
         });
     }
