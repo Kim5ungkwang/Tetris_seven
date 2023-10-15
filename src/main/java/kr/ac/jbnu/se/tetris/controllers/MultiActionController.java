@@ -25,9 +25,9 @@ public class MultiActionController {
 
         if (!controller.isPaused()) {
 
-            if (message.equals("Left")) {
+            if (message.equals("left")) {
                 pieceController.moveLeft();
-            } else if (message.equals("Right")) {
+            } else if (message.equals("right")) {
                 pieceController.moveRight();
             } else if (message.equals("hold")) {
                 pieceController.holdingPiece();

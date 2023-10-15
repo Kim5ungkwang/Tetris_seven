@@ -89,7 +89,7 @@ public class LocalTwoPlayPage extends JFrame {
 
         setPreferredSize(new Dimension(sizeX, sizeY));
         setTitle("Tetris");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);
         setResizable(false);

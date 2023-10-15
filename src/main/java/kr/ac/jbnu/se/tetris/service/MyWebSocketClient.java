@@ -23,7 +23,7 @@ public class MyWebSocketClient extends WebSocketClient {
     public enum MessageType{
         START,ENTER, GAME,END
     }
-    private MessageType type;
+
     private String sender1;
     private String sender2;
     private String action;
@@ -88,22 +88,31 @@ public class MyWebSocketClient extends WebSocketClient {
             }
             //game
             else if(obj.get("type").equals("GAME")){
-                String sessionId=obj.get("sender").toString();
-                System.out.print(sessionId);
+                String inputSessionId=obj.get("sender").toString();
+                if(!inputSessionId.equals(sender1))
+                    System.out.println("not equals sender1");
+                if(!inputSessionId.equals(sender2))
+                    System.out.println("not equals sender2");
+
                 try {
-                    if(sessionId.equals(sender1)){
-                        action=obj.get(message).toString();
+                    if(inputSessionId.equals(sender1)){
+                        System.out.println("equals sender1");
+                        action=obj.get("message").toString();
+                        System.out.println("action : "+action);
                         controller1.action(action);
                         System.out.println("action : "+action);
                         //작동 호출
-                    }else if(sessionId.equals(sender2)){
-                        action=obj.get(message).toString();
+                    }else if(inputSessionId.equals(sender2)){
+                        action=obj.get("message").toString();
+                        System.out.println("action : "+action);
                         controller2.action(action);
                         System.out.println("action : "+action);
                         //작동 호출
+                    }else{
+                        System.out.println("fail");
                     }
                 } catch (CloneNotSupportedException e) {
-                    throw new RuntimeException(e);
+                   System.out.println(e.toString());
                 }
 
 

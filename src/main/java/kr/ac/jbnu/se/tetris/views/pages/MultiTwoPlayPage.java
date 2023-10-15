@@ -105,7 +105,7 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
 
         setPreferredSize(new Dimension(sizeX, sizeY));
         setTitle("Tetris");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);
         setResizable(false);
@@ -128,6 +128,7 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
         client.setController1(new MultiActionController(playerPage1.getBoard()));
         client.setController2(new MultiActionController(playerPage2.getBoard()));
         //adapterController.addList(new KeyInputController(p2Key, playerPage2.getBoard()));
+
 
     }
     public void init(){
