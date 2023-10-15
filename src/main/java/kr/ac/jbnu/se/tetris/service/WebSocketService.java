@@ -26,7 +26,7 @@ public class WebSocketService {
         ENTER, GAME, START, END
     }
     private String serverUri="http://52.79.64.157:8080/";
-    private String socketUri="ws://52.79.64.157:8080/ws";
+    private String socketUri="ws://52.79.64.157:8080/ws/chat";
     private HttpClient httpClient = HttpClients.createDefault();
     private MyWebSocketClient client;
     protected WebSocketService() {
@@ -36,8 +36,18 @@ public class WebSocketService {
     }
     public void startMatching(){
         client=new MyWebSocketClient(URI.create(socketUri));
-        System.out.println("startMatching");
         client.connect();
+        System.out.println("startMatching");
+        if(!WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("not connected");
+        }
+    }
+    public void startGame(){
+        System.out.println("start game");
+        sendMessage(MessageType.ENTER,client.getRoomId(), client.getSessionId(),"room enter");
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
     public MyWebSocketClient getClient(){
         return client;
@@ -51,10 +61,7 @@ public class WebSocketService {
     public void gameEnd(){
 
     }
-    public void startGame(){
-        System.out.println("start game");
-        sendMessage(MessageType.ENTER,client.getRoomId(), client.getSessionId(),"room enter");
-    }
+
     public void sendMessage(MessageType type, String roomId, String sender, String message){
         JSONObject jsonObject= new JSONObject();
         jsonObject.put("type",type.toString());
@@ -62,6 +69,9 @@ public class WebSocketService {
         jsonObject.put("sender",sender);
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
     public void sendMessage(String message){
         JSONObject jsonObject= new JSONObject();
@@ -70,6 +80,9 @@ public class WebSocketService {
         jsonObject.put("sender",client.getSessionId());
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
 
 
