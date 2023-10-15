@@ -38,6 +38,16 @@ public class WebSocketService {
         client=new MyWebSocketClient(URI.create(socketUri));
         System.out.println("startMatching");
         client.connect();
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
+    }
+    public void startGame(){
+        System.out.println("start game");
+        sendMessage(MessageType.ENTER,client.getRoomId(), client.getSessionId(),"room enter");
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
     public MyWebSocketClient getClient(){
         return client;
@@ -51,10 +61,7 @@ public class WebSocketService {
     public void gameEnd(){
 
     }
-    public void startGame(){
-        System.out.println("start game");
-        sendMessage(MessageType.ENTER,client.getRoomId(), client.getSessionId(),"room enter");
-    }
+
     public void sendMessage(MessageType type, String roomId, String sender, String message){
         JSONObject jsonObject= new JSONObject();
         jsonObject.put("type",type.toString());
@@ -62,6 +69,9 @@ public class WebSocketService {
         jsonObject.put("sender",sender);
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
     public void sendMessage(String message){
         JSONObject jsonObject= new JSONObject();
@@ -70,6 +80,9 @@ public class WebSocketService {
         jsonObject.put("sender",client.getSessionId());
         jsonObject.put("message",message);
         client.send(jsonObject.toJSONString());
+        if(WebSocketService.getInstance().getClient().getConnection().isOpen()){
+            System.out.println("connected");
+        }
     }
 
 

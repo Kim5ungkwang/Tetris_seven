@@ -44,7 +44,7 @@ public class MultiTwoPlayPage extends LocalTwoPlayPage {
         player1= new Member();
         player2= new Member();
 
-        WebSocketService.getInstance().startGame();
+
         MyWebSocketClient client= WebSocketService.getInstance().getClient();
         roomId=client.getRoomId();
 
