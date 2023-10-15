@@ -1,13 +1,11 @@
 package kr.ac.jbnu.se.tetris;
 
 
-import kr.ac.jbnu.se.tetris.service.WebSocketService;
 import kr.ac.jbnu.se.tetris.views.LoginScreen;
-import kr.ac.jbnu.se.tetris.views.pages.MainPage;
 
 import java.io.IOException;
 
-public class TetrisStartGame {
+public class Main {
     public static void main(String[] args) throws IOException {
         //TetrisFrameController game = new TetrisFrameForTwo();
         //game.setLocationRelativeTo(null);
