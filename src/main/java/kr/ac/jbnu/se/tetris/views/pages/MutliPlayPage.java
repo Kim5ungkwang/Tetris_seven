@@ -120,13 +120,7 @@ public class MutliPlayPage extends JPanel{
                         i=1;
                         break;
                     }
-                    int val = JOptionPane.showConfirmDialog(null, "waiting", "waiting", JOptionPane.DEFAULT_OPTION);
-                    if (val == -1 || val == JOptionPane.YES_OPTION){
-                        WebSocketService.getInstance().notIn();
-                        break;
-                    }
-
-
+                    WebSocketService.getInstance().notIn();
                 }
                 if(i==1){
                     WebSocketService.getInstance().startMatching();
