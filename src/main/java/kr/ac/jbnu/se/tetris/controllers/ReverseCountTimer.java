@@ -51,7 +51,7 @@ public class ReverseCountTimer extends GameTimerController{
      * @param num 얼마만큼 블럭을 부쉇는지
      */
     public void addTimeLimit(int num){
-        timeLimit += num * 5;
+        timeLimit += num * addSec;
     }
 
     /**
