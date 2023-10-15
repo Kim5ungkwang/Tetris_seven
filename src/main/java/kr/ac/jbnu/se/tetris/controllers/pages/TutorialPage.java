@@ -1,21 +1,15 @@
 package kr.ac.jbnu.se.tetris.controllers.pages;
 
-import com.sun.tools.javac.Main;
 import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
-import kr.ac.jbnu.se.tetris.models.TutorialModel;
 import lombok.Getter;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
-import static kr.ac.jbnu.se.tetris.models.TutorialModel.currentStepIndex;
 
 public class TutorialPage extends PlayerPage {
     JPanel backgroundPanel;
@@ -29,8 +23,6 @@ public class TutorialPage extends PlayerPage {
     JLabel imageLabel;
     JLabel finishLabel;
     ImageIcon imageIcon;
-    JProgressBar progressBar;
-    TutorialBoardController tutorialBoardController;
 
 
     public TutorialPage(Member member, KeyInput p1Key){
@@ -91,11 +83,6 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setVisible(true);
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
-
-        /*if(TutorialModel.getCurrentStepIndex() == 6 ){
-            tutorialFinished();
-        }*/
-
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         AdapterController adapterController = new AdapterController();
@@ -155,9 +142,6 @@ public class TutorialPage extends PlayerPage {
     }
     public boolean isTutorialPageFrame(){
         return tutorialPageFrame.isVisible();
-    }
-    public void removeTutorialPageFrame(){
-        tutorialPageFrame.dispose();
     }
 
 }

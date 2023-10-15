@@ -4,7 +4,7 @@ import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.models.TutorialQueue;
 import lombok.Getter;
 
-public class TutorialPieaceController extends PieceController {
+public class TutorialPieceController extends PieceController {
     @Getter
     TutorialBoardController tutorialBoardController;
 
@@ -13,7 +13,7 @@ public class TutorialPieaceController extends PieceController {
      *
      * @param boardController 게임이 진행되는 boardController
      */
-    public TutorialPieaceController(TutorialBoardController boardController) {
+    public TutorialPieceController(TutorialBoardController boardController) {
         tutorialBoardController = boardController;
         this.boardController = tutorialBoardController;
         this.currentPiece = new Piece();
@@ -36,18 +36,5 @@ public class TutorialPieaceController extends PieceController {
         TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
         tutorialQueue.resetBrickQueueIndex();
     }
-    /*@Override
-    public void dropDown(){
-        if(getIsInfinity())
-            return;
-        int newY = currentPiece.getCurrentY();
-        while (newY > 0){
-            if (!tryMove(currentPiece, currentPiece.getCurrentX(), newY - 1))
-                break;
-            --newY;
-        }
-        pieceDropped();
-    }*/
-
 }
 

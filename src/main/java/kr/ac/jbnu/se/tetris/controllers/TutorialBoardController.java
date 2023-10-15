@@ -4,7 +4,6 @@ import kr.ac.jbnu.se.tetris.ShapeData;
 import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.swing.*;
 
@@ -18,22 +17,22 @@ public class TutorialBoardController extends BoardController {
     @Getter
     final private TutorialModel tutorialModel;
 
-    TutorialPage tutorialPage;
+    @Getter
+    private TutorialPage tutorialPage;
     private Timer stepTimer;
     @Getter
     public int pieceFixedCount = 0;
-    @Getter
-    public boolean tutorialFinishedCalled = false;
+
     Random random = new Random();
     public TutorialBoardController(TutorialPage parent, KeyInput input){
         super();
         this.boardModel = new BoardModel();
-        this.tutorialPage = parent;
-        playerPage = tutorialPage;
+        this.setTutorialPage(parent);
+        playerPage = getTutorialPage();
         gameTimerController = new GameTimerController(this);
 
         this.statusBar = parent.getStatusBar();
-        this.pieceController = new TutorialPieaceController(this);
+        this.pieceController = new TutorialPieceController(this);
         this.boardModel.setLoopDelay(1000);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
@@ -94,15 +93,15 @@ public class TutorialBoardController extends BoardController {
         }
         if (numLinesRemoved == 3) {
             do{
-                tutorialPage.tutorialFinished();
-            }while (tutorialPage.isTutorialEndFrame() == false && tutorialPage.isTutorialPageFrame() == true);
+                getTutorialPage().tutorialFinished();
+            }while (getTutorialPage().isTutorialEndFrame() == false && getTutorialPage().isTutorialPageFrame() == true);
         }
     }
 
     private void displayCurrentStep() {
         if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
             String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
-            tutorialPage.getTutorialStep().setText(currentStepText);
+            getTutorialPage().getTutorialStep().setText(currentStepText);
         }
     }
 
@@ -117,7 +116,6 @@ public class TutorialBoardController extends BoardController {
             drawBackgroundblock();
             stepTimer.stop();
         }
-
     }
 
     private void drawBackgroundblock() {
@@ -131,33 +129,17 @@ public class TutorialBoardController extends BoardController {
         }
     }
 
-    /*@Override
-    public void pieceDropped(Piece droppedPiece){
-        getPieceFixedCount();
-        /*System.out.println("PieceFixedCount: " + getPieceFixedCount());
-        pieceFixedCount++;
-        //getPieceFixedCount();
-        for (int i = 0; i < 4; i++) {
-            int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
-            int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
-            boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape());
-        }
-
-        removeFullLines();  //고정한 이후 지울 수 있는 줄이 있는지 확인
-
-        if (!pieceController.getIsFallingFinished())
-            pieceController.newPiece();
-
-    }
-        */
-
     /**
      * 튜토리얼 리셋 메서드
      */
     public void resetTutorial(){
         clearBoard();
-        TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
-        tutorialPieaceController.resetBrickQueue();
+        TutorialPieceController tutorialPieceController = (TutorialPieceController) pieceController; //타입캐스팅
+        tutorialPieceController.resetBrickQueue();
         start();
+    }
+
+    public void setTutorialPage(TutorialPage tutorialPage) {
+        this.tutorialPage = tutorialPage;
     }
 }
