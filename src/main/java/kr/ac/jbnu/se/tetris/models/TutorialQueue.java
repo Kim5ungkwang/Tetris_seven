@@ -1,9 +1,7 @@
 package kr.ac.jbnu.se.tetris.models;
 
 import kr.ac.jbnu.se.tetris.ShapeData;
-import kr.ac.jbnu.se.tetris.controllers.TutorialBoardController;
 import kr.ac.jbnu.se.tetris.controllers.TutorialPieceController;
-import kr.ac.jbnu.se.tetris.controllers.pages.TutorialPage;
 
 import java.util.Random;
 

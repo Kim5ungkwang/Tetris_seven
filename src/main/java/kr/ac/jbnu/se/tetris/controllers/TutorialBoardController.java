@@ -38,7 +38,7 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(300, new ActionListener() {  //3000
+        stepTimer = new Timer(700, new ActionListener() {  //3000
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveToNextStep();
