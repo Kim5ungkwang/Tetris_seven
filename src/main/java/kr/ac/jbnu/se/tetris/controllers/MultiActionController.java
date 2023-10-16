@@ -20,7 +20,7 @@ public class MultiActionController {
     public void action(String message) throws CloneNotSupportedException {
         logger.info("input : " + message);
 
-        if (message.equals("pause"))
+        //if (message.equals("pause"))
             //controller.pause();
 
         if (!controller.isPaused()) {
