@@ -21,7 +21,7 @@ public class MultiActionController {
         logger.info("input : " + message);
 
         if (message.equals("pause"))
-            controller.pause();
+            //controller.pause();
 
         if (!controller.isPaused()) {
 
