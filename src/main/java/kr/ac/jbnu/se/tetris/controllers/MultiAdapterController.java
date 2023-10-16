@@ -31,7 +31,7 @@ public class MultiAdapterController extends KeyAdapter {
         }
 
 
-    public void addList(MultiInputController controller){
+        public void addList(MultiInputController controller){
         this.multiInputController=controller;
 
     }
