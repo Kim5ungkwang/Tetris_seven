@@ -22,7 +22,7 @@ public class KeyInputController {
 
     public void action(int keycode) throws CloneNotSupportedException {
         logger.info("input : " + keycode);
-        if(keycode == input.getPause())
+        //if(keycode == input.getPause())
             //controller.pause();
         if (!controller.isPaused()) {
             if (keycode == input.getMoveLeft()) {
