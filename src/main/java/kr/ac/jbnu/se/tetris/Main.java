@@ -11,10 +11,10 @@ public class Main {
         //TetrisFrameController game = new TetrisFrameForTwo();
         //game.setLocationRelativeTo(null);
         //game.init();
-        //LoginScreen loginScreen=new LoginScreen();
+        LoginScreen loginScreen=new LoginScreen();
 
-        MainPage mainPage = new MainPage();
-        mainPage.setLocationRelativeTo(null);
+        //MainPage mainPage = new MainPage();   // 메인 페이지 생성
+        //mainPage.setLocationRelativeTo(null); // 메인 페이지 생성
         //new Page();
         //WebSocketService.getInstance().startMatching();
 
