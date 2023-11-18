@@ -138,7 +138,7 @@ public class BoardController extends JPanel implements ActionListener {
     /**
      * board에서 지울 수 있는 줄이 있다면 해당 줄을 지우고 윗 줄을 한칸씩 내리는 메서드
      */
-    protected void removeFullLines() {
+    /*protected void removeFullLines() {
         int numFullLines = 0;
 
         for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
@@ -167,6 +167,47 @@ public class BoardController extends JPanel implements ActionListener {
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
         }
+    }*/
+    protected void removeFullLines(){
+        int numFullLines = countFullLines();
+        if(numFullLines > 0){
+            numLinesRemoved += numFullLines;
+            handleFullLines();
+        }
+    }
+
+    protected int countFullLines(){
+        int numFullLines = 0;
+        for(int i = BoardModel.getBoardHeight() -1; i>=0; --i){
+            if(isLineFull(i)){
+                ++numFullLines;
+                shiftLinesDown(i);
+            }
+        }
+        return numFullLines;
+    }
+
+    private boolean isLineFull(int lineIndex){
+        for(int j = 0; j< BoardModel.getBoardWidth(); ++j){
+            if (shapeAt(j,lineIndex) == ShapeData.Tetrominoes.NoShape){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void shiftLinesDown(int srcIndex){
+        for(int targetIndex = srcIndex; targetIndex < BoardModel.getBoardHeight()-1; ++targetIndex){
+            for(int j = 0; j < BoardModel.getBoardWidth(); ++j){
+                boardModel.setboard((targetIndex * BoardModel.getBoardWidth())+j, shapeAt(j, targetIndex+1));
+            }
+        }
+    }
+
+    void handleFullLines(){
+        pieceController.setIsFallingFinished(true);
+        pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
+        repaint();
     }
 
     /**

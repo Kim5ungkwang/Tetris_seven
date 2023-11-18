@@ -1,11 +1,10 @@
 package kr.ac.jbnu.se.tetris.controllers;
-
 import kr.ac.jbnu.se.tetris.models.Piece;
 import kr.ac.jbnu.se.tetris.models.TutorialQueue;
 import lombok.Getter;
 
+@Getter
 public class TutorialPieaceController extends PieceController {
-    @Getter
     TutorialBoardController tutorialBoardController;
 
     /**
@@ -20,11 +19,8 @@ public class TutorialPieaceController extends PieceController {
         this.ghostPiece = new GhostPiece(this);
         this.brickQueueManager = new TutorialQueue(this);
         this.holdPiece = new Piece();
-        this.isFallingFinished = false;
+        isFallingFinished = false;
         this.setNextBlockPanel();
-    }
-    public int getRotateIndex(){
-        return currentPiece.getRotateIndex();
     }
     @Override
     public void pieceDropped(){
@@ -36,18 +32,4 @@ public class TutorialPieaceController extends PieceController {
         TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
         tutorialQueue.resetBrickQueueIndex();
     }
-    /*@Override
-    public void dropDown(){
-        if(getIsInfinity())
-            return;
-        int newY = currentPiece.getCurrentY();
-        while (newY > 0){
-            if (!tryMove(currentPiece, currentPiece.getCurrentX(), newY - 1))
-                break;
-            --newY;
-        }
-        pieceDropped();
-    }*/
-
 }
-

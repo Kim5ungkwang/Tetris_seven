@@ -1,24 +1,19 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.views.pages.TutorialPage;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
 
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.*;
 
 public class TutorialBoardController extends BoardController {
     @Getter
-    final private TutorialModel tutorialModel;
+    private final TutorialModel tutorialModel;
 
-    TutorialPage tutorialPage;
-    private Timer stepTimer;
+    private final TutorialPage tutorialPage;
+    private final Timer stepTimer;
     @Getter
     public int pieceFixedCount = 0;
     @Getter
@@ -38,12 +33,8 @@ public class TutorialBoardController extends BoardController {
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(10000, new ActionListener() {  //3000
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                moveToNextStep();
-            }
-        });
+        //3000
+        stepTimer = new Timer(10000, e -> moveToNextStep());
 
         this.tutorialModel = new TutorialModel();
 
@@ -64,7 +55,7 @@ public class TutorialBoardController extends BoardController {
     }
     @Override
     protected void removeFullLines(){
-        int numFullLines = 0;
+        /*int numFullLines = 0;
 
         for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
             boolean lineIsFull = true;
@@ -90,7 +81,9 @@ public class TutorialBoardController extends BoardController {
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
-        }
+        }*/
+        super.removeFullLines();
+
         if (numLinesRemoved == 9) {
             //do{
             //    tutorialPage.tutorialFinished();
@@ -108,7 +101,7 @@ public class TutorialBoardController extends BoardController {
     }
 
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
+        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
         }
@@ -131,27 +124,6 @@ public class TutorialBoardController extends BoardController {
             }
         }
     }
-
-    /*@Override
-    public void pieceDropped(Piece droppedPiece){
-        getPieceFixedCount();
-        /*System.out.println("PieceFixedCount: " + getPieceFixedCount());
-        pieceFixedCount++;
-        //getPieceFixedCount();
-        for (int i = 0; i < 4; i++) {
-            int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
-            int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
-            boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape());
-        }
-
-        removeFullLines();  //고정한 이후 지울 수 있는 줄이 있는지 확인
-
-        if (!pieceController.getIsFallingFinished())
-            pieceController.newPiece();
-
-    }
-        */
-
     /**
      * 튜토리얼 리셋 메서드
      */

@@ -5,7 +5,7 @@ import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
 import java.util.Random;
 
 public class TutorialQueue extends BrickQueueManager {
-    TutorialPieaceController controller;
+    private final TutorialPieaceController controller;
     public TutorialQueue(TutorialPieaceController tutorialPieaceController) {
         super(new Random(1));
         controller = tutorialPieaceController;
@@ -14,70 +14,6 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueueSize = 11;
         setBrickQueue();
     }
-/*
-    @Override
-    public ShapeData.Tetrominoes getNewShape(){
-        this.brickQueueIndex %= brickQueueSize;
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 0){
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 1){
-            return brickQueue[1];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 1){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 2){
-            return brickQueue[2];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 2){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 3){
-            return brickQueue[3];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 3){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 4){
-            return brickQueue[4];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 4){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 5){
-            return brickQueue[5];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 5){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 6){
-            return brickQueue[6];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 6){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if((controller.getTutorialBoardController().getPieceFixedCount() == 7) && (TutorialBoardController.numLinesRemoved != 3)){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        return brickQueue[brickQueueIndex++];
-    }
-*/
     @Override
     public ShapeData.Tetrominoes getNewShape(){
         this.brickQueueIndex %= brickQueueSize;

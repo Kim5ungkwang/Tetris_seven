@@ -6,6 +6,7 @@ import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
+import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
 
@@ -14,20 +15,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TutorialPage extends PlayerPage {
-    JPanel backgroundPanel;
+    private final JPanel backgroundPanel;
     @Getter
     JLabel tutorialStep;
-    JFrame tutorialPageFrame;
+    private final JFrame tutorialPageFrame;
     JFrame tutorialEndFrame;
-    JButton skipButton; // 튜토리얼 건너뛰는 버튼
+    private final JButton skipButton; // 튜토리얼 건너뛰는 버튼
     JButton finishButton;
-    JButton resetButton;
-    JLabel imageLabel;
+    private final JButton resetButton;
+    private final JLabel imageLabel;
     JLabel finishLabel;
-    ImageIcon imageIcon;
-    JProgressBar progressBar;
-    TutorialBoardController tutorialBoardController;
+    private final ImageIcon imageIcon;
 
+    JPanel RectPanel;
 
     public TutorialPage(Member member, KeyInput p1Key){
         super();
@@ -41,6 +41,10 @@ public class TutorialPage extends PlayerPage {
         this.skipButton = new JButton("튜토리얼 스킵");
         skipButton.setForeground(Color.black);
         this.resetButton = new JButton("다시하기");
+        this.RectPanel = new JPanel();
+
+        RectPanel.setOpaque(false);
+        RectPanel.setBounds(900, 150, 350, 300);
 
         tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
         tutorialStep.setForeground(Color.white);
@@ -67,6 +71,7 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.add(skipButton);
         tutorialPageFrame.add(imageLabel);
         tutorialPageFrame.add(resetButton);
+        tutorialPageFrame.add(RectPanel);
 
         skipbuttonAction();
         resetbuttonAction();
@@ -74,6 +79,7 @@ public class TutorialPage extends PlayerPage {
 
 
         backgroundPanel = new JPanel(){
+            @Override
             public void paintComponent(Graphics g){
                 g.drawImage(MainPageModel.getGameBackgroundImg().getImage(), 0 , 0, null);
                 setOpaque(false);
@@ -87,11 +93,6 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setVisible(true);
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
-
-        /*if(TutorialModel.getCurrentStepIndex() == 6 ){
-            tutorialFinished();
-        }*/
-
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         AdapterController adapterController = new AdapterController();
@@ -102,29 +103,18 @@ public class TutorialPage extends PlayerPage {
     }
 
     public void skipbuttonAction(){
-        skipButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tutorialPageFrame.dispose();
-            }
-        });
+        skipButton.addActionListener(e -> tutorialPageFrame.dispose());
     }
     public void finishbuttonAction(){
-        finishButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tutorialEndFrame.dispose();
-                tutorialPageFrame.dispose();
-            }
+        finishButton.addActionListener(e -> {
+            tutorialEndFrame.dispose();
+            tutorialPageFrame.dispose();
         });
     }
     public void resetbuttonAction(){
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
-                tutorialBoardController.resetTutorial();
-            }
+        resetButton.addActionListener(e -> {
+            TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
+            tutorialBoardController.resetTutorial();
         });
     }
     public void tutorialFinished(){
@@ -147,14 +137,4 @@ public class TutorialPage extends PlayerPage {
         finishbuttonAction();
 
     }
-    public boolean isTutorialEndFrame(){
-        return tutorialEndFrame.isVisible();
-    }
-    public boolean isTutorialPageFrame(){
-        return tutorialPageFrame.isVisible();
-    }
-    public void removeTutorialPageFrame(){
-        tutorialPageFrame.dispose();
-    }
-
 }
