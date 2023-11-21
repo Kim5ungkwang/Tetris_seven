@@ -20,6 +20,7 @@ public class TutorialQueue extends BrickQueueManager {
         return brickQueue[brickQueueIndex++];
     }
 
+    // SRS를 수행하는 튜토리얼 블럭
     public void setBrickQueue(){
         brickQueueIndex = 0;
         brickQueue[0] = ShapeData.Tetrominoes.MirroredLShape;
@@ -35,6 +36,7 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueue[10] = ShapeData.Tetrominoes.TShape;
     }
 
+    // 튜토리얼 블럭 단계 초기화
     public void resetBrickQueueIndex(){
         brickQueueIndex = 0;
     }

@@ -1,12 +1,6 @@
 
-_
-/src/main/java/kr/ac/jbnu/se/tetris/SRSData.java,e\7\e723d8b733e4241824e2a325f4d8be46c798e9b2
-a
-1src/main/java/kr/ac/jbnu/se/tetris/ShapeData.java,1\5\154d8467b24f459e954961abaa977ed7c1d0fac2
 d
 4src/main/java/kr/ac/jbnu/se/tetris/BrickRotator.java,d\7\d7f57fba5b6d71bd37825e9d337b205ce7ae4f36
-k
-;src/main/java/kr/ac/jbnu/se/tetris/service/HttpService.java,4\8\48075d517062f79e5eeb32e551ddff2e5791e01b
 d
 4src/main/java/kr/ac/jbnu/se/tetris/models/Piece.java,5\3\5390b77b715f20ad82783bf858348b227f78d2ff
 e
@@ -21,8 +15,6 @@ m
 =src/main/java/kr/ac/jbnu/se/tetris/models/BrickGenerator.java,4\9\49812cc95a5d321744ea8f2284e79e6e05470c60
 i
 9src/main/java/kr/ac/jbnu/se/tetris/models/BoardModel.java,3\0\30072464a3121c5da644582bdf3a7d88416b53ed
-w
-Gsrc/main/java/kr/ac/jbnu/se/tetris/controllers/WebSocketController.java,4\f\4f3d57616be28f02ba0c035cdee5f445251064a9
 s
 Csrc/main/java/kr/ac/jbnu/se/tetris/controllers/PieceController.java,f\9\f958a0fe0f22a2ca83e655d27f77a36b040fbdce
 v
@@ -33,8 +25,6 @@ s
 Csrc/main/java/kr/ac/jbnu/se/tetris/controllers/BoardController.java,3\5\356ec7492d4486d4b990fc6e8e4c9d550b434be3
 u
 Esrc/main/java/kr/ac/jbnu/se/tetris/controllers/AdapterController.java,5\6\5631b2c50060df2d9b7393378434cfd710def333
-g
-7src/main/java/kr/ac/jbnu/se/tetris/TetrisStartGame.java,1\2\12ab0ebd2b9b5ebd15306aca90d8b00d8c62a648
 l
 <src/main/java/kr/ac/jbnu/se/tetris/models/TutorialModel.java,7\d\7de70ea1f885210f8a518192670b43b666893240
 b
@@ -43,18 +33,12 @@ i
 9src/main/java/kr/ac/jbnu/se/tetris/views/LoginScreen.java,0\c\0cb7c6c5fdeec4cc46d7f5310d1365beb10ec135
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-y
-Isrc/main/java/kr/ac/jbnu/se/tetris/controllers/TetrisFrameController.java,e\6\e65678cea5f82976bdffb7661cc097dfaecec0ac
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 w
 Gsrc/main/java/kr/ac/jbnu/se/tetris/controllers/GameTimerController.java,f\0\f09eee234f9022f79881bb37461b84cde200ba74
-d
-4src/main/java/kr/ac/jbnu/se/tetris/models/Music.java,b\7\b71ab8788c16e29a5234c620b45e67fd4b3ec526
-n
->src/main/java/kr/ac/jbnu/se/tetris/controllers/PlayerPage.java,a\b\ab0a6e13560d16ff7c0684b28212940b7dcf7073
 l
 <src/main/java/kr/ac/jbnu/se/tetris/models/TutorialQueue.java,c\5\c5739a5483fc0ce3c57babd98c35fc44625ae182
 |
@@ -65,18 +49,8 @@ p
 @src/main/java/kr/ac/jbnu/se/tetris/controllers/NextBlockBox.java,9\f\9f9cf41195a1e086ce9af9d6ce5c2c1ac3d021bc
 |
 Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/NextBlockPanelController.java,5\e\5e4f93ce7d055439db381c86309511b87998bf15
-x
-Hsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/SinglePlayPage.java,0\6\06a32e6dabe1b7f3890bbe0d548e2f6f87586ab7
-v
-Fsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/TutorialPage.java,9\6\968e2103419f52263ca62a8a88edac57869270b4
-t
-Dsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/SprintPage.java,1\4\1475fb7437f6c3dd200d47ca680ad6838a519721
 v
 FTetris_seven/src/main/java/kr/ac/jbnu/se/tetris/views/TetrisBoard.java,7\c\7cd0a51ebb171389b21b9bbee14720fd9665534f
-|
-Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/MainPageController.java,0\e\0e049ec58332946d36bee36f00ea6766783fbf2f
-x
-Hsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/TimeAttackPage.java,6\7\67fb6e51e95c2ec6744fba3e34d5735b1e6d4efc
 y
 Isrc/main/java/kr/ac/jbnu/se/tetris/controllers/SprintBoardController.java,1\5\15b70d00e28d1facf2b674b9b150becb4db8284e
 }
@@ -85,7 +59,11 @@ g
 7src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json,c\c\ccc130a9939c610d72cd268c900719974b6a5891
 l
 <src/main/java/kr/ac/jbnu/se/tetris/models/MainPageModel.java,0\5\053b7370b05b83b9cb7c5cc59c8463c66e1c5832
-w
-Gsrc/main/java/kr/ac/jbnu/se/tetris/controllers/pages/MutliPlayPage.java,c\e\ceeaa04e52a9f7a34d5d60cbceb02b9a38327740
 u
 Esrc/main/java/kr/ac/jbnu/se/tetris/controllers/ReverseCountTimer.java,1\3\1378ea7c50c9310cf1d9e5f3ce828be8837dcdf0
+p
+@src/main/java/kr/ac/jbnu/se/tetris/views/pages/TutorialPage.java,d\0\d07b6e4e7beacc8d8d372efc54485cb43745c140
+\
+,src/main/java/kr/ac/jbnu/se/tetris/Main.java,f\0\f00195ec5902aa03f8b09045aadd20f692b5ee1f
+r
+Bsrc/main/java/kr/ac/jbnu/se/tetris/views/pages/SinglePlayPage.java,3\0\30047b75eb14044de4f88412a64c4bb711b35457

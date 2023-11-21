@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class TutorialModel extends BoardModel{
-
+    @Getter
     private int currentStepIndex = 0; //현재 튜토리얼 스텝
     private final int currentBrickIndex; // 현재 블럭 인덱스
     public static final String[] tutorialSteps = {

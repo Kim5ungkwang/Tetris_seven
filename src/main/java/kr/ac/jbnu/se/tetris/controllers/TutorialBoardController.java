@@ -34,6 +34,7 @@ public class TutorialBoardController extends BoardController {
 
 
         //3000
+        //시간에 따라 튜토리얼 다음 단계로 넘어감
         stepTimer = new Timer(10000, e -> moveToNextStep());
 
         this.tutorialModel = new TutorialModel();
@@ -93,6 +94,7 @@ public class TutorialBoardController extends BoardController {
         }
     }
 
+    //현재 튜토리얼 단계에 대한 텍스트를 보여줌
     private void displayCurrentStep() {
         if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
             String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
@@ -100,6 +102,7 @@ public class TutorialBoardController extends BoardController {
         }
     }
 
+    //튜토리얼의 다음 단계로 넘어감
     public void moveToNextStep() {
         if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
             tutorialModel.plusCurrnetStepIndex();
@@ -114,6 +117,7 @@ public class TutorialBoardController extends BoardController {
 
     }
 
+    //SRS 수행에 필요한 배경블럭 그리기
     private void drawBackgroundblock() {
         for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
             getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);

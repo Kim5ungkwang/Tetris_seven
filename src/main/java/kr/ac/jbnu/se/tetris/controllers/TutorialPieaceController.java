@@ -28,6 +28,7 @@ public class TutorialPieaceController extends PieceController {
         tutorialBoardController.pieceDropped(currentPiece);
     }
 
+    //튜토리얼 블럭 순서 초기화
     public void resetBrickQueue(){
         TutorialQueue tutorialQueue = (TutorialQueue) brickQueueManager;    //타입 캐스팅
         tutorialQueue.resetBrickQueueIndex();

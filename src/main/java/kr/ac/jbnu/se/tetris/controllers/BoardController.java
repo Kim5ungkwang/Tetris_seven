@@ -168,6 +168,8 @@ public class BoardController extends JPanel implements ActionListener {
             repaint();
         }
     }*/
+
+    //Cognitive Complexity가 높아서 메소드로 분리
     protected void removeFullLines(){
         int numFullLines = countFullLines();
         if(numFullLines > 0){
@@ -175,6 +177,7 @@ public class BoardController extends JPanel implements ActionListener {
             handleFullLines();
         }
     }
+
 
     protected int countFullLines(){
         int numFullLines = 0;
@@ -204,6 +207,7 @@ public class BoardController extends JPanel implements ActionListener {
         }
     }
 
+    //블럭이 꽉 차게 되면 1줄을 없애는 메소드
     void handleFullLines(){
         pieceController.setIsFallingFinished(true);
         pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);

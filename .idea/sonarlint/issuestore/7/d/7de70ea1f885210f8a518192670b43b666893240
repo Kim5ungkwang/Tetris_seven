@@ -1,17 +1,4 @@
 
-X
-java:S1444"6Make this "public static currentStepIndex" field final(‰æŒüøÿÿÿÿ8ŸŒÊ¼²1
 :
-java:S2386"Make this member "protected".(ÞÈ‰Š8¥ŒÊ¼²1
-S
-java:S2696"6Make the enclosing method "static" or remove this set.(¤ï»Ê8§ŒÊ¼²1
-R
-java:S2209"5Change this instance-reference to a static reference.(¤ï»Ê8¨ŒÊ¼²1
-X
-java:S2696 "6Make the enclosing method "static" or remove this set.(ÄäÛãþÿÿÿÿ8°ýË¼²1
-X
-java:S1128";Remove this unused import 'kr.ac.jbnu.se.tetris.ShapeData'.(ï½”›8¨ŒÊ¼²1
-G
-java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµ8©ŒÊ¼²1
-B
-java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8©ŒÊ¼²1
+java:S2386
+"Make this member "protected".(ÞÈ‰Š8Ê¹Àí¼1

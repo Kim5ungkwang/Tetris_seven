@@ -4,18 +4,16 @@ import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.models.TutorialModel;
 import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
-import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TutorialPage extends PlayerPage {
-    private final JPanel backgroundPanel;
+    private JPanel backgroundPanel;
     @Getter
     JLabel tutorialStep;
     private final JFrame tutorialPageFrame;
@@ -25,9 +23,10 @@ public class TutorialPage extends PlayerPage {
     private final JButton resetButton;
     private final JLabel imageLabel;
     JLabel finishLabel;
-    private final ImageIcon imageIcon;
 
-    JPanel RectPanel;
+    @Getter
+    static ImageIcon SRSImg, tutorialBackgroundImg;
+
 
     public TutorialPage(Member member, KeyInput p1Key){
         super();
@@ -41,17 +40,17 @@ public class TutorialPage extends PlayerPage {
         this.skipButton = new JButton("튜토리얼 스킵");
         skipButton.setForeground(Color.black);
         this.resetButton = new JButton("다시하기");
-        this.RectPanel = new JPanel();
-
-        RectPanel.setOpaque(false);
-        RectPanel.setBounds(900, 150, 350, 300);
 
         tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
-        tutorialStep.setForeground(Color.white);
+        /*Color color = new Color(0x77FFFFFF, true);
+        tutorialStep.setOpaque(true);
+        tutorialStep.setBackground(color);*/
+        tutorialStep.setForeground(Color.black);
 
-        this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
-        this.imageLabel = new JLabel(imageIcon); // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
-        imageLabel.setPreferredSize(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconWidth()));
+        this.SRSImg = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
+        tutorialBackgroundImg = new ImageIcon("source/image/background/tutorialbackground.png"); // 튜토리얼 배경 추가
+        this.imageLabel = new JLabel(SRSImg); // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
+        imageLabel.setPreferredSize(new Dimension(SRSImg.getIconWidth(), SRSImg.getIconWidth()));
 
         this.board = new TutorialBoardController(this, p1Key);
         this.nextBlockPanelController = new NextBlockPanelController(this);
@@ -60,7 +59,7 @@ public class TutorialPage extends PlayerPage {
 
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
-        tutorialStep.setBounds(900, 150, 350, 300);
+        tutorialStep.setBounds(900, 150, 360, 210);
         skipButton.setBounds(900, 500,120, 50);
         imageLabel.setBounds(100, 300, 300, 300);
         resetButton.setBounds(900, 560, 120, 50);
@@ -71,17 +70,16 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.add(skipButton);
         tutorialPageFrame.add(imageLabel);
         tutorialPageFrame.add(resetButton);
-        tutorialPageFrame.add(RectPanel);
 
         skipbuttonAction();
         resetbuttonAction();
         resetButton.setFocusable(false); // 버튼 선택 시 생기는 테두리 활성화
 
-
+        //튜토리얼 배경 그리기
         backgroundPanel = new JPanel(){
             @Override
             public void paintComponent(Graphics g){
-                g.drawImage(MainPageModel.getGameBackgroundImg().getImage(), 0 , 0, null);
+                g.drawImage(getTutorialBackgroundImg().getImage(), 0 , 0, null);
                 setOpaque(false);
                 super.paintComponent(g);
             }
@@ -105,19 +103,19 @@ public class TutorialPage extends PlayerPage {
     public void skipbuttonAction(){
         skipButton.addActionListener(e -> tutorialPageFrame.dispose());
     }
-    public void finishbuttonAction(){
+    public void finishbuttonAction(){ //튜토리얼을 끝내면 화면 제거
         finishButton.addActionListener(e -> {
             tutorialEndFrame.dispose();
             tutorialPageFrame.dispose();
         });
     }
-    public void resetbuttonAction(){
+    public void resetbuttonAction(){  //튜토리얼을 다시 시작할 때 수행할 작업
         resetButton.addActionListener(e -> {
             TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
             tutorialBoardController.resetTutorial();
         });
     }
-    public void tutorialFinished(){
+    public void tutorialFinished(){ //튜토리얼이 끝나면 수행할 작업;튜토리얼 완료화면 띄우기
         this.tutorialEndFrame = new JFrame();
         tutorialEndFrame.setSize(650, 300);
         tutorialEndFrame.setLayout(null);
@@ -135,6 +133,5 @@ public class TutorialPage extends PlayerPage {
         tutorialEndFrame.add(finishButton);
         tutorialEndFrame.add(finishLabel);
         finishbuttonAction();
-
     }
 }
