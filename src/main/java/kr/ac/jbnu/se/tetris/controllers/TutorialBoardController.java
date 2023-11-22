@@ -10,7 +10,7 @@ import static kr.ac.jbnu.se.tetris.models.TutorialModel.*;
 
 public class TutorialBoardController extends BoardController {
     @Getter
-    private final TutorialModel tutorialModel;
+    private final transient TutorialModel tutorialModel;
 
     private final TutorialPage tutorialPage;
     private final Timer stepTimer;
@@ -27,7 +27,7 @@ public class TutorialBoardController extends BoardController {
         gameTimerController = new GameTimerController(this);
 
         this.statusBar = parent.getStatusBar();
-        this.pieceController = new TutorialPieaceController(this);
+        this.pieceController = new TutorialPieceController(this);
         this.boardModel.setLoopDelay(600);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
@@ -96,15 +96,15 @@ public class TutorialBoardController extends BoardController {
 
     //현재 튜토리얼 단계에 대한 텍스트를 보여줌
     private void displayCurrentStep() {
-        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
-            String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
+        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < getTutorialSteps().length) {
+            String currentStepText = getTutorialSteps()[tutorialModel.getCurrentStepIndex()];
             tutorialPage.getTutorialStep().setText(currentStepText);
         }
     }
 
     //튜토리얼의 다음 단계로 넘어감
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1) {
+        if (tutorialModel.getCurrentStepIndex() < getTutorialSteps().length - 1) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
         }
@@ -119,8 +119,7 @@ public class TutorialBoardController extends BoardController {
 
     //SRS 수행에 필요한 배경블럭 그리기
     private void drawBackgroundblock() {
-        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
-            getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
+        clearBoard();
         for (int x = 3; x < BoardModel.getBoardWidth(); x++) {
             for (int y = 0; y < 12; y++) {
                 getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
@@ -133,8 +132,8 @@ public class TutorialBoardController extends BoardController {
      */
     public void resetTutorial(){
         clearBoard();
-        TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
-        tutorialPieaceController.resetBrickQueue();
+        TutorialPieceController tutorialPieceController = (TutorialPieceController) pieceController; //타입캐스팅
+        tutorialPieceController.resetBrickQueue();
         drawBackgroundblock();
         pieceController.newPiece();
     }

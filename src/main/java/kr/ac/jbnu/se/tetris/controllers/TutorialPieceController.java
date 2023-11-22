@@ -4,7 +4,7 @@ import kr.ac.jbnu.se.tetris.models.TutorialQueue;
 import lombok.Getter;
 
 @Getter
-public class TutorialPieaceController extends PieceController {
+public class TutorialPieceController extends PieceController {
     TutorialBoardController tutorialBoardController;
 
     /**
@@ -12,7 +12,7 @@ public class TutorialPieaceController extends PieceController {
      *
      * @param boardController 게임이 진행되는 boardController
      */
-    public TutorialPieaceController(TutorialBoardController boardController) {
+    public TutorialPieceController(TutorialBoardController boardController) {
         tutorialBoardController = boardController;
         this.boardController = tutorialBoardController;
         this.currentPiece = new Piece();

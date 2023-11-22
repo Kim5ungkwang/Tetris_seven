@@ -1,14 +1,14 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
+import kr.ac.jbnu.se.tetris.controllers.TutorialPieceController;
 
 import java.util.Random;
 
 public class TutorialQueue extends BrickQueueManager {
-    private final TutorialPieaceController controller;
-    public TutorialQueue(TutorialPieaceController tutorialPieaceController) {
+
+    public TutorialQueue(TutorialPieceController tutorialPieceController) {
         super(new Random(1));
-        controller = tutorialPieaceController;
+        //final TutorialPieceController controller = tutorialPieceController;
         brickQueue = new ShapeData.Tetrominoes[11];
         brickQueueIndex = 0;
         brickQueueSize = 11;

@@ -41,8 +41,6 @@ w
 Gsrc/main/java/kr/ac/jbnu/se/tetris/controllers/GameTimerController.java,f\0\f09eee234f9022f79881bb37461b84cde200ba74
 l
 <src/main/java/kr/ac/jbnu/se/tetris/models/TutorialQueue.java,c\5\c5739a5483fc0ce3c57babd98c35fc44625ae182
-|
-Lsrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialPieaceController.java,4\5\453b701c632544c0e56c77c1dcd5b748d31400de
 {
 Ksrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialBoardController.java,6\e\6edbf605741bfe5cfe916d8fb7ad3362e0f1b82b
 p
@@ -67,3 +65,9 @@ p
 ,src/main/java/kr/ac/jbnu/se/tetris/Main.java,f\0\f00195ec5902aa03f8b09045aadd20f692b5ee1f
 r
 Bsrc/main/java/kr/ac/jbnu/se/tetris/views/pages/SinglePlayPage.java,3\0\30047b75eb14044de4f88412a64c4bb711b35457
+{
+Ksrc/main/java/kr/ac/jbnu/se/tetris/controllers/TutorialPieceController.java,6\0\60ae13d479e2f1a9f733e0fa625fd54f5f0da5de
+h
+8src/main/java/kr/ac/jbnu/se/tetris/models/ShapeData.java,b\b\bbc6d7e45a5424a05e1d38d0694d89e86625518a
+q
+Asrc/main/java/kr/ac/jbnu/se/tetris/views/pages/MutliPlayPage.java,d\c\dcf04df54f9981a687be04496a5e2816c0f38bce
