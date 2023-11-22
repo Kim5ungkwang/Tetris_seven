@@ -143,8 +143,6 @@ public class WebSocketService {
             else if(responseString.equals("member join fail"))
                 return false;
             else return false;
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -173,8 +171,6 @@ public class WebSocketService {
                    list.add(ranking);
                 }
             }
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -194,8 +190,6 @@ public class WebSocketService {
                 return false;
             else return false;
 
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -207,8 +201,6 @@ public class WebSocketService {
         try {
             HttpGet request = new HttpGet(uri);
             httpClient.execute(request);
-        } catch (ClientProtocolException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

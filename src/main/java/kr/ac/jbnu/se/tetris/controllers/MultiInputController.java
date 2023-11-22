@@ -3,20 +3,12 @@ package kr.ac.jbnu.se.tetris.controllers;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.service.WebSocketService;
 
-import java.util.logging.Logger;
 
-public class MultiInputController {
-
-    Logger logger= Logger.getLogger(KeyInputController.class.getName());
-    private final KeyInput input;
-    private final BoardController controller;
+public class MultiInputController extends AbstractInputController {
 
 
     public MultiInputController(KeyInput input, BoardController controller) {
-        logger.info("MultiInputController start");
-        this.input = input;
-        this.controller=controller;
-        
+        super(input,  controller);
     }
 
     public void action(int keycode) throws CloneNotSupportedException {

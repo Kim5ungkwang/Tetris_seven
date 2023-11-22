@@ -9,7 +9,4 @@ public class Member {
     public static String myId;
     private String password;
     private String sessionId;
-
-
-
 }

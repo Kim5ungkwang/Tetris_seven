@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class AdapterController extends KeyAdapter {
     Logger logger = Logger.getLogger(AdapterController.class.getName());
-    ArrayList<KeyInputController> memberList= new ArrayList<>();
+    private final ArrayList<AbstractInputController> memberList= new ArrayList<>();
 
 
     public AdapterController(){
@@ -19,16 +19,17 @@ public class AdapterController extends KeyAdapter {
         int in= e.getKeyCode();
         in= Character.toLowerCase(in);
         logger.info("pressed : "+in);
-        for(int i=0;i<memberList.size();i++){
+        for (AbstractInputController abstractInputController : memberList) {
             try {
-                memberList.get(i).action(in);
+                abstractInputController.action(in);
             } catch (CloneNotSupportedException ex) {
                 throw new RuntimeException(ex);
             }
         }
     }
 
-    public void addList(KeyInputController controller){
+
+    public void addList(AbstractInputController controller){
         memberList.add(controller);
     }
 

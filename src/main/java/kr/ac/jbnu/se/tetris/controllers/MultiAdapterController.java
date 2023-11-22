@@ -8,19 +8,19 @@ import java.util.logging.Logger;
 public class MultiAdapterController extends KeyAdapter {
 
 
-    Logger logger = Logger.getLogger(AdapterController.class.getName());
+    Logger logger = Logger.getLogger(MultiAdapterController.class.getName());
 
-    MultiInputController multiInputController;
+    private AbstractInputController multiInputController;
 
     public MultiAdapterController(){
-        logger.info("MultiadaptController start");
+        logger.info("MultiAdaptController start");
     }
     @Override
     public void keyPressed(KeyEvent e){
 
         int in= e.getKeyCode();
         in= Character.toLowerCase(in);
-        logger.info("pressed : "+in);
+        logger.info("pressed : " + in);
 
 
             try {
@@ -31,7 +31,7 @@ public class MultiAdapterController extends KeyAdapter {
         }
 
 
-        public void addList(MultiInputController controller){
+        public void addList(AbstractInputController controller){
         this.multiInputController=controller;
 
     }

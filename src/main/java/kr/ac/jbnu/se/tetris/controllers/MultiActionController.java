@@ -5,7 +5,7 @@ import kr.ac.jbnu.se.tetris.models.KeyInput;
 import java.util.logging.Logger;
 
 public class MultiActionController {
-    Logger logger = Logger.getLogger(KeyInputController.class.getName());
+    Logger logger = Logger.getLogger(MultiActionController.class.getName());
 
     private final BoardController controller;
     private final PieceController pieceController;

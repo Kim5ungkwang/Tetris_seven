@@ -2,20 +2,11 @@ package kr.ac.jbnu.se.tetris.controllers;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 
-
-import java.util.logging.Logger;
-
-
-public class KeyInputController {
-    Logger logger= Logger.getLogger(KeyInputController.class.getName());
-    private final KeyInput input;
-    private final BoardController controller;
-    private final PieceController pieceController;
+public class KeyInputController extends AbstractInputController {
+     private final PieceController pieceController;
 
     public KeyInputController(KeyInput input, BoardController controller) {
-        logger.info("keyInputController start");
-        this.input = input;
-        this.controller=controller;
+        super(input, controller);
         this.pieceController = controller.getPieceController();
 
     }

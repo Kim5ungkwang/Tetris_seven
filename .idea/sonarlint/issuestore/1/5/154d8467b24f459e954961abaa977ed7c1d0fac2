@@ -1,24 +1,0 @@
-
-:
-java:S2386"Make this member "protected".(Ş™Õ«8ä»×Æ°1
-?
-java:S2386'"Make this member "protected".(»š•¥ÿÿÿÿÿ8ä»×Æ°1
-g
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(œû²³ıÿÿÿÿ8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÂ¹ø8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÌÂŞä8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÌÂŞä8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÌÂŞä8å»×Æ°1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÌÂŞä8å»×Æ°1
-b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ş™Õ«8æ»×Æ°1
-g
-java:S1124'"EReorder the modifiers to comply with the Java Language Specification.(»š•¥ÿÿÿÿÿ8æ»×Æ°1
-g
-java:S1124D"EReorder the modifiers to comply with the Java Language Specification.(…ëÕøÿÿÿÿ8è»×Æ°1
-z	java:S131]"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ş´ùåúÿÿÿÿ8ê»×Æ°1

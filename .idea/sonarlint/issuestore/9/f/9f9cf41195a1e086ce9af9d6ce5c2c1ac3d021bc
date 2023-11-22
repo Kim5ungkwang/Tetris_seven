@@ -1,0 +1,6 @@
+
+`	java:S112^"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÛÂÅŠÿÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(×œ´ğùÿÿÿÿ
+P
+java:S1161N":Add the "@Override" annotation above this method signature(¶øÂÁ

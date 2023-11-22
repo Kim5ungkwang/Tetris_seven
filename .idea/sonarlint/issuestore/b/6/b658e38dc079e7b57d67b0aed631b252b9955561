@@ -1,0 +1,29 @@
+
+`	java:S112y"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112“"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112¯"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112Â"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(¼ÔÈë
+@	java:S106*"+Replace this use of System.out by a logger.(×ÎóÄ
+E	java:S106,"+Replace this use of System.out by a logger.(şÊ°ùÿÿÿÿ
+@	java:S1060"+Replace this use of System.out by a logger.(®¢á¦
+@	java:S1063"+Replace this use of System.out by a logger.(ğÉ®™
+;
+java:S2129B" Remove this "String" constructor(¼êÖÀşÿÿÿÿ
+@	java:S106W"+Replace this use of System.out by a logger.(Şµ¯î
+E	java:S106\"+Replace this use of System.out by a logger.(şÊ°ùÿÿÿÿ
+@	java:S106d"+Replace this use of System.out by a logger.(ç®Õÿ
+[
+java:S2147z"ECombine this catch with the one at line 120, which has the same body.(ï­£Ä
+@	java:S106q"+Replace this use of System.out by a logger.(õÂÂ¥
+\
+java:S1126t"AReplace this if-then-else statement by a single return statement.(¹ñª„ÿÿÿÿÿ
+A	java:S106Œ"+Replace this use of System.out by a logger.(ÏÁ†ı
+X
+java:S1126"AReplace this if-then-else statement by a single return statement.(ÇŒï
+A	java:S106¡"+Replace this use of System.out by a logger.(õÂÂ¥
+A	java:S106º"+Replace this use of System.out by a logger.(õÂÂ¥
+]
+java:S1126½"AReplace this if-then-else statement by a single return statement.(²°Åéıÿÿÿÿ

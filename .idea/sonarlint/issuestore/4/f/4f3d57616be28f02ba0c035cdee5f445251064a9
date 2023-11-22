@@ -1,15 +1,0 @@
-
-z
-java:S1104"_Make webSocketController a static final constant or non-public and provide accessors if needed.(œÌèÓùÿÿÿÿ
-T
-java:S1444"9Make this "public static webSocketController" field final(œÌèÓùÿÿÿÿ
-u
-java:S1450
-"_Remove the "inputController1" field and declare it as a local variable in the relevant methods.(àØ»Á
-z
-java:S1450"_Remove the "inputController2" field and declare it as a local variable in the relevant methods.(»‚éÍüÿÿÿÿ
-J
-java:S1068
-"4Remove this unused "inputController1" private field.(àØ»Á
-O
-java:S1068"4Remove this unused "inputController2" private field.(»‚éÍüÿÿÿÿ

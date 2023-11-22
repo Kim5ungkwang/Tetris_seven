@@ -1,0 +1,9 @@
+
+L
+java:S11537"1Directly append the argument of String.valueOf().(óà„ƒüÿÿÿÿ
+G
+java:S1153S"1Directly append the argument of String.valueOf().(¥‹°Ï
+7
+java:S1170"!Make this final field static too.(ÏÊÅ¿
+g
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ˆ…Â

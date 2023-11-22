@@ -16,13 +16,8 @@ import java.net.URI;
 
 
 @Getter
-
 public class MyWebSocketClient extends WebSocketClient {
 
-
-    public enum MessageType{
-        START,ENTER, GAME,END
-    }
 
     private String sender1;
     private String sender2;

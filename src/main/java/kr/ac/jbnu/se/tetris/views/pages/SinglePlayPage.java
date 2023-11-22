@@ -2,12 +2,16 @@ package kr.ac.jbnu.se.tetris.views.pages;
 
 import kr.ac.jbnu.se.tetris.models.KeyInput;
 import kr.ac.jbnu.se.tetris.models.Member;
+import kr.ac.jbnu.se.tetris.models.Rank;
+import kr.ac.jbnu.se.tetris.service.RankingService;
+import kr.ac.jbnu.se.tetris.service.WebSocketService;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,9 +26,9 @@ public class SinglePlayPage extends JPanel {
     private JPanel buttonPanel;
     private final MainPage mainPage;  //메인페이지(parent)
     @Getter
-    static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg;
+    static ImageIcon undoImg, sprintImg, tutorialImg, timeAttackImg, rankingImg;
     @Getter
-    JButton sprintBt, tutorialBt, timeAttackBt, undoBt;
+    JButton sprintBt, tutorialBt, timeAttackBt, undoBt, rankingBtn;
     private Random rand;
     KeyInput p1Key = new KeyInput("src/main/java/kr/ac/jbnu/se/tetris/data/player1key.json");   //임시
 
@@ -63,6 +67,7 @@ public class SinglePlayPage extends JPanel {
         tutorialImg = new ImageIcon("source/image/button/tutorial.png");
         timeAttackImg = new ImageIcon("source/image/button/timeattack.png");
         undoImg = new ImageIcon("source/image/button/undo.png");
+        rankingImg = new ImageIcon("source/image/button/rankingImg.png");
 
         sprintBt = new JButton(sprintImg);  //스프린트
         tutorialBt = new JButton(tutorialImg);  //튜토리얼
@@ -73,11 +78,13 @@ public class SinglePlayPage extends JPanel {
         timeAttackBt.setBounds(BUTTON_X, BUTTON_Y + BUTTON_HEIGHT + 30, BUTTON_WIDTH, BUTTON_HEIGHT);
         tutorialBt.setBounds(BUTTON_X, BUTTON_Y +  BUTTON_HEIGHT*2 + 60, BUTTON_WIDTH, BUTTON_HEIGHT);
         undoBt.setBounds(0, 120, BUTTON_WIDTH,BUTTON_HEIGHT);
+        rankingBtn.setBounds(BUTTON_X,BUTTON_Y +  BUTTON_HEIGHT*3,BUTTON_WIDTH,BUTTON_HEIGHT);
 
         add(sprintBt);  //버튼 프레임에 추가
         add(timeAttackBt);
         add(tutorialBt);
         add(undoBt);
+        add(rankingBtn);
         buttonAction();
     }
 
@@ -111,6 +118,21 @@ public class SinglePlayPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 TimeAttackPage timeAttackPage = new TimeAttackPage(new Member(), p1Key, rand);
                 timeAttackPage.setVisible(true);
+            }
+        });
+        rankingBtn.addActionListener(new ActionListener() {   //랭킹확인 버튼을 누를 때 발생하는 이벤트
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Integer> list = RankingService.getInstance().readRanking(RankingService.SCORE);
+                String rank="               <<ranking>>   \n";
+                for(int i=0;i<list.size();i++){
+                    rank=rank+"   "+i+"등" + "    |    "+list.get(i)+"\n";
+                    if(i==9){
+                        i=list.size();
+                    }
+                }
+                JOptionPane.showMessageDialog
+                        (null, rank);
             }
         });
     }
