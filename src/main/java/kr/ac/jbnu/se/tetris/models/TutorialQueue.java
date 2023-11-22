@@ -1,89 +1,26 @@
 package kr.ac.jbnu.se.tetris.models;
 
-import kr.ac.jbnu.se.tetris.controllers.TutorialPieaceController;
+import kr.ac.jbnu.se.tetris.controllers.TutorialPieceController;
 
 import java.util.Random;
 
 public class TutorialQueue extends BrickQueueManager {
-    TutorialPieaceController controller;
-    public TutorialQueue(TutorialPieaceController tutorialPieaceController) {
+
+    public TutorialQueue(TutorialPieceController tutorialPieceController) {
         super(new Random(1));
-        controller = tutorialPieaceController;
+        //final TutorialPieceController controller = tutorialPieceController;
         brickQueue = new ShapeData.Tetrominoes[11];
         brickQueueIndex = 0;
         brickQueueSize = 11;
         setBrickQueue();
     }
-/*
-    @Override
-    public ShapeData.Tetrominoes getNewShape(){
-        this.brickQueueIndex %= brickQueueSize;
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 0){
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 1){
-            return brickQueue[1];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 1){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 2){
-            return brickQueue[2];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 2){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 3){
-            return brickQueue[3];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 3){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 4){
-            return brickQueue[4];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 4){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 5){
-            return brickQueue[5];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 5){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if(controller.getTutorialBoardController().getPieceFixedCount() == 6){
-            return brickQueue[6];
-        } else if(controller.getTutorialBoardController().getPieceFixedCount() < 6){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        if((controller.getTutorialBoardController().getPieceFixedCount() == 7) && (TutorialBoardController.numLinesRemoved != 3)){
-            controller.getBoardController().clearBoard();
-            controller.getTutorialBoardController().startTutorial();
-            brickQueueIndex = 0;
-            return brickQueue[0];
-        }
-        return brickQueue[brickQueueIndex++];
-    }
-*/
     @Override
     public ShapeData.Tetrominoes getNewShape(){
         this.brickQueueIndex %= brickQueueSize;
         return brickQueue[brickQueueIndex++];
     }
 
+    // SRS를 수행하는 튜토리얼 블럭
     public void setBrickQueue(){
         brickQueueIndex = 0;
         brickQueue[0] = ShapeData.Tetrominoes.MirroredLShape;
@@ -99,6 +36,7 @@ public class TutorialQueue extends BrickQueueManager {
         brickQueue[10] = ShapeData.Tetrominoes.TShape;
     }
 
+    // 튜토리얼 블럭 단계 초기화
     public void resetBrickQueueIndex(){
         brickQueueIndex = 0;
     }

@@ -1,10 +1,6 @@
 
-C
-java:S1604)"(Make this anonymous inner class a lambda(Æ¬ûëúÿÿÿÿ
-[
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¹Ëž 
-Q	java:S125?"<This block of commented-out lines of code should be removed.(Ë¢õŒ
-g
-java:S3776B"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ˆ…Â
-V	java:S125_"<This block of commented-out lines of code should be removed.(ÍãµÀøÿÿÿÿ
-R	java:S125ˆ"<This block of commented-out lines of code should be removed.(œûÝÐ
+N
+java:S1172",Remove this unused method parameter "input".(¾æ°îùÿÿÿÿ8¯¾«¿1
+X	java:S1257"<This block of commented-out lines of code should be removed.(Ë¢õŒ8¿¾«¿1
+X	java:S125;"<This block of commented-out lines of code should be removed.(û¸ÉÍ8Á¾«¿1
+]	java:S125Y"<This block of commented-out lines of code should be removed.(ÍãµÀøÿÿÿÿ8Ã¾«¿1

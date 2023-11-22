@@ -2,7 +2,6 @@ package kr.ac.jbnu.se.tetris.views.pages;
 
 import kr.ac.jbnu.se.tetris.controllers.*;
 import kr.ac.jbnu.se.tetris.models.KeyInput;
-import kr.ac.jbnu.se.tetris.models.MainPageModel;
 import kr.ac.jbnu.se.tetris.models.Member;
 import kr.ac.jbnu.se.tetris.views.PlayerPage;
 import lombok.Getter;
@@ -10,23 +9,22 @@ import lombok.Getter;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TutorialPage extends PlayerPage {
-    JPanel backgroundPanel;
+    private JPanel backgroundPanel;
     @Getter
     JLabel tutorialStep;
-    JFrame tutorialPageFrame;
+    private final JFrame tutorialPageFrame;
     JFrame tutorialEndFrame;
-    JButton skipButton; // 튜토리얼 건너뛰는 버튼
+    private final JButton skipButton; // 튜토리얼 건너뛰는 버튼
     JButton finishButton;
-    JButton resetButton;
-    JLabel imageLabel;
+    private final JButton resetButton;
+    private final JLabel imageLabel;
     JLabel finishLabel;
-    ImageIcon imageIcon;
-    JProgressBar progressBar;
-    TutorialBoardController tutorialBoardController;
+    static ImageIcon srsImg;
+
+    @Getter
+    static ImageIcon tutorialBackgroundImg;
 
 
     public TutorialPage(Member member, KeyInput p1Key){
@@ -43,11 +41,12 @@ public class TutorialPage extends PlayerPage {
         this.resetButton = new JButton("다시하기");
 
         tutorialStep.setFont(new Font("SensSerif", Font.BOLD, 20));
-        tutorialStep.setForeground(Color.white);
+        tutorialStep.setForeground(Color.black);
 
-        this.imageIcon = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
-        this.imageLabel = new JLabel(imageIcon); // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
-        imageLabel.setPreferredSize(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconWidth()));
+        srsImg = new ImageIcon("source/image/튜토리얼 SRS 안내.png");
+        tutorialBackgroundImg = new ImageIcon("source/image/background/tutorialbackground.png"); // 튜토리얼 배경 추가
+        this.imageLabel = new JLabel(srsImg); // 5번째 스텝에서 SRS하려면 블럭 어떻게 쌓아야 하는지 이미지 보여주기
+        imageLabel.setPreferredSize(new Dimension(srsImg.getIconWidth(), srsImg.getIconWidth()));
 
         this.board = new TutorialBoardController(this, p1Key);
         this.nextBlockPanelController = new NextBlockPanelController(this);
@@ -56,7 +55,7 @@ public class TutorialPage extends PlayerPage {
 
         board.setBounds(515, 110, BOARD_SIZE_WIDTH, BOARD_SIZE_HEIGHT);
         nextBlockPanelController.setBounds(415, 110, 100, 500);
-        tutorialStep.setBounds(900, 150, 350, 300);
+        tutorialStep.setBounds(910, 100, 360, 300);
         skipButton.setBounds(900, 500,120, 50);
         imageLabel.setBounds(100, 300, 300, 300);
         resetButton.setBounds(900, 560, 120, 50);
@@ -68,14 +67,15 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.add(imageLabel);
         tutorialPageFrame.add(resetButton);
 
-        skipbuttonAction();
-        resetbuttonAction();
+        skipButtonAction();
+        resetButtonAction();
         resetButton.setFocusable(false); // 버튼 선택 시 생기는 테두리 활성화
 
-
+        //튜토리얼 배경 그리기
         backgroundPanel = new JPanel(){
+            @Override
             public void paintComponent(Graphics g){
-                g.drawImage(MainPageModel.getGameBackgroundImg().getImage(), 0 , 0, null);
+                g.drawImage(getTutorialBackgroundImg().getImage(), 0 , 0, null);
                 setOpaque(false);
                 super.paintComponent(g);
             }
@@ -87,11 +87,6 @@ public class TutorialPage extends PlayerPage {
         tutorialPageFrame.setVisible(true);
         tutorialPageFrame.setResizable(false);
         tutorialPageFrame.setLocationRelativeTo(null);
-
-        /*if(TutorialModel.getCurrentStepIndex() == 6 ){
-            tutorialFinished();
-        }*/
-
         tutorialPageFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         AdapterController adapterController = new AdapterController();
@@ -101,33 +96,22 @@ public class TutorialPage extends PlayerPage {
 
     }
 
-    public void skipbuttonAction(){
-        skipButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tutorialPageFrame.dispose();
-            }
+    public void skipButtonAction(){
+        skipButton.addActionListener(e -> tutorialPageFrame.dispose());
+    }
+    public void finishButtonAction(){ //튜토리얼을 끝내면 화면 제거
+        finishButton.addActionListener(e -> {
+            tutorialEndFrame.dispose();
+            tutorialPageFrame.dispose();
         });
     }
-    public void finishbuttonAction(){
-        finishButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tutorialEndFrame.dispose();
-                tutorialPageFrame.dispose();
-            }
+    public void resetButtonAction(){  //튜토리얼을 다시 시작할 때 수행할 작업
+        resetButton.addActionListener(e -> {
+            TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
+            tutorialBoardController.resetTutorial();
         });
     }
-    public void resetbuttonAction(){
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TutorialBoardController tutorialBoardController = (TutorialBoardController) board;
-                tutorialBoardController.resetTutorial();
-            }
-        });
-    }
-    public void tutorialFinished(){
+    public void tutorialFinished(){ //튜토리얼이 끝나면 수행할 작업;튜토리얼 완료화면 띄우기
         this.tutorialEndFrame = new JFrame();
         tutorialEndFrame.setSize(650, 300);
         tutorialEndFrame.setLayout(null);
@@ -144,17 +128,6 @@ public class TutorialPage extends PlayerPage {
         tutorialEndFrame.setVisible(true);
         tutorialEndFrame.add(finishButton);
         tutorialEndFrame.add(finishLabel);
-        finishbuttonAction();
-
+        finishButtonAction();
     }
-    public boolean isTutorialEndFrame(){
-        return tutorialEndFrame.isVisible();
-    }
-    public boolean isTutorialPageFrame(){
-        return tutorialPageFrame.isVisible();
-    }
-    public void removeTutorialPageFrame(){
-        tutorialPageFrame.dispose();
-    }
-
 }

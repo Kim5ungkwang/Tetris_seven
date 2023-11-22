@@ -35,3 +35,7 @@ E	java:S106u"+Replace this use of System.out by a logger.(àÿøÿıÿÿÿÿ
 D
 java:S1185"(Remove this method to simply inherit it.(Õƒ”¦üÿÿÿÿ
 F	java:S106‡"+Replace this use of System.out by a logger.(ÚÏ¬¿şÿÿÿÿ
+i
+java:S1128"MRemove this unused import 'kr.ac.jbnu.se.tetris.controllers.PieceController'.(æíøJ8­‚«¿1
+p
+java:S1128"NRemove this unused import 'kr.ac.jbnu.se.tetris.views.pages.MultiTwoPlayPage'.(×Ì¢øÿÿÿÿÿ8­‚«¿1

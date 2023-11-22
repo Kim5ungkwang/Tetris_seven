@@ -1,24 +1,19 @@
 package kr.ac.jbnu.se.tetris.controllers;
 
-import kr.ac.jbnu.se.tetris.models.ShapeData;
 import kr.ac.jbnu.se.tetris.views.pages.TutorialPage;
 import kr.ac.jbnu.se.tetris.models.*;
 import lombok.Getter;
 
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-
 import static kr.ac.jbnu.se.tetris.models.TutorialModel.*;
 
 public class TutorialBoardController extends BoardController {
     @Getter
-    final private TutorialModel tutorialModel;
+    private final transient TutorialModel tutorialModel;
 
-    TutorialPage tutorialPage;
-    private Timer stepTimer;
+    private final TutorialPage tutorialPage;
+    private final Timer stepTimer;
     @Getter
     public int pieceFixedCount = 0;
     @Getter
@@ -32,18 +27,15 @@ public class TutorialBoardController extends BoardController {
         gameTimerController = new GameTimerController(this);
 
         this.statusBar = parent.getStatusBar();
-        this.pieceController = new TutorialPieaceController(this);
+        this.pieceController = new TutorialPieceController(this);
         this.boardModel.setLoopDelay(600);  //루프 딜레이 설정 400
 
         this.timer = new Timer(boardModel.getLoopDelay(), this);
 
 
-        stepTimer = new Timer(10000, new ActionListener() {  //3000
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                moveToNextStep();
-            }
-        });
+        //3000
+        //시간에 따라 튜토리얼 다음 단계로 넘어감
+        stepTimer = new Timer(10000, e -> moveToNextStep());
 
         this.tutorialModel = new TutorialModel();
 
@@ -64,7 +56,7 @@ public class TutorialBoardController extends BoardController {
     }
     @Override
     protected void removeFullLines(){
-        int numFullLines = 0;
+        /*int numFullLines = 0;
 
         for (int i = BoardModel.getBoardHeight() - 1; i >= 0; --i) {
             boolean lineIsFull = true;
@@ -90,7 +82,9 @@ public class TutorialBoardController extends BoardController {
             pieceController.setIsFallingFinished(true);
             pieceController.getCurrentPiece().setPieceShape(ShapeData.Tetrominoes.NoShape);
             repaint();
-        }
+        }*/
+        super.removeFullLines();
+
         if (numLinesRemoved == 9) {
             //do{
             //    tutorialPage.tutorialFinished();
@@ -100,15 +94,17 @@ public class TutorialBoardController extends BoardController {
         }
     }
 
+    //현재 튜토리얼 단계에 대한 텍스트를 보여줌
     private void displayCurrentStep() {
-        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < tutorialSteps.length) {
-            String currentStepText = tutorialSteps[tutorialModel.getCurrentStepIndex()];
+        if (tutorialModel.getCurrentStepIndex() >= 0 && tutorialModel.getCurrentStepIndex() < getTutorialSteps().length) {
+            String currentStepText = getTutorialSteps()[tutorialModel.getCurrentStepIndex()];
             tutorialPage.getTutorialStep().setText(currentStepText);
         }
     }
 
+    //튜토리얼의 다음 단계로 넘어감
     public void moveToNextStep() {
-        if (tutorialModel.getCurrentStepIndex() < tutorialSteps.length - 1 && tutorialModel.getCurrentStepIndex() != 5) {
+        if (tutorialModel.getCurrentStepIndex() < getTutorialSteps().length - 1) {
             tutorialModel.plusCurrnetStepIndex();
             displayCurrentStep(); // 다음 튜토리얼을 게임 보드에 표시
         }
@@ -121,9 +117,9 @@ public class TutorialBoardController extends BoardController {
 
     }
 
+    //SRS 수행에 필요한 배경블럭 그리기
     private void drawBackgroundblock() {
-        for (int i = 0; i < BoardModel.getBoardHeight() * BoardModel.getBoardWidth(); ++i)
-            getBoardModel().setboard(i, ShapeData.Tetrominoes.NoShape);
+        clearBoard();
         for (int x = 3; x < BoardModel.getBoardWidth(); x++) {
             for (int y = 0; y < 12; y++) {
                 getBoardModel().setboard(x + y * BoardModel.getBoardWidth(), ShapeData.Tetrominoes.TutorialBackground);
@@ -131,34 +127,13 @@ public class TutorialBoardController extends BoardController {
             }
         }
     }
-
-    /*@Override
-    public void pieceDropped(Piece droppedPiece){
-        getPieceFixedCount();
-        /*System.out.println("PieceFixedCount: " + getPieceFixedCount());
-        pieceFixedCount++;
-        //getPieceFixedCount();
-        for (int i = 0; i < 4; i++) {
-            int x = droppedPiece.getCurrentX() + droppedPiece.getCoordinates().x(i);
-            int y = droppedPiece.getCurrentY() - droppedPiece.getCoordinates().y(i);
-            boardModel.setboard((y * BoardModel.getBoardWidth()) + x, droppedPiece.getPieceShape());
-        }
-
-        removeFullLines();  //고정한 이후 지울 수 있는 줄이 있는지 확인
-
-        if (!pieceController.getIsFallingFinished())
-            pieceController.newPiece();
-
-    }
-        */
-
     /**
      * 튜토리얼 리셋 메서드
      */
     public void resetTutorial(){
         clearBoard();
-        TutorialPieaceController tutorialPieaceController = (TutorialPieaceController) pieceController; //타입캐스팅
-        tutorialPieaceController.resetBrickQueue();
+        TutorialPieceController tutorialPieceController = (TutorialPieceController) pieceController; //타입캐스팅
+        tutorialPieceController.resetBrickQueue();
         drawBackgroundblock();
         pieceController.newPiece();
     }

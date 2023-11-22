@@ -2,13 +2,13 @@ package kr.ac.jbnu.se.tetris.models;
 
 import lombok.Getter;
 
+@Getter
 public class TutorialModel extends BoardModel{
-
     @Getter
-    public static int currentStepIndex = 0; //현재 튜토리얼 스텝
+    private int currentStepIndex = 0; //현재 튜토리얼 스텝
+    private final int initalBrickIndex; // 현재 블럭 인덱스
     @Getter
-    private int currentBrickIndex = 0; // 현재 블럭 인덱스
-    public static final String[] tutorialSteps = {
+    protected static final String[] tutorialSteps = {
             "<html># Step 1: 테트리스 규칙<br>- 테트리스의 목표는 아래로 떨어지는 블럭을 사용해 가로 한 줄을 완성하는 것입니다.<br>- 한 줄을 채우려고 노력하면서 버티는 게임입니다.<br>- 튜토리얼을 건너뛰려면 스킵 버튼을 눌러주세요</html>",
             "<html># Step 2: 블럭 이동하기<br>- 블럭을 좌우로 움직이려면 A 키(왼쪽)와, D 키(오른쪽)를 사용하세요.</html>",
             "<html># Step 3: 블럭 회전하기<br>- 블럭을 회전하려면 Q 키(반시계 방향), E 키(시계 방향)를 누르세요.</html>",
@@ -17,7 +17,7 @@ public class TutorialModel extends BoardModel{
             "<html># 잘하셨습니다!<br>이제 테트리스를 더 재미있게 즐길 수 있을 것입니다.<br>메인화면으로 이동하시려면 스킵을 눌러주세요"
     };
     public TutorialModel(){
-        currentBrickIndex = 0;
+        initalBrickIndex = 0;
     }
 
     public void plusCurrnetStepIndex(){
